@@ -29,9 +29,13 @@ public class MainActivity extends Form implements HandlesEventDispatching {
 	private Label RightWrongLabel;
 	private Label CurrentQuestion;
 	private HorizontalArrangement HorizontalArrangement2;
+	private Label ButtonBuffer;
+	//private Label CIBuffer;
 	private Button AnswerButton;
 	private Button NextButton;
 	private HorizontalArrangement HorizontalArrangement3;
+	private HorizontalArrangement HorizontalArrangement4;
+	private Label HintBuffer;
 	private Button HintButton;
 	//private TinyWebDB Database;
 	private int currentQuestionIndex = 0;
@@ -73,7 +77,7 @@ public class MainActivity extends Form implements HandlesEventDispatching {
 	
 	 void $define() {
 		
-		this.ScreenOrientation("portrait");
+		this.ScreenOrientation("landscape");
 		this.Title("Tablet App");
 		this.BackgroundColor(COLOR_NONE);
 		this.BackgroundImage("backApp.png");
@@ -81,53 +85,77 @@ public class MainActivity extends Form implements HandlesEventDispatching {
 		
 		QuestionLabel = new Label(this);
 		QuestionLabel.Text("Math Problem: ");
-		QuestionLabel.FontSize(20.0f);
+		QuestionLabel.FontSize(40.0f);
 		QuestionLabel.Width(LENGTH_FILL_PARENT);
-		QuestionLabel.TextAlignment(Component.ALIGNMENT_NORMAL);
+		QuestionLabel.TextAlignment(Component.ALIGNMENT_CENTER);
 		QuestionLabel.TextColor(Component.COLOR_BLACK);
 		
 		HorizontalArrangement1 = new HorizontalArrangement(this);
 		HorizontalArrangement1.Width(LENGTH_FILL_PARENT);
 		HorizontalArrangement1.Height(LENGTH_FILL_PARENT);
 		
-		AnswerPromptLabel = new Label(HorizontalArrangement1);
-		AnswerPromptLabel.Text("Enter Answer: ");
-		AnswerPromptLabel.TextColor(Component.COLOR_BLACK);
-		
-		AnswerText = new TextBox(HorizontalArrangement1);
-		AnswerText.Hint("Please enter an answer!");
-		AnswerText.TextAlignment(Component.ALIGNMENT_NORMAL);
-		AnswerText.TextColor(Component.COLOR_BLACK);
-		
-		RightWrongLabel = new Label(this);
-		RightWrongLabel.Text("Correct/Incorrect");
-		RightWrongLabel.FontSize(14.0f);
-		RightWrongLabel.TextAlignment(Component.ALIGNMENT_NORMAL);
-		RightWrongLabel.TextColor(Component.COLOR_BLACK);
-		
 		CurrentQuestion = new Label(this);
 		CurrentQuestion.Text("BLANK INITIALLY");
+		CurrentQuestion.FontSize(50.0f);
+		CurrentQuestion.Width(LENGTH_FILL_PARENT);
+		CurrentQuestion.TextAlignment(Component.ALIGNMENT_CENTER);
 		CurrentQuestion.TextColor(Component.COLOR_BLACK);
 		
 		HorizontalArrangement2 = new HorizontalArrangement(this);
 		HorizontalArrangement2.Width(LENGTH_FILL_PARENT);
 		HorizontalArrangement2.Height(LENGTH_FILL_PARENT);
 		
-		AnswerButton = new Button(HorizontalArrangement2);
-		AnswerButton.Text("Submit");
-		AnswerButton.TextAlignment(Component.ALIGNMENT_CENTER);
+		AnswerPromptLabel = new Label(HorizontalArrangement2);
+		AnswerPromptLabel.Text("                                        Enter Answer: ");
+		AnswerPromptLabel.FontSize(40.0f);
+		AnswerPromptLabel.TextAlignment(Component.ALIGNMENT_CENTER);
+		AnswerPromptLabel.TextColor(Component.COLOR_BLACK);
 		
-		NextButton = new Button(HorizontalArrangement2);
-		NextButton.Text("Next");
-		NextButton.TextAlignment(Component.ALIGNMENT_CENTER);
+		AnswerText = new TextBox(HorizontalArrangement2);
+		AnswerText.Hint("Please enter an answer!");
+		AnswerText.FontSize(23.0f);
+		AnswerText.TextAlignment(Component.ALIGNMENT_CENTER);
+		AnswerText.TextColor(Component.COLOR_BLACK);
+
+		RightWrongLabel = new Label(this);
+		RightWrongLabel.Width(LENGTH_FILL_PARENT);
+		RightWrongLabel.Text("Correct/Incorrect");
+		RightWrongLabel.FontSize(25.0f);
+		RightWrongLabel.TextAlignment(Component.ALIGNMENT_CENTER);
+		RightWrongLabel.TextColor(Component.COLOR_BLACK);
 		
 		HorizontalArrangement3 = new HorizontalArrangement(this);
 		HorizontalArrangement3.Width(LENGTH_FILL_PARENT);
 		HorizontalArrangement3.Height(LENGTH_FILL_PARENT);
 		
-		HintButton = new Button(HorizontalArrangement3);
-		HintButton.Text("Hint");
-		HintButton.TextAlignment(Component.ALIGNMENT_CENTER);
+		ButtonBuffer = new Label(HorizontalArrangement3);
+		ButtonBuffer.Text("                                                                              ");
+		ButtonBuffer.FontSize(30.0f);
+		ButtonBuffer.TextColor(Component.COLOR_BLACK);
+		
+		AnswerButton = new Button(HorizontalArrangement3);
+		AnswerButton.Text("Submit");
+		AnswerButton.FontSize(25.0f);
+		AnswerButton.TextAlignment(Component.ALIGNMENT_CENTER);
+		
+		NextButton = new Button(HorizontalArrangement3);
+		NextButton.Text("Next");
+		NextButton.FontSize(25.0f);
+		NextButton.TextAlignment(Component.ALIGNMENT_CENTER);
+		
+		HorizontalArrangement4 = new HorizontalArrangement(this);
+		HorizontalArrangement4.Width(LENGTH_FILL_PARENT);
+		HorizontalArrangement4.Height(LENGTH_FILL_PARENT);
+		
+		HintBuffer = new Label(HorizontalArrangement4);
+		HintBuffer.Text("   ");
+		HintBuffer.FontSize(30.0f);
+		HintBuffer.TextColor(Component.COLOR_BLACK);
+		
+		HintButton = new Button(HorizontalArrangement4);
+		HintButton.Text("Ask Robot for Help");
+		HintButton.FontSize(30.0f);
+		HintButton.TextAlignment(Component.ALIGNMENT_NORMAL);
 		
 		//Database = new TinyWebDB(this);
 		
@@ -173,7 +201,7 @@ public class MainActivity extends Form implements HandlesEventDispatching {
 			}
 			RightWrongLabel.Text("");
 			AnswerText.Text("");
-			HintButton.Text("Hint");
+			HintButton.Text("Ask Robot for Help");
 			if(currentQuestionIndex >= totalQuestions) {
 				//set the index to the beginning again to indicate we are done
 				currentQuestionIndex = 0;
