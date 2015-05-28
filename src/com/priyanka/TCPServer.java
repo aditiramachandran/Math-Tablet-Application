@@ -1,9 +1,9 @@
-package com.priyanka.mathtabapp;
+package com.priyanka;
 
 import java.io.*;
 import java.net.*;
 
-import com.priyanka.mathtabapp.MainActivity;
+import com.priyanka.MainActivity;
 
 public class TCPServer {
 	
