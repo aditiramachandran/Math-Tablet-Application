@@ -7,13 +7,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:background="#ff3229ff">
+    android:background="#ff456bff">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,14 +34,18 @@
             android:text="X + Y ="
             android:id="@+id/QuestionLabel"
             android:layout_marginTop="40dp"
-            android:textSize="50dp" />
+            android:textSize="50sp" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="336dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/editText" />
+            android:id="@+id/editText"
+            android:text="Enter Answer Here"
+            android:layout_weight="0.08"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,25 +53,31 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Correct/Incorrect"
             android:id="@+id/RightWrongLabel"
-            android:layout_marginTop="70dp" />
+            android:layout_marginTop="70dp"
+            android:textSize="30sp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="117dp"
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/AnswerButton"
             android:layout_marginTop="47dp"
             android:clickable="true"
-            android:onClick="AnswerButtonPress"/>
+            android:onClick="AnswerButtonPress"
+            android:ellipsize="middle"
+            android:layout_weight="0.04" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="197dp"
             android:layout_height="wrap_content"
             android:text="Ask Robot for Help"
             android:id="@+id/HintButton"
             android:layout_marginTop="20dp"
             android:clickable="true"
-            android:onClick="HintButtonPress"/>
+            android:onClick="HintButtonPress"
+            android:singleLine="false"
+            android:layout_weight="0.03"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 
