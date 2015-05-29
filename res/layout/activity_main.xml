@@ -42,10 +42,10 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/editText"
-            android:text="Enter Answer Here"
             android:layout_weight="0.08"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:hint="Enter Answer Here" />
 
         <TextView
             android:layout_width="wrap_content"

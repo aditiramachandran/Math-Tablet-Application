@@ -14,8 +14,21 @@ public class MainActivity extends Activity {
     private EditText AnswerText;
     private TextView RightWrongLabel;
     private TextView CurrentQuestion;
-    private Button AnswerButton;
     private Button HintButton;
+
+    //States
+    private enum QState {
+        INIT, INVALID, DISPLAYCORRECT, DISPLAYINCORRECT
+    }
+    private QState questionState = QState.INIT;
+
+    private enum HState {
+        QUESTIONVIEW, HINTVIEW
+    }
+    private HState hintState = HState.QUESTIONVIEW;
+    private int MAXHINTS = 3;
+    private int hintsremaining = MAXHINTS;
+
 
     private int currentQuestionIndex = 0;
     private int totalQuestions = 10;
@@ -29,9 +42,6 @@ public class MainActivity extends Activity {
     private static boolean answerEntered = false;
     public static String toSend;
 
-    private int backgroundImageHeight = 600;
-    private int backgroundImageWidth = 1024;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -40,7 +50,6 @@ public class MainActivity extends Activity {
         AnswerText = (EditText) findViewById(R.id.editText);
         RightWrongLabel = (TextView) findViewById(R.id.RightWrongLabel);
         CurrentQuestion = (TextView) findViewById(R.id.QuestionLabel);
-        AnswerButton = (Button) findViewById(R.id.AnswerButton);
         HintButton = (Button) findViewById(R.id.HintButton);
 
         QuestionList = new String[10];
@@ -84,8 +93,13 @@ public class MainActivity extends Activity {
         toSend = currentQuestionIndex + " " + helpFlag + " " + entered1 + " " + entered;
         //outToClient.writeBytes(toSend);
     }
-    /*
-    public void NextButtonPress(View view){
+
+    public void LoadNextQuestion(){
+
+    }
+
+
+    public void NextQuestion(View view){
         //reset whether or not a hint was asked for, if an answer was entered, and the string to set to null
         hintUsed = false;
         answerEntered = false;
@@ -93,23 +107,23 @@ public class MainActivity extends Activity {
         if (currentQuestionIndex == 9) {
             currentQuestionIndex = 0;
         }
-        RightWrongLabel.Text("");
-        AnswerText.Text("");
-        HintButton.Text("Ask Robot for Help");
+        RightWrongLabel.setText("");
+        AnswerText.setText("");
+        HintButton.setText("Ask Robot for Help");
         if (currentQuestionIndex >= totalQuestions) {
             //set the index to the beginning again to indicate we are done
             currentQuestionIndex = 0;
         }
         String newQuestion = (String) QuestionList[currentQuestionIndex + 1];
-        CurrentQuestion.Text(newQuestion);
+        CurrentQuestion.setText(newQuestion);
         currentQuestionIndex++;
     }
-    */
+
 
     public void HintButtonPress(View view){
         hintUsed = true;
         HintButton.setText("Here is a hint! Try using your fingers to count.");
-        numberHints++;
+        hintsremaining--;
 		/*} else if (dataMember.equals(Database) && eventName.equals("GotValue")) {
 			Database.GotValue(tagFromWebDB, valueFromWebDB);
 			if(tagFromWebDB == "") {
