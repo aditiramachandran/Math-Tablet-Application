@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Math Problem"
-            android:id="@+id/textView"
+            android:id="@+id/TitleLabel"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="83dp"
@@ -44,16 +44,18 @@
             android:id="@+id/editText"
             android:layout_weight="0.08"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:hint="Enter Answer Here"
+            android:editable="false" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Correct/Incorrect"
             android:id="@+id/RightWrongLabel"
             android:layout_marginTop="70dp"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:text="Correct / Incorrect" />
 
         <Button
             android:layout_width="117dp"
