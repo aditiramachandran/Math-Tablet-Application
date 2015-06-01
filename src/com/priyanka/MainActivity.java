@@ -14,15 +14,16 @@ public class MainActivity extends Activity {
     private final String SUBMIT_STRING = "Submit";
     private final String CORRECT_STRING = "Correct!";
     private final String NEXT_QUESTION_STRING = "Next Question";
-    private final String INCORRECT_STRING = "Incorrect!";
     private final String REQUEST_HINT_STRING = "Ask robot for help!";
-
+    private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect! Try again!";
+    private final String TITLE_PREFIX = "Question " /* number */;
 
     private EditText AnswerText;
     private TextView RightWrongLabel;
     private TextView CurrentQuestion;
     private Button HintButton;
     private Button SubmitButton;
+    private TextView TitleLabel;
 
     //States
     private enum QState {
@@ -58,6 +59,7 @@ public class MainActivity extends Activity {
         CurrentQuestion = (TextView) findViewById(R.id.QuestionLabel);
         HintButton = (Button) findViewById(R.id.HintButton);
         SubmitButton = (Button) findViewById(R.id.AnswerButton);
+        TitleLabel = (TextView) findViewById(R.id.TitleLabel);
 
         QuestionList = new String[10];
         AnswerList = new int[10];
@@ -73,7 +75,10 @@ public class MainActivity extends Activity {
         }
 
         CurrentQuestion.setText((String) QuestionList[0]);
+
+        TitleLabel.setText(TITLE_PREFIX + " 1");
         SubmitButton.setText(SUBMIT_STRING);
+        RightWrongLabel.setText("");
     }
 
     public void AnswerButtonPress(View view) {
@@ -89,10 +94,13 @@ public class MainActivity extends Activity {
                 RightWrongLabel.setText(CORRECT_STRING);
                 SubmitButton.setText(NEXT_QUESTION_STRING);
                 questionState = QState.DISPLAYCORRECT;
+                AnswerText.setEnabled(false);
                 numberCorrect++;
             } else {
-                RightWrongLabel.setText(INCORRECT_STRING);
+                String incorrect_string = entered + INCORRECT_POSTFIX;
+                RightWrongLabel.setText(incorrect_string);
                 questionState = QState.DISPLAYINCORRECT;
+                AnswerText.setText("");
                 numberWrong++;
             }
         } else if (questionState == QState.DISPLAYCORRECT){
@@ -118,6 +126,8 @@ public class MainActivity extends Activity {
         CurrentQuestion.setText(newQuestion);
         currentQuestionIndex++;
         questionState = QState.INIT;
+        AnswerText.setEnabled(true);
+        TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex+1));
     }
 
 
