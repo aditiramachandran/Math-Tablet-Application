@@ -11,10 +11,18 @@ import java.text.Normalizer;
 
 public class MainActivity extends Activity {
 
+    private final String SUBMIT_STRING = "Submit";
+    private final String CORRECT_STRING = "Correct!";
+    private final String NEXT_QUESTION_STRING = "Next Question";
+    private final String INCORRECT_STRING = "Incorrect!";
+    private final String REQUEST_HINT_STRING = "Ask robot for help!";
+
+
     private EditText AnswerText;
     private TextView RightWrongLabel;
     private TextView CurrentQuestion;
     private Button HintButton;
+    private Button SubmitButton;
 
     //States
     private enum QState {
@@ -38,8 +46,6 @@ public class MainActivity extends Activity {
 
     private String[] QuestionList;
     private int[] AnswerList;
-    private static boolean hintUsed = false;
-    private static boolean answerEntered = false;
     public static String toSend;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public class MainActivity extends Activity {
         RightWrongLabel = (TextView) findViewById(R.id.RightWrongLabel);
         CurrentQuestion = (TextView) findViewById(R.id.QuestionLabel);
         HintButton = (Button) findViewById(R.id.HintButton);
+        SubmitButton = (Button) findViewById(R.id.AnswerButton);
 
         QuestionList = new String[10];
         AnswerList = new int[10];
@@ -66,72 +73,57 @@ public class MainActivity extends Activity {
         }
 
         CurrentQuestion.setText((String) QuestionList[0]);
+        SubmitButton.setText(SUBMIT_STRING);
     }
 
-    public void AnswerButtonPress(View view){
-        //String entered = String.valueOf(AnswerList[currentQuestionIndex]);
-        answerEntered = true;
-        int entered1 = AnswerList[currentQuestionIndex];
-        int entered = Integer.parseInt(AnswerText.getText().toString());
-        //if(AnswerText.Text() == entered) {
-        //include TCP server stuff
-        if (entered == entered1) {
-            RightWrongLabel.setText("Correct!");
-            numberCorrect++;
-        } else {
-            RightWrongLabel.setText("Incorrect!");
-            numberWrong++;
+    public void AnswerButtonPress(View view) {
+
+        if (questionState == QState.INIT || questionState == QState.DISPLAYINCORRECT
+                || questionState == QState.INVALID) {
+            //String entered = String.valueOf(AnswerList[currentQuestionIndex]);
+            int correct_answer = AnswerList[currentQuestionIndex];
+            int entered = Integer.parseInt(AnswerText.getText().toString());
+            //if(AnswerText.Text() == entered) {
+            //include TCP server stuff
+            if (entered == correct_answer) {
+                RightWrongLabel.setText(CORRECT_STRING);
+                SubmitButton.setText(NEXT_QUESTION_STRING);
+                questionState = QState.DISPLAYCORRECT;
+                numberCorrect++;
+            } else {
+                RightWrongLabel.setText(INCORRECT_STRING);
+                questionState = QState.DISPLAYINCORRECT;
+                numberWrong++;
+            }
+        } else if (questionState == QState.DISPLAYCORRECT){
+            NextQuestion();
         }
-        //send to the robot the formatted string
-        //determine the help flag
-        int helpFlag;
-        if (hintUsed == true) {
-            helpFlag = 1;
-        } else {
-            helpFlag = 0;
-        }
-        toSend = currentQuestionIndex + " " + helpFlag + " " + entered1 + " " + entered;
-        //outToClient.writeBytes(toSend);
     }
 
-    public void LoadNextQuestion(){
-
-    }
-
-
-    public void NextQuestion(View view){
+    public void NextQuestion(){
         //reset whether or not a hint was asked for, if an answer was entered, and the string to set to null
-        hintUsed = false;
-        answerEntered = false;
         toSend = "";
         if (currentQuestionIndex == 9) {
             currentQuestionIndex = 0;
         }
         RightWrongLabel.setText("");
         AnswerText.setText("");
-        HintButton.setText("Ask Robot for Help");
+        HintButton.setText(REQUEST_HINT_STRING);
         if (currentQuestionIndex >= totalQuestions) {
             //set the index to the beginning again to indicate we are done
             currentQuestionIndex = 0;
         }
         String newQuestion = (String) QuestionList[currentQuestionIndex + 1];
+        SubmitButton.setText(SUBMIT_STRING);
         CurrentQuestion.setText(newQuestion);
         currentQuestionIndex++;
+        questionState = QState.INIT;
     }
 
 
     public void HintButtonPress(View view){
-        hintUsed = true;
         HintButton.setText("Here is a hint! Try using your fingers to count.");
         hintsremaining--;
-		/*} else if (dataMember.equals(Database) && eventName.equals("GotValue")) {
-			Database.GotValue(tagFromWebDB, valueFromWebDB);
-			if(tagFromWebDB == "") {
-				QuestionList.add(valueFromWebDB);
-				QuestionLabel.Text(QuestionList.get(0));
-			} else {
-				AnswerList = valueFromWebDB;
-			}
-			*/
+
     }
 }
