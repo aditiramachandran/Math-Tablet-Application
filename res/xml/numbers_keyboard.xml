@@ -1,0 +1,25 @@
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+android:keyWidth="@dimen/key_width"
+android:layout_width="fill_parent"
+android:keyHeight="@dimen/key_height"
+android:verticalGap="@dimen/key_vertical_gap">
+<Row>
+    <Key android:codes="1"          android:keyLabel="1" />
+    <Key android:codes="2"          android:keyLabel="2" android:horizontalGap="@dimen/key_margin"/>
+    <Key android:codes="3"          android:keyLabel="3" android:horizontalGap="@dimen/key_margin"/>
+</Row>
+<Row>
+    <Key android:codes="4"          android:keyLabel="4" />
+    <Key android:codes="5"          android:keyLabel="5" android:horizontalGap="@dimen/key_margin"/>
+    <Key android:codes="6"          android:keyLabel="6" android:horizontalGap="@dimen/key_margin"/>
+</Row>
+<Row>
+    <Key android:codes="7"          android:keyLabel="7" />
+    <Key android:codes="8"          android:keyLabel="8" android:horizontalGap="@dimen/key_margin"/>
+    <Key android:codes="9"          android:keyLabel="9" android:horizontalGap="@dimen/key_margin"/>
+</Row>
+<Row>
+    <Key android:codes="0"          android:keyLabel="0" />
+    <Key android:codes="-1"         android:keyLabel="Backspace" android:horizontalGap="@dimen/key_margin"/>
+</Row>
+</Keyboard>

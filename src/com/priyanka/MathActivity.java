@@ -1,13 +1,13 @@
 package com.priyanka;
 
 import android.app.Activity;
+import android.inputmethodservice.Keyboard;
+import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.text.Normalizer;
 
 public class MathActivity extends Activity {
 
@@ -79,6 +79,16 @@ public class MathActivity extends Activity {
         TitleLabel.setText(TITLE_PREFIX + " 1");
         SubmitButton.setText(SUBMIT_STRING);
         RightWrongLabel.setText("");
+
+
+        Keyboard mKeyboard= new Keyboard(getApplicationContext(), R.xml.numbers_keyboard);
+
+        // Lookup the KeyboardView
+        KeyboardView mKeyboardView= (KeyboardView)findViewById(R.id.keyboardview);
+        // Attach the keyboard to the view
+        mKeyboardView.setKeyboard(mKeyboard);
+        // Do not show the preview balloons
+        mKeyboardView.setPreviewEnabled(false);
     }
 
     public void AnswerButtonPress(View view) {
