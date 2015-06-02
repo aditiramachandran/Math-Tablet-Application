@@ -18,7 +18,7 @@ public class MathActivity extends Activity {
     private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect! Try again!";
     private final String TITLE_PREFIX = "Question " /* number */;
 
-    private EditText AnswerText;
+    private com.priyanka.NoImeEditText AnswerText;
     private TextView RightWrongLabel;
     private TextView CurrentQuestion;
     private Button HintButton;
@@ -54,7 +54,7 @@ public class MathActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        AnswerText = (EditText) findViewById(R.id.editText);
+        AnswerText = (com.priyanka.NoImeEditText) findViewById(R.id.editText);
         RightWrongLabel = (TextView) findViewById(R.id.RightWrongLabel);
         CurrentQuestion = (TextView) findViewById(R.id.QuestionLabel);
         HintButton = (Button) findViewById(R.id.HintButton);

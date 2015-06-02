@@ -26,7 +26,8 @@
         <activity
             android:name="com.priyanka.MathActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
     </application>
 

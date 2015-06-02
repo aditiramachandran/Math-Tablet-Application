@@ -36,10 +36,10 @@
             android:layout_marginTop="40dp"
             android:textSize="50sp" />
 
-        <EditText
+        <com.priyanka.NoImeEditText
             android:layout_width="336dp"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="none"
             android:digits="1234567890"
             android:ems="10"
             android:id="@+id/editText"
@@ -47,8 +47,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:hint="Enter Answer Here"
-            android:editable="false"
-            android:textSize="20dp" />
+            android:textSize="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,21 +59,36 @@
             android:text="Correct / Incorrect"
             android:layout_gravity="center_horizontal" />
 
+        <android.inputmethodservice.KeyboardView
+            android:shadowRadius="0.0"
+            android:id="@+id/keyboardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/math_background"
+            android:keyBackground="@drawable/key_drawable"
+            android:keyTextColor="@color/key_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp" />
+
         <Button
-            android:layout_width="305dp"
+            android:layout_width="364dp"
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/AnswerButton"
-            android:layout_marginTop="47dp"
+            android:layout_marginTop="60dp"
             android:clickable="true"
             android:onClick="AnswerButtonPress"
             android:ellipsize="middle"
-            android:layout_weight="0.03"
+            android:layout_weight="0.05"
             android:background="@drawable/key_drawable"
-            android:textSize="20dp" />
+            android:textSize="30dp" />
 
         <Button
-            android:layout_width="305dp"
+            android:layout_width="364dp"
             android:layout_height="wrap_content"
             android:text="Ask Robot for Help"
             android:id="@+id/HintButton"
@@ -82,27 +96,13 @@
             android:clickable="true"
             android:onClick="HintButtonPress"
             android:singleLine="false"
-            android:layout_weight="0.03"
+            android:layout_weight="0.05"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/key_drawable"
-            android:textSize="20dp" />
+            android:textSize="30dp" />
 
 
 
     </LinearLayout>
-
-    <android.inputmethodservice.KeyboardView
-        android:shadowRadius="0.0"
-        android:id="@+id/keyboardview"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:background="@color/math_background"
-        android:keyBackground="@drawable/key_drawable"
-        android:keyTextColor="@color/key_text"
-        />
 
 </RelativeLayout>
