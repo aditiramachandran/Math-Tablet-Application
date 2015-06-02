@@ -89,6 +89,51 @@ public class MathActivity extends Activity {
         mKeyboardView.setKeyboard(mKeyboard);
         // Do not show the preview balloons
         mKeyboardView.setPreviewEnabled(false);
+
+        mKeyboardView.setOnKeyboardActionListener(new KeyboardView.OnKeyboardActionListener() {
+            @Override
+            public void onKey(int primaryCode, int[] keyCodes)
+            {
+                //Here check the primaryCode to see which key is pressed
+                //based on the android:codes property
+                if(primaryCode>=0 && primaryCode <=9)
+                {
+                    AnswerText.setText(AnswerText.getText().toString()+primaryCode+"");
+                } else if (primaryCode == -1)
+                {
+                    if (AnswerText.getText().toString().length()>0)
+                    {
+                        String old_string = AnswerText.getText().toString();
+                        int string_length = old_string.length();
+
+                        String new_string = old_string.substring(0,string_length-1);
+
+                        AnswerText.setText(new_string);
+                    }
+                }
+            }
+
+            @Override public void onPress(int arg0) {
+            }
+
+            @Override public void onRelease(int primaryCode) {
+            }
+
+            @Override public void onText(CharSequence text) {
+            }
+
+            @Override public void swipeDown() {
+            }
+
+            @Override public void swipeLeft() {
+            }
+
+            @Override public void swipeRight() {
+            }
+
+            @Override public void swipeUp() {
+            }
+        });
     }
 
     public void AnswerButtonPress(View view) {
