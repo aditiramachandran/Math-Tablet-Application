@@ -24,6 +24,7 @@ public class MathActivity extends Activity {
     private Button HintButton;
     private Button SubmitButton;
     private TextView TitleLabel;
+    private KeyboardView mKeyboardView;
 
     //States
     private enum QState {
@@ -84,7 +85,7 @@ public class MathActivity extends Activity {
         Keyboard mKeyboard= new Keyboard(getApplicationContext(), R.xml.numbers_keyboard);
 
         // Lookup the KeyboardView
-        KeyboardView mKeyboardView= (KeyboardView)findViewById(R.id.keyboardview);
+        mKeyboardView= (KeyboardView)findViewById(R.id.keyboardview);
         // Attach the keyboard to the view
         mKeyboardView.setKeyboard(mKeyboard);
         // Do not show the preview balloons
@@ -150,6 +151,8 @@ public class MathActivity extends Activity {
                 SubmitButton.setText(NEXT_QUESTION_STRING);
                 questionState = QState.DISPLAYCORRECT;
                 AnswerText.setEnabled(false);
+                mKeyboardView.setVisibility(View.INVISIBLE);
+                mKeyboardView.setEnabled(false);
                 numberCorrect++;
             } else {
                 String incorrect_string = entered + INCORRECT_POSTFIX;
@@ -182,7 +185,9 @@ public class MathActivity extends Activity {
         currentQuestionIndex++;
         questionState = QState.INIT;
         AnswerText.setEnabled(true);
-        TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex+1));
+        mKeyboardView.setVisibility(View.VISIBLE);
+        mKeyboardView.setEnabled(true);
+        TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex + 1));
     }
 
 
