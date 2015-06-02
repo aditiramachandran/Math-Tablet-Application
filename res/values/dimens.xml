@@ -9,6 +9,8 @@
     <dimen name="key_width">100dp</dimen>
     <dimen name="key_height">70dp</dimen>
 
+    <dimen name="skip_key">115dp</dimen>
+
     <dimen name="keyboard_padding">40dp</dimen>
 
 </resources>
