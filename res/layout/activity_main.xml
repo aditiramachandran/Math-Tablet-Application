@@ -39,7 +39,8 @@
         <EditText
             android:layout_width="336dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="phone"
+            android:digits="1234567890"
             android:ems="10"
             android:id="@+id/editText"
             android:layout_weight="0.08"
