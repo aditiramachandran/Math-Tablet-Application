@@ -49,7 +49,6 @@ public class MathActivity extends Activity {
 
     private String[] QuestionList;
     private int[] AnswerList;
-    public static String toSend;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,9 +139,7 @@ public class MathActivity extends Activity {
 
     public void AnswerButtonPress(View view) {
 
-
         if (AnswerText.getText().toString().equals("")){
-            System.out.println("--->"+AnswerText.getText());
             questionState = QState.INVALID;
             RightWrongLabel.setText(INVALID_STRING);
 
@@ -174,8 +171,6 @@ public class MathActivity extends Activity {
     }
 
     public void NextQuestion(){
-        //reset whether or not a hint was asked for, if an answer was entered, and the string to set to null
-        toSend = "";
         currentQuestionIndex++;
 
         RightWrongLabel.setText("");
