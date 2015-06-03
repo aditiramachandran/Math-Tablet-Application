@@ -52,6 +52,10 @@ public class MainActivity extends Activity {
 
     }
 
+    public void connected() {
+        ConnectionStatus.setText("Connected.");
+    }
+
     public void startMathSession(View view) {
         Intent intent = new Intent(this, com.priyanka.MathActivity.class);
         startActivity(intent);
@@ -60,14 +64,18 @@ public class MainActivity extends Activity {
     public void connectTablet(View view){
         String ipInput = IPandPort.getText().toString();
         String ipaddress = ipInput.split(":")[0];
-        //new connectTask().execute(ipaddress);
+        String ipport = ipInput.split(":")[1];
+        ConnectTask connectTask = new ConnectTask();
+        connectTask.owner = this;
+        connectTask.execute(ipaddress, ipport);
 
         ConnectionStatus.setText("Trying to connect to server");
     }
 
-    public class connectTask extends AsyncTask<String,String,TCPClient> {
+    public class ConnectTask extends AsyncTask<String,String,TCPClient> {
 
         private String ipaddress;
+        public MainActivity owner;
         @Override
         protected TCPClient doInBackground(String... message) {
 
@@ -90,11 +98,11 @@ public class MainActivity extends Activity {
 	    				((Activity)getContext()).finish();*/
 
                 }
-            });
+            }, owner);
 
             if (this.validIP(message[0])){
                 mTcpClient.setIpAddress(message[0]);
-
+                mTcpClient.setIpPortVar(Integer.parseInt(message[1]));
                 //if valid, write ip in text file
                 BufferedWriter writer = null;
                 try
@@ -137,6 +145,7 @@ public class MainActivity extends Activity {
                 }
             }
             // mTcpClient.setIpAddress(message[0]);
+            TCPClient.singleton = mTcpClient;
             mTcpClient.run();
 
             return null;

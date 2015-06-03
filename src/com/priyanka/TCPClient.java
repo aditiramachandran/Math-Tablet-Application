@@ -3,6 +3,7 @@
  */
 package com.priyanka;
 
+import android.os.Handler;
 import android.util.Log;
 
 import android.util.Log;
@@ -14,20 +15,25 @@ public class TCPClient {
 
     private String serverMessage;
     public static final String SERVERIP = "192.168.42.109";  //192.168.1.106"; //your computer IP address
-    public static final int SERVERPORT = 6789;
+    public static final int SERVERPORT = 6788;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
     private String ipAddressVar;
+    private int ipPortVar;
+    private com.priyanka.MainActivity owner;
 
     PrintWriter out;
     BufferedReader in;
 
+    public static TCPClient singleton;
+
     /**
      *  Constructor of the class. OnMessagedReceived listens for the messages received from server
      */
-    public TCPClient(OnMessageReceived listener) {
+    public TCPClient(OnMessageReceived listener, com.priyanka.MainActivity owner) {
         mMessageListener = listener;
         ipAddressVar = null;
+        this.owner = owner;
     }
 
     /**
@@ -53,16 +59,28 @@ public class TCPClient {
             //here you must put your computer's IP address.
             InetAddress serverAddr;
 
-            if (ipAddressVar == null)
+            if (ipAddressVar == null) {
                 serverAddr = InetAddress.getByName(SERVERIP);
-            else
+                ipPortVar = SERVERPORT;
+            }
+            else {
                 serverAddr = InetAddress.getByName(ipAddressVar);
+                //use ipPortVar that was input by user
+            }
 
             Log.e("TCP Client", "C: Connecting...");
 
             //create a socket to make the connection with the server
-            Socket socket = new Socket(serverAddr, SERVERPORT);
-
+            Socket socket = new Socket(serverAddr, ipPortVar);
+            //owner.connected();
+            Handler mainHandler = new Handler(owner.getMainLooper());
+            Runnable myRunnable = new Runnable(){
+                    @Override
+                    public void run() {
+                        owner.connected();
+                    }
+            };
+            mainHandler.post(myRunnable);
             try {
 
                 //send the message to the server
@@ -122,6 +140,15 @@ public class TCPClient {
     public void setIpAddress(String ipAddressVar) {
         this.ipAddressVar = ipAddressVar;
     }
+
+    public int getIpPortVar() {
+        return ipPortVar;
+    }
+
+    public void setIpPortVar(int ipPortVar){
+        this.ipPortVar = ipPortVar;
+    }
+
 
     //Declare the interface. The method messageReceived(String message) will must be implemented in the MyActivity
     //class at on asynckTask doInBackground
