@@ -26,6 +26,7 @@ public class MathActivity extends Activity {
     private Button SubmitButton;
     private TextView TitleLabel;
     private KeyboardView mKeyboardView;
+    private int sessionNum = -1;
 
     //States
     private enum QState {
@@ -62,6 +63,14 @@ public class MathActivity extends Activity {
         HintButton = (Button) findViewById(R.id.HintButton);
         SubmitButton = (Button) findViewById(R.id.AnswerButton);
         TitleLabel = (TextView) findViewById(R.id.TitleLabel);
+
+        //get session num from previous activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            sessionNum = Integer.parseInt(extras.getString("sessionNum"));
+            
+        }
+        System.out.println("session number is: " + sessionNum);
 
         QuestionList = new String[totalQuestions];
         AnswerList = new int[totalQuestions];
@@ -195,7 +204,8 @@ public class MathActivity extends Activity {
         TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex + 1));
 
         //Send message
-        com.priyanka.TCPClient.singleton.sendMessage(newQuestion);
+        if (com.priyanka.TCPClient.singleton != null)
+            com.priyanka.TCPClient.singleton.sendMessage(newQuestion);
     }
 
     public void HintButtonPress(View view){

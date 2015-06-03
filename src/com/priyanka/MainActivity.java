@@ -24,52 +24,72 @@ import android.widget.TextView;
 /**
  * Created by aditi on 5/29/15.
  */
-public class MainActivity extends Activity {
-    private EditText IPandPort;
+public class MainActivity extends Activity implements View.OnClickListener {
+    private EditText iPandPort;
     private TCPClient mTcpClient;
-    private Button ConnectButton;
-    private Button Session1Button;
-    private Button Session2Button;
-    private Button Session3Button;
-    private Button Session4Button;
-    private EditText ParticipantID;
-    private TextView ConnectionStatus;
+    private Button connectButton;
+    private Button session1Button;
+    private Button session2Button;
+    private Button session3Button;
+    private Button session4Button;
+    private EditText participantID;
+    private TextView connectionStatus;
+    private int sessionNum;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.start_screen);
 
-        IPandPort = (EditText) findViewById(R.id.IPandPort);
-        ConnectButton = (Button) findViewById(R.id.ConnectButton);
-        ConnectionStatus = (TextView) findViewById(R.id.ConnectionStatus);
+        iPandPort = (EditText) findViewById(R.id.IPandPort);
+        connectButton = (Button) findViewById(R.id.ConnectButton);
+        connectionStatus = (TextView) findViewById(R.id.ConnectionStatus);
 
-        Session1Button = (Button) findViewById(R.id.Session1Button);
-        Session2Button = (Button) findViewById(R.id.Session2Button);
-        Session3Button = (Button) findViewById(R.id.Session3Button);
-        Session4Button = (Button) findViewById(R.id.Session4Button);
+        session1Button = (Button) findViewById(R.id.Session1Button);
+        session2Button = (Button) findViewById(R.id.Session2Button);
+        session3Button = (Button) findViewById(R.id.Session3Button);
+        session4Button = (Button) findViewById(R.id.Session4Button);
 
+        session1Button.setOnClickListener(this);
+        session2Button.setOnClickListener(this);
+        session3Button.setOnClickListener(this);
+        session4Button.setOnClickListener(this);
 
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == session1Button)
+            sessionNum = 1;
+        else if (v == session2Button)
+            sessionNum = 2;
+        else if (v == session3Button)
+            sessionNum = 3;
+        else if (v == session4Button)
+            sessionNum = 4;
+
+        startMathSession(v);
+    }
+
     public void connected() {
-        ConnectionStatus.setText("Connected.");
+        connectionStatus.setText("Connected.");
     }
 
     public void startMathSession(View view) {
         Intent intent = new Intent(this, com.priyanka.MathActivity.class);
+        intent.putExtra("sessionNum", ""+sessionNum);
         startActivity(intent);
     }
 
     public void connectTablet(View view){
-        String ipInput = IPandPort.getText().toString();
+        String ipInput = iPandPort.getText().toString();
         String ipaddress = ipInput.split(":")[0];
         String ipport = ipInput.split(":")[1];
         ConnectTask connectTask = new ConnectTask();
         connectTask.owner = this;
         connectTask.execute(ipaddress, ipport);
 
-        ConnectionStatus.setText("Trying to connect to server");
+        connectionStatus.setText("Trying to connect to server");
     }
 
     public class ConnectTask extends AsyncTask<String,String,TCPClient> {
