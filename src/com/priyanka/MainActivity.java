@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     public void connectTablet(View view){
         String ipInput = IPandPort.getText().toString();
         String ipaddress = ipInput.split(":")[0];
-        new connectTask().execute(ipaddress);
+        //new connectTask().execute(ipaddress);
 
         ConnectionStatus.setText("Trying to connect to server");
     }
