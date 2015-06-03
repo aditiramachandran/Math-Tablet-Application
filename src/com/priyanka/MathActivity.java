@@ -141,7 +141,7 @@ public class MathActivity extends Activity {
     public void AnswerButtonPress(View view) {
 
 
-        if (AnswerText.getText().equals("")){
+        if (AnswerText.getText().toString().equals("")){
             System.out.println("--->"+AnswerText.getText());
             questionState = QState.INVALID;
             RightWrongLabel.setText(INVALID_STRING);
