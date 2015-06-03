@@ -20,6 +20,8 @@ android:verticalGap="@dimen/key_vertical_gap">
 </Row>
 <Row>
     <Key android:codes="0"          android:keyLabel="0" android:horizontalGap="@dimen/skip_key"/>
-    <Key android:codes="-1"         android:keyLabel="Backspace" android:horizontalGap="@dimen/key_margin"/>
+    <Key android:codes="-1"
+        android:keyIcon="@drawable/backspace_s"
+        android:horizontalGap="@dimen/key_margin" />
 </Row>
 </Keyboard>

@@ -17,6 +17,7 @@ public class MathActivity extends Activity {
     private final String REQUEST_HINT_STRING = "Ask robot for help!";
     private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect! Try again!";
     private final String TITLE_PREFIX = "Question " /* number */;
+    private final String INVALID_STRING = "Type in an answer before submitting!";
 
     private com.priyanka.NoImeEditText AnswerText;
     private TextView RightWrongLabel;
@@ -139,7 +140,13 @@ public class MathActivity extends Activity {
 
     public void AnswerButtonPress(View view) {
 
-        if (questionState == QState.INIT || questionState == QState.DISPLAYINCORRECT
+
+        if (AnswerText.getText().equals("")){
+            System.out.println("--->"+AnswerText.getText());
+            questionState = QState.INVALID;
+            RightWrongLabel.setText(INVALID_STRING);
+
+        } else if (questionState == QState.INIT || questionState == QState.DISPLAYINCORRECT
                 || questionState == QState.INVALID) {
             //String entered = String.valueOf(AnswerList[currentQuestionIndex]);
             int correct_answer = AnswerList[currentQuestionIndex];
