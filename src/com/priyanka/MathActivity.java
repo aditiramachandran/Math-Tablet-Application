@@ -40,7 +40,7 @@ public class MathActivity extends Activity {
     private int hintsremaining = MAXHINTS;
 
 
-    private int currentQuestionIndex = 0;
+    private int currentQuestionIndex = -1;
     private int totalQuestions = 10;
     private int numberCorrect = 0;
     private int numberWrong = 0;
@@ -62,24 +62,19 @@ public class MathActivity extends Activity {
         SubmitButton = (Button) findViewById(R.id.AnswerButton);
         TitleLabel = (TextView) findViewById(R.id.TitleLabel);
 
-        QuestionList = new String[10];
-        AnswerList = new int[10];
+        QuestionList = new String[totalQuestions];
+        AnswerList = new int[totalQuestions];
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < totalQuestions; i++) {
             String toInsert = i + " + 1 = ";
             QuestionList[i] = toInsert;
             //System.out.println("Just added " + (String) QuestionList.get(i));
         }
 
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < totalQuestions; j++) {
             AnswerList[j] = j + 1;
         }
 
-        CurrentQuestion.setText((String) QuestionList[0]);
-
-        TitleLabel.setText(TITLE_PREFIX + " 1");
-        SubmitButton.setText(SUBMIT_STRING);
-        RightWrongLabel.setText("");
 
 
         Keyboard mKeyboard= new Keyboard(getApplicationContext(), R.xml.numbers_keyboard);
@@ -93,48 +88,53 @@ public class MathActivity extends Activity {
 
         mKeyboardView.setOnKeyboardActionListener(new KeyboardView.OnKeyboardActionListener() {
             @Override
-            public void onKey(int primaryCode, int[] keyCodes)
-            {
+            public void onKey(int primaryCode, int[] keyCodes) {
                 //Here check the primaryCode to see which key is pressed
                 //based on the android:codes property
-                if(primaryCode>=0 && primaryCode <=9)
-                {
-                    AnswerText.setText(AnswerText.getText().toString()+primaryCode+"");
-                } else if (primaryCode == -1)
-                {
-                    if (AnswerText.getText().toString().length()>0)
-                    {
+                if (primaryCode >= 0 && primaryCode <= 9) {
+                    AnswerText.setText(AnswerText.getText().toString() + primaryCode + "");
+                } else if (primaryCode == -1) {
+                    if (AnswerText.getText().toString().length() > 0) {
                         String old_string = AnswerText.getText().toString();
                         int string_length = old_string.length();
 
-                        String new_string = old_string.substring(0,string_length-1);
+                        String new_string = old_string.substring(0, string_length - 1);
 
                         AnswerText.setText(new_string);
                     }
                 }
             }
 
-            @Override public void onPress(int arg0) {
+            @Override
+            public void onPress(int arg0) {
             }
 
-            @Override public void onRelease(int primaryCode) {
+            @Override
+            public void onRelease(int primaryCode) {
             }
 
-            @Override public void onText(CharSequence text) {
+            @Override
+            public void onText(CharSequence text) {
             }
 
-            @Override public void swipeDown() {
+            @Override
+            public void swipeDown() {
             }
 
-            @Override public void swipeLeft() {
+            @Override
+            public void swipeLeft() {
             }
 
-            @Override public void swipeRight() {
+            @Override
+            public void swipeRight() {
             }
 
-            @Override public void swipeUp() {
+            @Override
+            public void swipeUp() {
             }
         });
+
+        NextQuestion();
     }
 
     public void AnswerButtonPress(View view) {
@@ -169,9 +169,8 @@ public class MathActivity extends Activity {
     public void NextQuestion(){
         //reset whether or not a hint was asked for, if an answer was entered, and the string to set to null
         toSend = "";
-        if (currentQuestionIndex == 9) {
-            currentQuestionIndex = 0;
-        }
+        currentQuestionIndex++;
+
         RightWrongLabel.setText("");
         AnswerText.setText("");
         HintButton.setText(REQUEST_HINT_STRING);
@@ -179,17 +178,18 @@ public class MathActivity extends Activity {
             //set the index to the beginning again to indicate we are done
             currentQuestionIndex = 0;
         }
-        String newQuestion = (String) QuestionList[currentQuestionIndex + 1];
+        String newQuestion = (String) QuestionList[currentQuestionIndex];
         SubmitButton.setText(SUBMIT_STRING);
         CurrentQuestion.setText(newQuestion);
-        currentQuestionIndex++;
         questionState = QState.INIT;
         AnswerText.setEnabled(true);
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setEnabled(true);
         TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex + 1));
-    }
 
+        //Send message
+        com.priyanka.TCPClient.singleton.sendMessage(newQuestion);
+    }
 
     public void HintButtonPress(View view){
         HintButton.setText("Here is a hint! Try using your fingers to count.");
