@@ -35,7 +35,8 @@
             android:id="@+id/QuestionLabel"
             android:layout_marginTop="40dp"
             android:textSize="50sp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal" />
 
         <com.priyanka.NoImeEditText
             android:layout_width="205dp"
