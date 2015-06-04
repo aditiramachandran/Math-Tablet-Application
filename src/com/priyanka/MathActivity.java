@@ -24,7 +24,9 @@ public class MathActivity extends Activity {
     private final String REQUEST_HINT_STRING = "Ask robot for help!";
     private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect! Try again!";
     private final String TITLE_PREFIX = "Question " /* number */;
-    private final String INVALID_STRING = "Type in an answer before submitting!";
+    private final String INVALID_STRING_FRACTION = "Type in an answer into both boxes before submitting!";
+    private final String INVALID_STRING_VALUE = "Type in an answer before submitting!";
+
 
     private TextView fractionLine;
     private com.priyanka.NoImeEditText AnswerText1;
@@ -100,10 +102,6 @@ public class MathActivity extends Activity {
         SubmitButton = (Button) findViewById(R.id.AnswerButton);
         TitleLabel = (TextView) findViewById(R.id.TitleLabel);
 
-
-
-
-
         Keyboard mKeyboard= new Keyboard(getApplicationContext(), R.xml.numbers_keyboard);
 
         // Lookup the KeyboardView
@@ -124,13 +122,13 @@ public class MathActivity extends Activity {
                 if (primaryCode >= 0 && primaryCode <= 9) {
                     target.setText(target.getText().toString() + primaryCode + "");
                 } else if (primaryCode == -1) {
-                    if (AnswerText1.getText().toString().length() > 0) {
-                        String old_string = AnswerText1.getText().toString();
+                    if (target.getText().toString().length() > 0) {
+                        String old_string = target.getText().toString();
                         int string_length = old_string.length();
 
                         String new_string = old_string.substring(0, string_length - 1);
 
-                        AnswerText1.setText(new_string);
+                        target.setText(new_string);
                     }
                 }
             }
@@ -169,23 +167,28 @@ public class MathActivity extends Activity {
 
     public void AnswerButtonPress(View view) {
 
-        if (AnswerText1.getText().toString().equals("") ||
-                AnswerText2.getText().toString().equals("")){
-            questionState = QState.INVALID;
-            RightWrongLabel.setText(INVALID_STRING);
+        String format = questions.get(currentQuestionIndex).format;
+        String enteredStr1 = AnswerText1.getText().toString();
+        String enteredStr2 = AnswerText2.getText().toString();
 
+        if (format.equals(Questions.FORMAT_FRACTION) &&
+                (enteredStr1.equals("") || enteredStr2.equals(""))) {
+            questionState = QState.INVALID;
+            RightWrongLabel.setText(INVALID_STRING_FRACTION);
+        } else if (format.equals(Questions.FORMAT_TEXT) && enteredStr1.equals("")){
+            questionState = QState.INVALID;
+            RightWrongLabel.setText(INVALID_STRING_VALUE);
         } else if (questionState == QState.INIT || questionState == QState.DISPLAYINCORRECT
                 || questionState == QState.INVALID) {
-            //String entered = String.valueOf(AnswerList[currentQuestionIndex]);
 
             Question question = questions.get(currentQuestionIndex);
 
             Boolean correct = false;
 
-            int entered1 = Integer.parseInt(AnswerText1.getText().toString());
-            int entered2 = Integer.parseInt(AnswerText2.getText().toString());
+            int entered1 = Integer.parseInt(enteredStr1);
 
             if (question.format.equals(Questions.FORMAT_FRACTION)){
+                int entered2 = Integer.parseInt(enteredStr2);
                 correct = question.numerator==entered1 && question.denominator==entered2;
             } else if (question.format.equals(Questions.FORMAT_TEXT)){
                 correct = question.value == entered1;
@@ -205,6 +208,7 @@ public class MathActivity extends Activity {
             } else {
                 String incorrect_string = "";
                 if (question.format.equals(Questions.FORMAT_FRACTION)){
+                    int entered2 = Integer.parseInt(enteredStr2);
                     incorrect_string = entered1 + " / " + entered2 + INCORRECT_POSTFIX;
                 } else if (question.format.equals(Questions.FORMAT_TEXT)) {
                     incorrect_string = entered1 + INCORRECT_POSTFIX;
@@ -214,10 +218,12 @@ public class MathActivity extends Activity {
                 AnswerText1.setText("");
                 AnswerText2.setText("");
                 numberWrong++;
+                AnswerText1.requestFocus();
             }
         } else if (questionState == QState.DISPLAYCORRECT){
             NextQuestion();
         }
+
     }
 
     public void NextQuestion(){
@@ -241,11 +247,18 @@ public class MathActivity extends Activity {
             AnswerText1.setEnabled(true);
             fractionLine.setEnabled(true);
             AnswerText2.setEnabled(true);
+            AnswerText1.setVisibility(View.VISIBLE);
+            fractionLine.setVisibility(View.VISIBLE);
+            AnswerText2.setVisibility(View.VISIBLE);
         } else if (question.format.equals(Questions.FORMAT_TEXT)){
             AnswerText1.setEnabled(true);
             fractionLine.setEnabled(false);
             AnswerText2.setEnabled(false);
+            AnswerText2.setVisibility(View.VISIBLE);
+            fractionLine.setVisibility(View.INVISIBLE);
+            AnswerText2.setVisibility(View.INVISIBLE);
         }
+
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setEnabled(true);
         TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex + 1));
@@ -253,6 +266,8 @@ public class MathActivity extends Activity {
         //Send message
         if (com.priyanka.TCPClient.singleton != null)
             com.priyanka.TCPClient.singleton.sendMessage(newQuestion);
+
+        AnswerText1.requestFocus();
     }
 
     public void HintButtonPress(View view){

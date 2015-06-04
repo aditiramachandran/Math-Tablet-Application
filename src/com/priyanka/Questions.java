@@ -30,7 +30,7 @@ public class Questions {
     public static final String KEY_HINT3 = "Hint3";
 
     public static final String FORMAT_FRACTION = "fraction";
-    public static final String FORMAT_TEXT = "text";
+    public static final String FORMAT_TEXT = "value";
 
     ArrayList<Question> questions = new ArrayList<Question>();
 
