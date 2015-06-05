@@ -6,7 +6,7 @@ import time
 import datetime
 import collections
 import socket
-sys.path.append('/Users/aditi/python_libs_nao')
+sys.path.append('/Users/aditi/python_libs_nao_1.14.5')
 
 import naoqi
 from naoqi import ALBroker
@@ -25,6 +25,7 @@ class TutoringSession:
 		self.numQuestions = 0
 		self.numCorrect = 0
 		self.numIncorrect = 0
+		self.numRepeatHints = 0
 
 	def log_answer(self,history,q_type,answer,correct):
 		history.write("Type: %d, Answered: %s, %s\n"%(q_type,answer,correct))
@@ -73,8 +74,8 @@ class TutoringSession:
 				msgType = msg.split(":")[0]
 				msg = msg.split(":")[1]
 
-				robot_speech = msg.replace("=","").strip()
-				robot_speech = "What does " + robot_speech + " equal?"
+				robot_speech = msg #.replace("=","").strip()
+				#robot_speech = "What does " + robot_speech + " equal?"
 
 				if msgType == 'Q': #question
 					self.numQuestions += 1
@@ -85,13 +86,24 @@ class TutoringSession:
 						self.goNao.genSpeech(robot_speech) 
 				elif msgType == 'CA': #correct attempt
 					self.numCorrect += 1
-					print 'correct answer'
+					print 'correct answer' 
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.assess("correct")
 				elif msgType == 'IA': #incorrect attempt
 					self.numIncorrect += 1
 					print 'incorrect answer'
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.assess("wrong")
 				elif msgType == 'H': #hint request
 					self.numHintRequests += 1
 					print 'hint request'
+				elif msgType == 'HR': #repeat hint request
+					self.numRepeatHints += 1
+					print 'repeat hint request'
 				else:
 					print 'error: unknown message type'
 
@@ -183,7 +195,7 @@ class TutoringSession:
 
 def main():
 	#start main piece of nao tutoring interaction
-	NAO_PORT = 9559
+	NAO_PORT = 54011
 	useRobot = False
 	if len(sys.argv) >= 3:
 		TCP_IP = sys.argv[1]
@@ -208,7 +220,8 @@ def main():
 	goNao = None
 	if useRobot:
 		try:
-		    goNao = Gesture(NAO_IP, NAO_PORT)
+			print 'trying to connect nao\n'
+			goNao = Gesture(NAO_IP, NAO_PORT)
 		except Exception as e:
 		    print "Could not find nao. Check that your ip is correct (%s)" %TCP_IP
 		    sys.exit()
