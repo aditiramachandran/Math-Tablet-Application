@@ -34,18 +34,41 @@
             android:text="X + Y ="
             android:id="@+id/QuestionLabel"
             android:layout_marginTop="40dp"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal" />
 
         <com.priyanka.NoImeEditText
-            android:layout_width="336dp"
+            android:layout_width="205dp"
             android:layout_height="wrap_content"
             android:inputType="none"
             android:digits="1234567890"
             android:ems="10"
-            android:id="@+id/editText"
-            android:layout_weight="0.02"
+            android:id="@+id/editText1"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="3dp"
+            android:hint="Enter Answer Here"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/fractionLine"
+            android:layout_width="240dp"
+            android:layout_height="5dip"
+            android:background="#FF000000"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <com.priyanka.NoImeEditText
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:digits="1234567890"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
             android:hint="Enter Answer Here"
             android:textSize="20dp"/>
 

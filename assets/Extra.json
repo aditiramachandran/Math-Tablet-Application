@@ -1,0 +1,352 @@
+[
+  {
+    "Question" : "Find the least common denominator of 2/11 and 1/6.",
+    "Spoken Question" : "Find the least common denominator of two-elevenths and one-sixth.",
+    "Type" : "Common Denominator",
+    "Difficulty Level" : 2,
+    "Format" : "value",
+    "Answer" :
+    {
+         "Value" : 66
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, the common denominator of 1/2 and 1/3 is 6.",
+         "Spoken Hint1" : "For example, the common denominator of one-half and one-third is 6.",
+         "Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Hint3" : "Try listing out the multiples of the denominators. The multiples of 11 are 11, 22, 33, ... and the multiples of 6 are 6, 12, 18, ... Where do the two lists match up?",
+         "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 11 are 11, 22, 33, and so on, and the multiples of 6 are 6, 12, 18, and so on. Where do the two lists match up?"
+    }
+  },
+
+  {
+    "Question" : "Find the least common denominator of 8/3 and 5/18.",
+    "Spoken Question" : "Find the least common denominator of eight-thirds and five-eighteenths.",
+    "Type" : "Common Denominator",
+    "Difficulty Level" : 2,
+    "Format" : "value",
+    "Answer" :
+    {
+         "Value" : 18
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, the common denominator of 2/4 and 1/3 is 12.",
+         "Spoken Hint1" : "For example, the common denominator of two-fourths and one-third is 12.",
+         "Hint2" : "You need to find the smallest number that is a multiple of both denominators. Do not worry about the numerators.",
+         "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators. Do not worry about the numerators.",
+         "Hint3" : "Try listing out the multiples of the denominators. The multiples of 3 are 3, 6, 9, ... and the multiples of 18 are 18, 36, 54, ... Where do the two lists match up?",
+         "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 3 are 3, 6, 9, and so on, and the multiples of 18 are 18, 36, 54, and so on. Where do the two lists match up?"
+    }
+  },
+
+  {
+    "Question" : "Find the least common denominator of 5/12 and 2 1/3.",
+    "Spoken Question" : "Find the least common denominator of five-twelfths and two and one-third.",
+    "Type" : "Common Denominator",
+    "Difficulty Level" : 3,
+    "Format" : "value",
+    "Answer" :
+    {
+         "Value" : 12
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, the common denominator of 1/2 and 1/3 is 6.",
+         "Spoken Hint1" : "For example, the common denominator of one-half and one-third is 6.",
+         "Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Hint3" : "Try listing out the multiples of the denominators. The multiples of 12 are 12, 24, 36, ... and the multiples of 3 are 3, 6, 9, ... Where do the two lists match up?",
+         "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 12 are 12, 24, 36, and so on, and the multiples of 3 are 3, 6, 9, and so on. Where do the two lists match up?"
+    }
+  },
+
+  {
+    "Question" : "Find the least common denominator of 9/11 and 1 1/9.",
+    "Spoken Question" : "Find the least common denominator of nine-elevenths and one and one-ninth.",
+    "Type" : "Common Denominator",
+    "Difficulty Level" : 3,
+    "Format" : "value",
+    "Answer" :
+    {
+         "Value" : 99
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, the common denominator of 2/4 and 1/3 is 12.",
+         "Spoken Hint1" : "For example, the common denominator of two-fourths and one-third is 12.",
+         "Hint2" : "You need to find the smallest number that is a multiple of both denominators. Do not worry about the numerators or the whole number.",
+         "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators. Do not worry about the numerators or the whole number.",
+         "Hint3" : "Try listing out the multiples of the denominators. The multiples of 11 are 11, 22, 33, ... and the multiples of 9 are 9, 18, 27, ... Where do the two lists match up?",
+         "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 11 are 11, 22, 33, and so on, and the multiples of 9 are 9, 18, 27, and so on. Where do the two lists match up?"
+    }
+  },
+
+  {
+    "Question" : "1/6 + 4/6 = ",
+    "Spoken Question" : "What is one-sixth plus four-sixths?",
+    "Type" : "Adding Like Denominators",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 5,
+         "Denominator" : 6
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/4 + 2/4 = 3/4.",
+         "Spoken Hint1" : "For example, one-fourth plus two-fourths equals three-fourths.",
+         "Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
+         "Spoken Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
+         "Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change.",
+         "Spoken Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change."
+    }
+  },
+
+  {
+    "Question" : "1/15 + 7/15 = ",
+    "Spoken Question" : "What is one-fifteenth plus seven-fifteenths?",
+    "Type" : "Adding Like Denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 8,
+         "Denominator" : 15
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/4 + 2/4 = 3/4.",
+         "Spoken Hint1" : "For example, one-fourth plus two-fourths equals three-fourths.",
+         "Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
+         "Spoken Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
+         "Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change.",
+         "Spoken Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change."
+    }
+  },
+
+  {
+    "Question" : "Michelle used 7/3 cups of flour, 2/3 cups of white sugar, and 4/3 cups of brown sugar to make cookies. How many cups did she use in total? Leave your answer as an improper fraction.",
+    "Spoken Question" : "Michelle used seven-thirds cups of flour, two-thirds cups of white sugar, and four-thirds cups of brown sugar to make cookies. How many cups did she use in total? Leave your answer as an improper fraction.",
+    "Type" : "Adding Like Denominators",
+    "Difficulty Level" : 3,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 13,
+         "Denominator" : 3
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 3/8 + 4/8 = 7/8.",
+         "Spoken Hint1" : "For example, three-eighths plus four-eighths equals seven-eighths.",
+         "Hint2" : "In order to add fractions, should you add the numerators or the denominators?",
+         "Spoken Hint2" : "In order to add fractions, should you add the numerators or the denominators?",
+         "Hint3" : "Add the numerators of all of the fractions. Remember, the denominator shouldn't change.",
+         "Spoken Hint3" : "Add the numerators of all of the fractions. Remember, the denominator shouldn't change."
+    }
+  },
+
+  {
+    "Question" : "6/9 - 2/9 = ",
+    "Spoken Question" : "What is six-ninths minus two-ninths?",
+    "Type" : "Subtracting Like Denominators",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 4,
+         "Denominator" : 9
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 3/4 - 2/4 = 1/4.",
+         "Spoken Hint1" : "For example, three-fourths minus two-fourths equals one-fourth.",
+         "Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
+         "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
+    }
+  },
+
+  {
+    "Question" : "13/15 - 6/15 = ",
+    "Spoken Question" : "What is thirteen-fifteenths minus six-fifteenths?",
+    "Type" : "Subtracting Like Denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 7,
+         "Denominator" : 15
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 3/4 - 2/4 = 1/4.",
+         "Spoken Hint1" : "For example, three-fourths minus two-fourths equals one-fourth.",
+         "Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
+         "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
+    }
+  },
+
+  {
+    "Question" : "26/8 - 15/8 - 2/8 = 
+    Leave your answer as an improper fraction.",
+    "Spoken Question" : "What is twenty-six-eighths minus fifteen-eighths minus two-eighths? Leave your answer as an improper fraction.",
+    "Type" : "Subtracting Like Denominators",
+    "Difficulty Level" : 3,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 9,
+         "Denominator" : 8
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 6/7 - 2/7 = 4/7.",
+         "Spoken Hint1" : "For example, six-sevenths minus two-sevenths equals four-sevenths.",
+         "Hint2" : "In order to subtract fractions, should you subtract the numerators or the denominators?",
+         "Spoken Hint2" : "In order to subtract fractions, should you subtract the numerators or the denominators?",
+         "Hint3" : "Subtract the numerators of all of the fractions. Remember, the denominator shouldn't change.",
+         "Spoken Hint3" : "Subtract the numerators of all of the fractions. Remember, the denominator shouldn't change."
+    }
+  },
+
+  {
+    "Question" : "2/3 + 1/9 = ",
+    "Spoken Question" : "What is two-thirds plus one-ninth?",
+    "Type" : "Adding Unlike Denominators",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 7,
+         "Denominator" : 9
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 + 1/4 = 3/4.",
+         "Spoken Hint1" : "For example, one-half plus one-fourth equals three-fourths.",
+         "Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
+         "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
+         "Hint3" : "The common denominator of the two fractions is 9. Now make both fractions have the same denominator. Then you can add them!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 9. Now make both fractions have the same denominator. Then you can add them!"
+    }
+  },
+
+  {
+    "Question" : "11/15 + 4/9 = 
+    Leave your answer as an improper fraction.",
+    "Spoken Question" : "What is eleven-fifteenths plus four-ninths? Leave your answer as an improper fraction.",
+    "Type" : "Adding Unlike Denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 53,
+         "Denominator" : 45
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 + 1/4 = 3/4.",
+         "Spoken Hint1" : "For example, one-half plus one-fourth equals three-fourths.",
+         "Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
+         "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
+         "Hint3" : "The common denominator of the two fractions is 45. Now make both fractions have the same denominator. Then you can add them!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 45. Now make both fractions have the same denominator. Then you can add them!"
+    }
+  },
+
+  {
+    "Question" : "Maria is drawing a self-portrait. She draws 2/5 of the portrait on Monday, 1/5 on Tuesday, and 1/3 on Wednesday. How much has she finished in total?",
+    "Spoken Question" : "Maria is drawing a self-portrait. She draws two-fifths of the portrait on Monday, one-fifth on Tuesday, and one-third on Wednesday. How much has she finished in total?",
+    "Type" : "Adding Unlike Denominators",
+    "Difficulty Level" : 3,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 14,
+         "Denominator" : 15
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 + 1/4 = 3/4.",
+         "Spoken Hint1" : "For example, one-half plus one-fourth equals three-fourths.",
+         "Hint2" : "In order to add fractions with different denominators, you need to find the common denominator.",
+         "Spoken Hint2" : "In order to add fractions with different denominators, you need to find the common denominator.",
+         "Hint3" : "The common denominator of the three fractions is 15. Now make the fractions have the same denominator. Then you can add them!",
+         "Spoken Hint3" : "The common denominator of the three fractions is 15. Now make both fractions have the same denominator. Then you can add them!"
+    }
+  },
+
+  {
+    "Question" : "13/15 - 3/5 = ",
+    "Spoken Question" : "What is thirteen-fifteenths minus three-fifths?",
+    "Type" : "Subtracting Unlike Denominators",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 4,
+         "Denominator" : 15
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth.",
+         "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
+         "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
+         "Hint3" : "The common denominator of the two fractions is 15. Now make both fractions have the same denominator. Then you can subtract them!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 15. Now make both fractions have the same denominator. Then you can subtract them!"
+    }
+  },
+
+  {
+    "Question" : "2/5 - 1/4 = ",
+    "Spoken Question" : "What is two-fifths minus one-fourth?",
+    "Type" : "Subtracting Unlike Denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 3,
+         "Denominator" : 20
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth.",
+         "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
+         "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
+         "Hint3" : "The common denominator of the two fractions is 20. Now make both fractions have the same denominator. Then you can subtract them!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 20. Now make both fractions have the same denominator. Then you can subtract them!"
+    }
+  },
+
+  {
+    "Question" : "3/2 - 1/4 - 2/11 = 
+    Leave your answer as an improper fraction.",
+    "Spoken Question" : "What is three-halves minus one-fourth minus two-elevenths? Leave your answer as an improper fraction.",
+    "Type" : "Subtracting Unlike Denominators",
+    "Difficulty Level" : 3,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 47,
+         "Denominator" : 44
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth.",
+         "Hint2" : "In order to subtract fractions with different denominators, you need to find the common denominator.",
+         "Spoken Hint2" : "In order to subtract fractions with different denominators, you need to find the common denominator.",
+         "Hint3" : "The common denominator of the three fractions is 44. Now make the fractions have the same denominator. Then you can subtract them!",
+         "Spoken Hint3" : "The common denominator of the three fractions is 44. Now make the fractions have the same denominator. Then you can subtract them!"
+    }
+  }
+]

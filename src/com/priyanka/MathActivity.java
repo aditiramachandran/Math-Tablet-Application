@@ -1,6 +1,7 @@
 package com.priyanka;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
@@ -8,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.channels.NonReadableChannelException;
 
 public class MathActivity extends Activity {
 
@@ -17,9 +24,13 @@ public class MathActivity extends Activity {
     private final String REQUEST_HINT_STRING = "Ask robot for help!";
     private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect! Try again!";
     private final String TITLE_PREFIX = "Question " /* number */;
-    private final String INVALID_STRING = "Type in an answer before submitting!";
+    private final String INVALID_STRING_FRACTION = "Type in an answer into both boxes before submitting!";
+    private final String INVALID_STRING_VALUE = "Type in an answer before submitting!";
 
-    private com.priyanka.NoImeEditText AnswerText;
+
+    private TextView fractionLine;
+    private com.priyanka.NoImeEditText AnswerText1;
+    private com.priyanka.NoImeEditText AnswerText2;
     private TextView RightWrongLabel;
     private TextView CurrentQuestion;
     private Button HintButton;
@@ -27,6 +38,8 @@ public class MathActivity extends Activity {
     private TextView TitleLabel;
     private KeyboardView mKeyboardView;
     private int sessionNum = -1;
+
+    private Questions questions;
 
     //States
     private enum QState {
@@ -39,8 +52,6 @@ public class MathActivity extends Activity {
     }
     private HState hintState = HState.QUESTIONVIEW;
     private int MAXHINTS = 3;
-    private int hintsremaining = MAXHINTS;
-
 
     private int currentQuestionIndex = -1;
     private int totalQuestions = 10;
@@ -48,43 +59,48 @@ public class MathActivity extends Activity {
     private int numberWrong = 0;
     private int numberHints = 0;
 
-    private String[] QuestionList;
-    private int[] AnswerList;
+
+    public String AssetJSONFile (String filename) throws IOException {
+        AssetManager manager = this.getAssets();
+        InputStream file = manager.open(filename);
+        byte[] formArray = new byte[file.available()];
+        file.read(formArray);
+        file.close();
+
+        return new String(formArray);
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
-        AnswerText = (com.priyanka.NoImeEditText) findViewById(R.id.editText);
+
+        //Load JSON file
+        String json_file = "sample.json";
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            sessionNum = Integer.parseInt(extras.getString("sessionNum"));
+            json_file = "Session"+sessionNum+".json";
+        }
+
+        String json = "";
+        try {
+            json = AssetJSONFile(json_file);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        questions = new Questions(json);
+
+        fractionLine = (TextView) findViewById(R.id.fractionLine);
+        AnswerText1 = (com.priyanka.NoImeEditText) findViewById(R.id.editText1);
+        AnswerText2 = (com.priyanka.NoImeEditText) findViewById(R.id.editText2);
         RightWrongLabel = (TextView) findViewById(R.id.RightWrongLabel);
         CurrentQuestion = (TextView) findViewById(R.id.QuestionLabel);
         HintButton = (Button) findViewById(R.id.HintButton);
         SubmitButton = (Button) findViewById(R.id.AnswerButton);
         TitleLabel = (TextView) findViewById(R.id.TitleLabel);
-
-        //get session num from previous activity
-        Bundle extras = getIntent().getExtras();
-        if (extras != null){
-            sessionNum = Integer.parseInt(extras.getString("sessionNum"));
-            
-        }
-        System.out.println("session number is: " + sessionNum);
-
-        QuestionList = new String[totalQuestions];
-        AnswerList = new int[totalQuestions];
-
-        for (int i = 0; i < totalQuestions; i++) {
-            String toInsert = i + " + 1 = ";
-            QuestionList[i] = toInsert;
-            //System.out.println("Just added " + (String) QuestionList.get(i));
-        }
-
-        for (int j = 0; j < totalQuestions; j++) {
-            AnswerList[j] = j + 1;
-        }
-
-
 
         Keyboard mKeyboard= new Keyboard(getApplicationContext(), R.xml.numbers_keyboard);
 
@@ -100,16 +116,19 @@ public class MathActivity extends Activity {
             public void onKey(int primaryCode, int[] keyCodes) {
                 //Here check the primaryCode to see which key is pressed
                 //based on the android:codes property
+                EditText target= AnswerText1;
+                if (AnswerText2.hasFocus())    target=AnswerText2;
+
                 if (primaryCode >= 0 && primaryCode <= 9) {
-                    AnswerText.setText(AnswerText.getText().toString() + primaryCode + "");
+                    target.setText(target.getText().toString() + primaryCode + "");
                 } else if (primaryCode == -1) {
-                    if (AnswerText.getText().toString().length() > 0) {
-                        String old_string = AnswerText.getText().toString();
+                    if (target.getText().toString().length() > 0) {
+                        String old_string = target.getText().toString();
                         int string_length = old_string.length();
 
                         String new_string = old_string.substring(0, string_length - 1);
 
-                        AnswerText.setText(new_string);
+                        target.setText(new_string);
                     }
                 }
             }
@@ -148,52 +167,98 @@ public class MathActivity extends Activity {
 
     public void AnswerButtonPress(View view) {
 
-        if (AnswerText.getText().toString().equals("")){
-            questionState = QState.INVALID;
-            RightWrongLabel.setText(INVALID_STRING);
+        String format = questions.get(currentQuestionIndex).format;
+        String enteredStr1 = AnswerText1.getText().toString();
+        String enteredStr2 = AnswerText2.getText().toString();
 
+        if (format.equals(Questions.FORMAT_FRACTION) &&
+                (enteredStr1.equals("") || enteredStr2.equals(""))) {
+            questionState = QState.INVALID;
+            RightWrongLabel.setText(INVALID_STRING_FRACTION);
+        } else if (format.equals(Questions.FORMAT_TEXT) && enteredStr1.equals("")){
+            questionState = QState.INVALID;
+            RightWrongLabel.setText(INVALID_STRING_VALUE);
         } else if (questionState == QState.INIT || questionState == QState.DISPLAYINCORRECT
                 || questionState == QState.INVALID) {
-            //String entered = String.valueOf(AnswerList[currentQuestionIndex]);
-            int correct_answer = AnswerList[currentQuestionIndex];
-            int entered = Integer.parseInt(AnswerText.getText().toString());
+
+            Question question = questions.get(currentQuestionIndex);
+
+            Boolean correct = false;
+
+            int entered1 = Integer.parseInt(enteredStr1);
+
+            if (question.format.equals(Questions.FORMAT_FRACTION)){
+                int entered2 = Integer.parseInt(enteredStr2);
+                correct = question.numerator==entered1 && question.denominator==entered2;
+            } else if (question.format.equals(Questions.FORMAT_TEXT)){
+                correct = question.value == entered1;
+            }
+
             //if(AnswerText.Text() == entered) {
             //include TCP server stuff
-            if (entered == correct_answer) {
+            if (correct) {
                 RightWrongLabel.setText(CORRECT_STRING);
                 SubmitButton.setText(NEXT_QUESTION_STRING);
                 questionState = QState.DISPLAYCORRECT;
-                AnswerText.setEnabled(false);
+                AnswerText1.setEnabled(false);
+                AnswerText2.setEnabled(false);
                 mKeyboardView.setVisibility(View.INVISIBLE);
                 mKeyboardView.setEnabled(false);
                 numberCorrect++;
             } else {
-                String incorrect_string = entered + INCORRECT_POSTFIX;
+                String incorrect_string = "";
+                if (question.format.equals(Questions.FORMAT_FRACTION)){
+                    int entered2 = Integer.parseInt(enteredStr2);
+                    incorrect_string = entered1 + " / " + entered2 + INCORRECT_POSTFIX;
+                } else if (question.format.equals(Questions.FORMAT_TEXT)) {
+                    incorrect_string = entered1 + INCORRECT_POSTFIX;
+                }
                 RightWrongLabel.setText(incorrect_string);
                 questionState = QState.DISPLAYINCORRECT;
-                AnswerText.setText("");
+                AnswerText1.setText("");
+                AnswerText2.setText("");
                 numberWrong++;
+                AnswerText1.requestFocus();
             }
         } else if (questionState == QState.DISPLAYCORRECT){
             NextQuestion();
         }
+
     }
 
     public void NextQuestion(){
         currentQuestionIndex++;
 
         RightWrongLabel.setText("");
-        AnswerText.setText("");
+        AnswerText1.setText("");
+        AnswerText2.setText("");
         HintButton.setText(REQUEST_HINT_STRING);
         if (currentQuestionIndex >= totalQuestions) {
             //set the index to the beginning again to indicate we are done
             currentQuestionIndex = 0;
         }
-        String newQuestion = (String) QuestionList[currentQuestionIndex];
+        Question question = questions.get(currentQuestionIndex);
+        String newQuestion = question.question;
         SubmitButton.setText(SUBMIT_STRING);
         CurrentQuestion.setText(newQuestion);
         questionState = QState.INIT;
-        AnswerText.setEnabled(true);
+
+        if (question.format.equals(Questions.FORMAT_FRACTION)){
+            AnswerText1.setEnabled(true);
+            fractionLine.setEnabled(true);
+            AnswerText2.setEnabled(true);
+            AnswerText1.setVisibility(View.VISIBLE);
+            fractionLine.setVisibility(View.VISIBLE);
+            AnswerText2.setVisibility(View.VISIBLE);
+        } else if (question.format.equals(Questions.FORMAT_TEXT)){
+            AnswerText1.setEnabled(true);
+            fractionLine.setEnabled(false);
+            AnswerText2.setEnabled(false);
+            AnswerText2.setVisibility(View.VISIBLE);
+            fractionLine.setVisibility(View.INVISIBLE);
+            AnswerText2.setVisibility(View.INVISIBLE);
+        }
+
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setEnabled(true);
         TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex + 1));
@@ -201,11 +266,11 @@ public class MathActivity extends Activity {
         //Send message
         if (com.priyanka.TCPClient.singleton != null)
             com.priyanka.TCPClient.singleton.sendMessage("Q:" + newQuestion);
+
+        AnswerText1.requestFocus();
     }
 
     public void HintButtonPress(View view){
         HintButton.setText("Here is a hint! Try using your fingers to count.");
-        hintsremaining--;
-
     }
 }
