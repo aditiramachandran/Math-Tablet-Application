@@ -200,7 +200,7 @@ public class MathActivity extends Activity {
 
         //Send message
         if (com.priyanka.TCPClient.singleton != null)
-            com.priyanka.TCPClient.singleton.sendMessage(newQuestion);
+            com.priyanka.TCPClient.singleton.sendMessage("Q:" + newQuestion);
     }
 
     public void HintButtonPress(View view){
