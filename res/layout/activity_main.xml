@@ -151,7 +151,7 @@
                 android:text="Request Hint 3"
                 android:id="@+id/hint3"
                 android:textSize="30dp"
-                android:background="@drawable/hint_drawable"
+                android:background="@drawable/repeat_drawable"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp" />
         </LinearLayout>
