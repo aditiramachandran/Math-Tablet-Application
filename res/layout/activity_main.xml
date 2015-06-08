@@ -131,7 +131,8 @@
                 android:textSize="30dp"
                 android:background="@drawable/hint_drawable"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                android:onClick="HintPressed" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -143,7 +144,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                android:onClick="HintPressed" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -153,7 +155,8 @@
                 android:textSize="30dp"
                 android:background="@drawable/repeat_drawable"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                android:onClick="HintPressed" />
         </LinearLayout>
 
 

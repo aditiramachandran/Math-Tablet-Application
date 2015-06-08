@@ -245,12 +245,55 @@ public class MathActivity extends Activity {
 
     }
 
+    public void HintPressed(View view){
+
+        Question currentQuestion = questions.get(currentQuestionIndex);
+
+        int buttonNumber = -1;
+
+        Button button = (Button) view;
+
+        if      (button==HintButton1) buttonNumber = 1;
+        else if (button==HintButton2) buttonNumber = 2;
+        else if (button==HintButton3) buttonNumber = 3;
+
+        int newHintButtonNumber = MAX_HINTS - hintsRemaining + 1;
+
+        if (buttonNumber <= newHintButtonNumber){
+            String hintMessage = "";
+            if (buttonNumber == 1) {
+                hintMessage = currentQuestion.hint1;
+                HintButton1.setText(REPEAT_HINT_STRING1);
+                HintButton1.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
+                HintButton2.setVisibility(View.VISIBLE);
+            } else if (buttonNumber == 2) {
+                hintMessage = currentQuestion.hint2;
+                HintButton2.setText(REPEAT_HINT_STRING2);
+                HintButton2.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
+                HintButton3.setVisibility(View.VISIBLE);
+            } else if (buttonNumber == 3) {
+                hintMessage = currentQuestion.hint3;
+                HintButton3.setText(REPEAT_HINT_STRING3);
+                HintButton3.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
+            }
+
+            if (com.priyanka.TCPClient.singleton != null)
+                com.priyanka.TCPClient.singleton.sendMessage("H:" + hintMessage);
+        }
+
+        hintsRemaining--;
+    }
+
+
     public void NextQuestion(){
         currentQuestionIndex++;
 
         RightWrongLabel.setText("");
         AnswerText1.setText("");
         AnswerText2.setText("");
+        HintButton1.setVisibility(View.VISIBLE);
+        HintButton2.setVisibility(View.INVISIBLE);
+        HintButton3.setVisibility(View.INVISIBLE);
         HintButton1.setText(REQUEST_HINT_STRING1);
         HintButton2.setText(REQUEST_HINT_STRING2);
         HintButton3.setText(REQUEST_HINT_STRING3);
