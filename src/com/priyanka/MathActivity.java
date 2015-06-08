@@ -16,6 +16,8 @@ import org.json.JSONArray;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.channels.NonReadableChannelException;
+import com.priyanka.Questions;
+import com.priyanka.Question;
 
 public class MathActivity extends Activity {
 
@@ -209,6 +211,8 @@ public class MathActivity extends Activity {
             //if(AnswerText.Text() == entered) {
             //include TCP server stuff
             if (correct) {
+                if (com.priyanka.TCPClient.singleton != null)
+                    com.priyanka.TCPClient.singleton.sendMessage("CA:" + CORRECT_STRING);
                 RightWrongLabel.setText(CORRECT_STRING);
                 SubmitButton.setText(NEXT_QUESTION_STRING);
                 questionState = QState.DISPLAYCORRECT;
@@ -225,6 +229,9 @@ public class MathActivity extends Activity {
                 } else if (question.format.equals(Questions.FORMAT_TEXT)) {
                     incorrect_string = entered1 + INCORRECT_POSTFIX;
                 }
+                //Send message
+                if (com.priyanka.TCPClient.singleton != null)
+                    com.priyanka.TCPClient.singleton.sendMessage("IA:" + incorrect_string);
                 RightWrongLabel.setText(incorrect_string);
                 questionState = QState.DISPLAYINCORRECT;
                 AnswerText1.setText("");
@@ -287,7 +294,7 @@ public class MathActivity extends Activity {
 
         //Send message
         if (com.priyanka.TCPClient.singleton != null)
-            com.priyanka.TCPClient.singleton.sendMessage("Q:" + newQuestion);
+            com.priyanka.TCPClient.singleton.sendMessage("Q:" + question.spokenQuestion);
 
         AnswerText1.requestFocus();
     }

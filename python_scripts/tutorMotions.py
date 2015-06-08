@@ -27,6 +27,7 @@ class Gesture:
         self.led = None
         self.right = anim.right
         self.wrong = anim.wrong
+        self.wrong_postfix = anim.wrong_postfix
         self.trouble = anim.trouble
         self.hint = anim.hint
         self.confused = anim.confused
@@ -36,6 +37,7 @@ class Gesture:
     def connectNao(self):
         #FRAME MANAGER FOR CALLING BEHAVIORS
         try:
+            print 'in connect nao, host and port are:', self.host, ',', self.port
             self.frame  = ALProxy("ALFrameManager", self.host, self.port)
         except Exception, e:
             print "Error when creating frame manager device proxy:"+str(e)
@@ -108,8 +110,8 @@ class Gesture:
             self.genSpeech(self.right[randnr])
             time.sleep(3)
         elif(what is "wrong"):
-            randnr = random.randint(0,len(self.wrong)-1)
-            self.genSpeech(self.wrong[randnr])
+            randnr = random.randint(0,len(self.wrong_postfix)-1)
+            self.genSpeech(self.wrong_postfix[randnr])
             time.sleep(3)
         elif(what is "trouble"):
             randnr = random.randint(0,len(self.trouble)-1)
