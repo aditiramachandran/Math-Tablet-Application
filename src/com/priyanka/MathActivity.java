@@ -278,7 +278,7 @@ public class MathActivity extends Activity {
             }
 
             if (com.priyanka.TCPClient.singleton != null)
-                com.priyanka.TCPClient.singleton.sendMessage("H:" + hintMessage);
+                com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ":" + hintMessage);
         }
 
         hintsRemaining--;
