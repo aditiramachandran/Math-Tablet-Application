@@ -50,6 +50,9 @@ public class MathActivity extends Activity {
 
     private Questions questions;
 
+    public final int MAX_HINTS = 3;
+    public int hintsRemaining = MAX_HINTS;
+
     //States
     private enum QState {
         INIT, INVALID, DISPLAYCORRECT, DISPLAYINCORRECT
@@ -247,6 +250,8 @@ public class MathActivity extends Activity {
         HintButton1.setBackground(getResources().getDrawable(R.drawable.hint_drawable));
         HintButton2.setBackground(getResources().getDrawable(R.drawable.hint_drawable));
         HintButton3.setBackground(getResources().getDrawable(R.drawable.hint_drawable));
+
+        hintsRemaining = MAX_HINTS;
 
         if (currentQuestionIndex >= questions.length()) {
             Intent intent = new Intent(this, com.priyanka.Completed.class);
