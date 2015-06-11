@@ -6,7 +6,7 @@ import time
 import datetime
 import collections
 import socket
-sys.path.append('/Users/aditi/python_libs_nao_1.14.5')
+sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
 
 import naoqi
 from naoqi import ALBroker
@@ -195,7 +195,7 @@ class TutoringSession:
 
 def main():
 	#start main piece of nao tutoring interaction
-	NAO_PORT = 54011
+	NAO_PORT = 9559
 	useRobot = False
 	if len(sys.argv) >= 3:
 		TCP_IP = sys.argv[1]
