@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import com.priyanka.TCPClient;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
