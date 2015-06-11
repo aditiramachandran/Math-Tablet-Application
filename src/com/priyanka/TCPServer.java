@@ -6,8 +6,24 @@ import java.net.*;
 import com.priyanka.MainActivity;
 
 public class TCPServer {
+
+	public static TCPServer singleton;
+
+	public static TCPServer getSingleton() {
+		if (singleton!=null)
+			return singleton;
+		else {
+			try {
+				singleton = new TCPServer();
+				return singleton;
+			} catch (Exception e){
+				e.printStackTrace();
+				return null;
+			}
+		}
+	}
 	
-	public static void main(String argv[]) throws Exception {
+	public TCPServer() throws Exception {
 		String clientProblem;
 		String passedString;
 		ServerSocket welcomeSocket = new ServerSocket(6789);
