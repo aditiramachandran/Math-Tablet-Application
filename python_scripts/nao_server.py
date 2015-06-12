@@ -81,7 +81,6 @@ class TutoringSession:
 					self.numQuestions += 1
 					if self.goNao is None:
 						os.system("say " + robot_speech)
-
 					else:
 						self.goNao.genSpeech(robot_speech) 
 				elif msgType == 'CA': #correct attempt
@@ -98,9 +97,27 @@ class TutoringSession:
 						os.system("say " + robot_speech)
 					else:
 						self.goNao.assess("wrong")
-				elif msgType == 'H': #hint request
+				elif msgType == 'H1': #hint request
 					self.numHintRequests += 1
-					print 'hint request'
+					print 'hint 1 request'
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.genSpeech(robot_speech)
+				elif msgType == 'H2': #hint request
+					self.numHintRequests += 1
+					print 'hint 2 request'
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.genSpeech(robot_speech)
+				elif msgType == 'H3': #hint request
+					self.numHintRequests += 1
+					print 'hint 3 request'
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.genSpeech(robot_speech)				
 				elif msgType == 'HR': #repeat hint request
 					self.numRepeatHints += 1
 					print 'repeat hint request'
@@ -235,45 +252,57 @@ def main():
 		    print "Error was: ", e
 
 
-	#Choose an action
-	#Set all the possible commands
-	commands=collections.OrderedDict((("i","Run the intro"),
-	("r","Release motors"),
-	("t","Test new code"),
-	("s","Start tutoring interaction")
-	))
+
+	ongoing = True
+
+	while ongoing:
+		#Choose an action
+		#Set all the possible commands
+		commands=collections.OrderedDict((("i","Run the intro"),
+		("r","Release motors"),
+		("t","Test new code"),
+		("m","Move nao head - test"),
+		("s","Start tutoring interaction"),
+		("q", "Quit"),
+		))
 
 
-	#Output all the commands
-	print "\nPlease choose an action:"
-	for key,value in commands.items():
-	    print("\t%s => %s"%(key,value))
+		#Output all the commands
+		print "\nPlease choose an action:"
+		for key,value in commands.items():
+		    print("\t%s => %s"%(key,value))
 
 
-	#Have the user select the choice
-	choice = ""
-	if choice not in commands:
-	    choice = raw_input('Choice: ').replace("\n","").replace("\r","")
+		#Have the user select the choice
+		choice = ""
+		if choice not in commands:
+		    choice = raw_input('Choice: ').replace("\n","").replace("\r","")
 
 
-	#Execute the user's choice
-	if(choice == "i"):
-	    postureProxy.goToPosture("Stand", 1.0)
-	    goNao.intro()
+		#Execute the user's choice
+		if(choice == "i"):
+		    postureProxy.goToPosture("Stand", 1.0)
+		    goNao.intro()
 
-	elif(choice=="r"):
-	    goNao.releaseNao()
+		elif(choice=="r"):
+		    goNao.releaseNao()
 
-	elif(choice == "t"):
-		history = open("data/Tony.txt","a")
-		tutor(history)
+		elif(choice == "t"):
+			history = open("data/Tony.txt","a")
+			tutor(history)
 
-	elif(choice == "s"):
-		session = TutoringSession(TCP_IP, TCP_PORT, goNao)
-		with open('topics.txt') as f:
-			categ = sum(1 for _ in f)
-		session.tutor(categ)
+		elif(choice == "m"):
+			goNao.move_head()
 
+		elif(choice == "s"):
+			postureProxy.goToPosture("Sit", 1.0)
+			session = TutoringSession(TCP_IP, TCP_PORT, goNao)
+			with open('topics.txt') as f:
+				categ = sum(1 for _ in f)
+			session.tutor(categ)
+
+		elif(choice == "q"):
+			ongoing = False
 		"""
 	    participant_name = raw_input('Input participant\'s name: ').replace("\n","").replace("\r","")
 	    
