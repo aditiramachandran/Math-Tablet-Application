@@ -23,15 +23,17 @@ public class MathActivity extends Activity {
 
     private final String SUBMIT_STRING = "Submit";
     private final String CORRECT_STRING = "Correct!";
+    private final String TOO_MANY_INCORRECT_PREFIX = "The correct answer is";
+    private final String TOO_MANY_INCORRECT_POSTFIX = "Let's try the next problem!";
     private final String NEXT_QUESTION_STRING = "Next Question";
-    private final String REQUEST_HINT_STRING = "Ask robot for help!";
     private final String REQUEST_HINT_STRING1 = "Request Hint 1";
     private final String REQUEST_HINT_STRING2 = "Request Hint 2";
     private final String REQUEST_HINT_STRING3 = "Request Hint 3";
     private final String REPEAT_HINT_STRING1 = "Repeat Hint 1";
     private final String REPEAT_HINT_STRING2 = "Repeat Hint 2";
     private final String REPEAT_HINT_STRING3 = "Repeat Hint 3";
-    private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect! Try again!";
+    private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect!";
+    private final String REMAINING_POSTFIX = " attempts remaining.";
     private final String TITLE_PREFIX = "Question " /* number */;
     private final String INVALID_STRING_FRACTION = "Type in an answer into both boxes before submitting!";
     private final String INVALID_STRING_VALUE = "Type in an answer before submitting!";
@@ -47,6 +49,7 @@ public class MathActivity extends Activity {
     private Button HintButton3;
     private Button SubmitButton;
     private TextView TitleLabel;
+    private TextView AskRobotLabel;
     private KeyboardView mKeyboardView;
     private int sessionNum = -1;
 
@@ -54,6 +57,9 @@ public class MathActivity extends Activity {
 
     public final int MAX_HINTS = 3;
     public int hintsRemaining = MAX_HINTS;
+
+    public final int MAX_ATTEMPTS = 3;
+    public int attemptsRemaining = MAX_ATTEMPTS;
 
     //States
     private enum QState {
@@ -113,6 +119,7 @@ public class MathActivity extends Activity {
         HintButton1 = (Button) findViewById(R.id.hint1);
         HintButton2 = (Button) findViewById(R.id.hint2);
         HintButton3 = (Button) findViewById(R.id.hint3);
+        AskRobotLabel = (TextView) findViewById(R.id.textView3);
         SubmitButton = (Button) findViewById(R.id.AnswerButton);
         TitleLabel = (TextView) findViewById(R.id.TitleLabel);
 
@@ -220,24 +227,56 @@ public class MathActivity extends Activity {
                 AnswerText2.setEnabled(false);
                 mKeyboardView.setVisibility(View.INVISIBLE);
                 mKeyboardView.setEnabled(false);
+                HintButton1.setVisibility(View.INVISIBLE);
+                HintButton2.setVisibility(View.INVISIBLE);
+                HintButton3.setVisibility(View.INVISIBLE);
+                AskRobotLabel.setVisibility(View.INVISIBLE);
                 numberCorrect++;
             } else {
+                attemptsRemaining--;
+
                 String incorrect_string = "";
-                if (question.format.equals(Questions.FORMAT_FRACTION)){
+                String too_many_incorrect_string = TOO_MANY_INCORRECT_PREFIX + " ";
+                if (question.format.equals(Questions.FORMAT_FRACTION)) {
                     int entered2 = Integer.parseInt(enteredStr2);
                     incorrect_string = entered1 + " / " + entered2 + INCORRECT_POSTFIX;
+                    too_many_incorrect_string += question.numerator + " / " + question.denominator;
                 } else if (question.format.equals(Questions.FORMAT_TEXT)) {
                     incorrect_string = entered1 + INCORRECT_POSTFIX;
+                    too_many_incorrect_string += ""+question.value;
                 }
-                //Send message
-                if (com.priyanka.TCPClient.singleton != null)
-                    com.priyanka.TCPClient.singleton.sendMessage("IA:" + incorrect_string);
-                RightWrongLabel.setText(incorrect_string);
-                questionState = QState.DISPLAYINCORRECT;
-                AnswerText1.setText("");
-                AnswerText2.setText("");
-                numberWrong++;
-                AnswerText1.requestFocus();
+                too_many_incorrect_string += ".";
+
+                if (attemptsRemaining > 0) {
+                    incorrect_string += " " + attemptsRemaining + REMAINING_POSTFIX;
+
+                    //Send message
+                    if (com.priyanka.TCPClient.singleton != null)
+                        com.priyanka.TCPClient.singleton.sendMessage("IA:" + incorrect_string);
+                    RightWrongLabel.setText(incorrect_string);
+                    questionState = QState.DISPLAYINCORRECT;
+                    AnswerText1.setText("");
+                    AnswerText2.setText("");
+                    numberWrong++;
+                    AnswerText1.requestFocus();
+                } else {
+                    too_many_incorrect_string += " " + TOO_MANY_INCORRECT_POSTFIX;
+
+                    RightWrongLabel.setText(too_many_incorrect_string);
+                    SubmitButton.setText(NEXT_QUESTION_STRING);
+                    questionState = QState.DISPLAYCORRECT;
+                    AnswerText1.setEnabled(false);
+                    AnswerText2.setEnabled(false);
+                    mKeyboardView.setVisibility(View.INVISIBLE);
+                    mKeyboardView.setEnabled(false);
+                    HintButton1.setVisibility(View.INVISIBLE);
+                    HintButton2.setVisibility(View.INVISIBLE);
+                    HintButton3.setVisibility(View.INVISIBLE);
+                    AskRobotLabel.setVisibility(View.INVISIBLE);
+                    numberCorrect++;
+                }
+
+
             }
         } else if (questionState == QState.DISPLAYCORRECT){
             NextQuestion();
@@ -297,11 +336,13 @@ public class MathActivity extends Activity {
         HintButton1.setText(REQUEST_HINT_STRING1);
         HintButton2.setText(REQUEST_HINT_STRING2);
         HintButton3.setText(REQUEST_HINT_STRING3);
+        AskRobotLabel.setVisibility(View.VISIBLE);
         HintButton1.setBackground(getResources().getDrawable(R.drawable.hint_drawable));
         HintButton2.setBackground(getResources().getDrawable(R.drawable.hint_drawable));
         HintButton3.setBackground(getResources().getDrawable(R.drawable.hint_drawable));
 
         hintsRemaining = MAX_HINTS;
+        attemptsRemaining = MAX_ATTEMPTS;
 
         if (currentQuestionIndex >= questions.length()) {
             Intent intent = new Intent(this, com.priyanka.Completed.class);

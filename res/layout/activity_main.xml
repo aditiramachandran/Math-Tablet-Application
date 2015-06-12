@@ -82,8 +82,9 @@
             android:id="@+id/RightWrongLabel"
             android:layout_marginTop="10dp"
             android:textSize="30sp"
-            android:text="Correct / Incorrect"
-            android:layout_gravity="center_horizontal" />
+            android:text="Correct / Incorrect "
+            android:layout_gravity="center_horizontal"
+            android:gravity="center" />
 
         <android.inputmethodservice.KeyboardView
             android:shadowRadius="0.0"
