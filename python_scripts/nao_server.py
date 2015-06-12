@@ -74,7 +74,7 @@ class TutoringSession:
 				msgType = msg.split(":")[0]
 				msg = msg.split(":")[1]
 
-				robot_speech = msg #.replace("=","").strip()
+				robot_speech = msg.replace("...","and so on").strip()
 				#robot_speech = "What does " + robot_speech + " equal?"
 
 				if msgType == 'Q': #question
@@ -121,6 +121,9 @@ class TutoringSession:
 				elif msgType == 'HR': #repeat hint request
 					self.numRepeatHints += 1
 					print 'repeat hint request'
+				elif msgType == 'END': #session ended
+					print 'tutoring session ended'
+					break
 				else:
 					print 'error: unknown message type'
 
@@ -281,7 +284,7 @@ def main():
 
 		#Execute the user's choice
 		if(choice == "i"):
-		    postureProxy.goToPosture("Stand", 1.0)
+		    postureProxy.goToPosture("Sit", 1.0)
 		    goNao.intro()
 
 		elif(choice=="r"):

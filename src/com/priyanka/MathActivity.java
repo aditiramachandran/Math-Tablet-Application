@@ -305,6 +305,9 @@ public class MathActivity extends Activity {
 
         if (currentQuestionIndex >= questions.length()) {
             Intent intent = new Intent(this, com.priyanka.Completed.class);
+            //send END message before displaying completed screen
+            if (com.priyanka.TCPClient.singleton != null)
+                com.priyanka.TCPClient.singleton.sendMessage("END:");
             startActivity(intent);
             return;
         }
