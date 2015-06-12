@@ -113,6 +113,16 @@
             android:background="@drawable/key_drawable"
             android:textSize="30dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ask the Robot for Help"
+            android:id="@+id/textView3"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:textSize="30dp" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -121,7 +131,7 @@
             android:id="@+id/hintlayout"
             android:layout_gravity="center"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="20dp">
 
             <Button
                 android:layout_width="wrap_content"
