@@ -7,7 +7,8 @@ import naoqi
 from naoqi import ALBroker
 from naoqi import ALModule
 from naoqi import ALProxy
-from naoqi import ALBehavior 
+from naoqi import ALBehavior
+import almath 
 
 BASEPATH="/home/nao/behaviors/"
 
@@ -103,6 +104,33 @@ class Gesture:
         self.genSpeech("Let's work on some math problems together.")
         time.sleep(8)
 
+    def move_head(self):
+        #self.posture.goToPosture("Sit", 1.0)
+
+        self.motion.setStiffnesses("Head", 1.0)
+        # Example showing multiple trajectories
+        # Interpolate the head yaw to 1.0 radian and back to zero in 2.0 seconds
+        # while interpolating HeadPitch up and down over a longer period.
+        #names  = ["HeadYaw","HeadPitch"]
+        names = ["HeadPitch"]
+        # Each joint can have lists of different lengths, but the number of
+        # angles and the number of times must be the same for each joint.
+        # Here, the second joint ("HeadPitch") has three angles, and
+        # three corresponding times.
+        #angleLists  = [[50.0*almath.TO_RAD, 0.0],
+        #           [-30.0*almath.TO_RAD, 30.0*almath.TO_RAD, 0.0]]
+        angleLists = [-10.0*almath.TO_RAD, 20.0*almath.TO_RAD, 0.0]
+        #timeLists   = [[1.0, 2.0], [ 1.0, 2.0, 3.0]]
+        timeLists = [ 1.0, 2.0, 3.0]
+        isAbsolute  = True
+        
+        self.genSpeech("hello my name is nao")
+        for j in range(5):
+            self.motion.angleInterpolation(names, angleLists, timeLists, isAbsolute)
+
+            #time.sleep(1.0)
+        #self.motion.setStiffnesses("Head", 0.0)
+        
 
     def assess(self, what):
         if(what is "correct"):
