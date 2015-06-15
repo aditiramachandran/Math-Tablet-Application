@@ -17,6 +17,8 @@ public class Question {
     public String hint2;
     public String hint3;
 
+    public String explanation;
+
     public int value;
     public int numerator;
     public int denominator;
@@ -38,6 +40,9 @@ public class Question {
             } else if (format.equals(Questions.FORMAT_TEXT)) {
                 value = a.getInt(Questions.KEY_VALUE);
             }
+
+            //TODO Parse the explanation from the JSON file
+            explanation = "Put the dib dap on the jibber jabber.";
 
             JSONObject h = question.getJSONObject(Questions.KEY_HINTS);
 

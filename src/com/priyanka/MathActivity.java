@@ -246,6 +246,8 @@ public class MathActivity extends Activity {
                     too_many_incorrect_string += ""+question.value;
                 }
                 too_many_incorrect_string += ".";
+                too_many_incorrect_string += " " + question.explanation;
+
 
                 if (attemptsRemaining > 0) {
                     incorrect_string += " " + attemptsRemaining + REMAINING_POSTFIX;
