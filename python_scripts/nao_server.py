@@ -28,7 +28,8 @@ class TutoringSession:
 		self.numRepeatHints = 0
 		self.pid = -1
 		self.sessionNum = -1
-		self.logFile = ''
+		self.expGroup = -1
+		self.logFile = None
 
 	def log_answer(self,history,q_type,answer,correct):
 		history.write("Type: %d, Answered: %s, %s\n"%(q_type,answer,correct))
@@ -40,6 +41,33 @@ class TutoringSession:
 		data.write("%d\n"%per)
 		data.write("%d\n"%tot)
 		data.write("%d\n"%cor)
+
+	def map_msg_type(self,msgType):
+		fullType = msgType
+		if msgType == 'Q':
+			fullType = 'QUESTION'
+		elif msgType == 'CA':
+			fullType = 'CORRECT'
+		elif msgType == 'IA':
+			fullType = 'INCORRECT'
+		elif msgType == 'LIA':
+			fullType = 'LAST INCORRECT'
+		elif msgType == 'H1':
+			fullType = 'HINT 1'
+		elif msgType == 'H2':
+			fullType = 'HINT 2'
+		elif msgType == 'H3':
+			fullType = 'HINT 3'
+
+		return fullType
+
+	def log_transaction(self,msgType,questionNum,msg,attempt):
+		transaction = self.pid + "," + self.expGroup + "," + self.sessionNum + ","
+		transaction += str(datetime.datetime.now()) + ","
+		transaction += str(questionNum) + ","
+		transaction += self.map_msg_type(msgType) + ","
+		transaction += attempt #should only have something for some msgTypes
+		self.logFile.write(transaction+"\n")
 
 	#def tutor(history, data, categ):
 	def tutor(self,categ):
@@ -67,6 +95,7 @@ class TutoringSession:
 		except KeyboardInterrupt:
 			sys.exit()
 
+		sessionEnded = False
 		while 1:
 			try:
 				msg = conn.recv(BUFFER_SIZE)
@@ -74,19 +103,30 @@ class TutoringSession:
 				print "received msg:", msg
 
 				#parse message type to know what to do with it
-				msgType = msg.split(";",1)[0]
-				msg = msg.split(";",1)[1]
+				msgType = msg.split(";",3)[0]
+				questionNum = int(msg.split(";",3)[1])+1
+				robot_speech = msg.split(";",3)[2]
+				attempt = ''
 
-				robot_speech = msg.replace("...","and so on").strip()
+				robot_speech = robot_speech.replace("'","").strip()
+				if self.goNao is None:
+					robot_speech = robot_speech.replace("/", " over ").strip()
 				#robot_speech = "What does " + robot_speech + " equal?"
 
 				if msgType == 'START': #starting session
-					info = msg.split(";")
+					info = robot_speech.split(",")
 					self.pid = info[0]
 					self.sessionNum = info[1]
-					self.logFile = "P"+self.pid+"_S"+self.sessionNum+".txt"
-					
-				if msgType == 'Q': #question
+					self.expGroup = info[2].strip()
+					fileString = "data/"+"P"+self.pid+"_S"+self.sessionNum+".txt"
+					print fileString
+					if os.path.exists(fileString):
+						self.logFile = open(fileString, "a")
+					else:
+						self.logFile = open(fileString, "w")
+					self.logFile.write("PARTICIPANT_ID,EXP_GROUP,SESSION_NUM,TIMESTAMP,QUESTION_NUM,TYPE,OTHER_INFO\n");	
+
+				elif msgType == 'Q': #question
 					self.numQuestions += 1
 					if self.goNao is None:
 						os.system("say " + robot_speech)
@@ -94,6 +134,7 @@ class TutoringSession:
 						self.goNao.genSpeech(robot_speech) 
 				elif msgType == 'CA': #correct attempt
 					self.numCorrect += 1
+					attempt = msg.split(";",3)[3].strip()
 					print 'correct answer' 
 					if self.goNao is None:
 						os.system("say " + robot_speech)
@@ -101,13 +142,16 @@ class TutoringSession:
 						self.goNao.assess("correct")
 				elif msgType == 'IA': #incorrect attempt
 					self.numIncorrect += 1
+					attempt = msg.split(";",3)[3].strip()
 					print 'incorrect answer'
 					if self.goNao is None:
 						os.system("say " + robot_speech)
 					else:
+						self.goNao.genSpeech(robot_speech)
 						self.goNao.assess("wrong")
 				elif msgType == 'LIA': #incorrect attempt
 					self.numIncorrect += 1
+					attempt = msg.split(";",3)[3].strip()
 					print 'incorrect answer (last attempt)'
 					if self.goNao is None:
 						os.system("say " + robot_speech)
@@ -139,15 +183,21 @@ class TutoringSession:
 					print 'repeat hint request'
 				elif msgType == 'END': #session ended
 					print 'tutoring session ended'
+					sessionEnded = True
 					if self.goNao is None:
 						os.system("say " + robot_speech)
 					else:
 						self.goNao.genSpeech(robot_speech)	
-					break
+					#break
 				else:
 					print 'error: unknown message type'
 
+				self.log_transaction(msgType,questionNum,msg,attempt)
+				if sessionEnded:
+					self.logFile.close()
+					break
 			except KeyboardInterrupt:
+				self.logFile.close()
 				conn.close()
 				sys.exit(0)
 
@@ -253,7 +303,7 @@ def main():
 			print "Could not open file ip.txt"
 			NAO_IP = raw_input("Please write Nao's IP address. ") 
 	print 'ip and port:', TCP_IP, TCP_PORT
-	print 'nao ip:', NAO_IP
+	#print 'nao ip:', NAO_IP
 
 
 	#first connect to the NAO if -robot flag is set
@@ -320,7 +370,8 @@ def main():
 			goNao.move_head()
 
 		elif(choice == "s"):
-			postureProxy.goToPosture("Sit", 1.0)
+			if useRobot:
+				postureProxy.goToPosture("Sit", 1.0)
 			session = TutoringSession(TCP_IP, TCP_PORT, goNao)
 			with open('topics.txt') as f:
 				categ = sum(1 for _ in f)

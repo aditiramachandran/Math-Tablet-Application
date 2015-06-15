@@ -210,19 +210,22 @@ public class MathActivity extends Activity {
             Boolean correct = false;
 
             int entered1 = Integer.parseInt(enteredStr1);
+            String attempt = "";
 
             if (question.format.equals(Questions.FORMAT_FRACTION)){
                 int entered2 = Integer.parseInt(enteredStr2);
                 correct = question.numerator==entered1 && question.denominator==entered2;
+                attempt = entered1 + "/" + entered2;
             } else if (question.format.equals(Questions.FORMAT_TEXT)){
                 correct = question.value == entered1;
+                attempt = ""+entered1;
             }
 
             //if(AnswerText.Text() == entered) {
             //include TCP server stuff
             if (correct) {
                 if (com.priyanka.TCPClient.singleton != null)
-                    com.priyanka.TCPClient.singleton.sendMessage("CA;" + CORRECT_STRING);
+                    com.priyanka.TCPClient.singleton.sendMessage("CA;" + currentQuestionIndex + ";" + CORRECT_STRING + ";" + attempt);
                 RightWrongLabel.setText(CORRECT_STRING);
                 SubmitButton.setText(NEXT_QUESTION_STRING);
                 questionState = QState.DISPLAYCORRECT;
@@ -239,25 +242,32 @@ public class MathActivity extends Activity {
                 attemptsRemaining--;
 
                 String incorrect_string = "";
+                String incorrect_message = "";
                 String too_many_incorrect_string = TOO_MANY_INCORRECT_PREFIX + " ";
+                String too_many_incorrect_message = question.spokenAnswer + " ";
                 if (question.format.equals(Questions.FORMAT_FRACTION)) {
                     int entered2 = Integer.parseInt(enteredStr2);
                     incorrect_string = entered1 + " / " + entered2 + INCORRECT_POSTFIX;
+                    incorrect_message = entered1 + "/" + entered2 + INCORRECT_POSTFIX;
+                    attempt = entered1 + "/" + entered2;
                     too_many_incorrect_string += question.numerator + " / " + question.denominator;
                 } else if (question.format.equals(Questions.FORMAT_TEXT)) {
                     incorrect_string = entered1 + INCORRECT_POSTFIX;
+                    incorrect_message = entered1 + INCORRECT_POSTFIX;
+                    attempt = ""+entered1;
                     too_many_incorrect_string += ""+question.value;
                 }
                 too_many_incorrect_string += ".";
                 too_many_incorrect_string += " " + question.explanation;
-
+                too_many_incorrect_message += question.spokenExplanation;
 
                 if (attemptsRemaining > 0) {
+                    incorrect_message += " " + attemptsRemaining + REMAINING_POSTFIX;
                     incorrect_string += " " + attemptsRemaining + REMAINING_POSTFIX;
 
                     //Send message
                     if (com.priyanka.TCPClient.singleton != null)
-                        com.priyanka.TCPClient.singleton.sendMessage("IA;" + incorrect_string);
+                        com.priyanka.TCPClient.singleton.sendMessage("IA;" + currentQuestionIndex + ";" + incorrect_message + ";" + attempt);
                     RightWrongLabel.setText(incorrect_string);
                     questionState = QState.DISPLAYINCORRECT;
                     AnswerText1.setText("");
@@ -266,9 +276,10 @@ public class MathActivity extends Activity {
                     AnswerText1.requestFocus();
                 } else {
                     too_many_incorrect_string += " " + TOO_MANY_INCORRECT_POSTFIX;
+                    too_many_incorrect_message += " " + TOO_MANY_INCORRECT_POSTFIX;
                     //Send message
                     if (com.priyanka.TCPClient.singleton != null)
-                        com.priyanka.TCPClient.singleton.sendMessage("LIA;" + too_many_incorrect_string);
+                        com.priyanka.TCPClient.singleton.sendMessage("LIA;" + currentQuestionIndex + ";" + too_many_incorrect_message + ";" + attempt);
                     RightWrongLabel.setText(too_many_incorrect_string);
                     SubmitButton.setText(NEXT_QUESTION_STRING);
                     questionState = QState.DISPLAYCORRECT;
@@ -308,23 +319,23 @@ public class MathActivity extends Activity {
         if (buttonNumber <= newHintButtonNumber){
             String hintMessage = "";
             if (buttonNumber == 1) {
-                hintMessage = currentQuestion.hint1;
+                hintMessage = currentQuestion.spokenHint1;
                 HintButton1.setText(REPEAT_HINT_STRING1);
                 HintButton1.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
                 HintButton2.setVisibility(View.VISIBLE);
             } else if (buttonNumber == 2) {
-                hintMessage = currentQuestion.hint2;
+                hintMessage = currentQuestion.spokenHint2;
                 HintButton2.setText(REPEAT_HINT_STRING2);
                 HintButton2.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
                 HintButton3.setVisibility(View.VISIBLE);
             } else if (buttonNumber == 3) {
-                hintMessage = currentQuestion.hint3;
+                hintMessage = currentQuestion.spokenHint3;
                 HintButton3.setText(REPEAT_HINT_STRING3);
                 HintButton3.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
             }
 
             if (com.priyanka.TCPClient.singleton != null)
-                com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ";" + hintMessage);
+                com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ";" + currentQuestionIndex + ";" + hintMessage);
         }
 
         hintsRemaining--;
@@ -361,8 +372,10 @@ public class MathActivity extends Activity {
             else {
                 goodbyeMessage += "Bye! I had a great time doing math with you!";
             }
-            if (com.priyanka.TCPClient.singleton != null)
-                com.priyanka.TCPClient.singleton.sendMessage("END;" + goodbyeMessage);
+            if (com.priyanka.TCPClient.singleton != null) {
+                com.priyanka.TCPClient.singleton.sendMessage("END;" + currentQuestionIndex + ";" + goodbyeMessage);
+                com.priyanka.TCPClient.singleton.stopClient();
+            }
             startActivity(intent);
             return;
         }
@@ -395,7 +408,7 @@ public class MathActivity extends Activity {
 
         //Send message
         if (com.priyanka.TCPClient.singleton != null)
-            com.priyanka.TCPClient.singleton.sendMessage("Q;" + question.spokenQuestion);
+            com.priyanka.TCPClient.singleton.sendMessage("Q;" + currentQuestionIndex + ";" + question.spokenQuestion);
 
         AnswerText1.requestFocus();
     }

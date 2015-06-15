@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         participantID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                participantID.setHint("");
+                participantID.setText("");
             }
         });
 
@@ -93,7 +93,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         String pid = participantID.getText().toString();
         intent.putExtra("participantID", pid);
         //send message to computer to convey session starting
-        mTcpClient.sendMessage("START;"+pid+";"+sessionNum+";"+expGroup);
+        if (com.priyanka.TCPClient.singleton != null) {
+            String startMessage = "START;" + "-1;" + pid + "," + sessionNum + "," + expGroup;
+            mTcpClient.sendMessage(startMessage);
+        }
         startActivity(intent);
     }
 

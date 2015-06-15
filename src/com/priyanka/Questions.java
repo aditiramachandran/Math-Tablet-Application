@@ -29,6 +29,13 @@ public class Questions {
     public static final String KEY_HINT1 = "Hint1";
     public static final String KEY_HINT2 = "Hint2";
     public static final String KEY_HINT3 = "Hint3";
+    public static final String KEY_SPOKENHINT1 = "Spoken Hint1";
+    public static final String KEY_SPOKENHINT2 = "Spoken Hint2";
+    public static final String KEY_SPOKENHINT3 = "Spoken Hint3";
+    public static final String KEY_SPOKEN_ANSWER = "Spoken Answer";
+    public static final String KEY_EXPLANATION = "Written Explanation";
+    public static final String KEY_SPOKEN_EXPLANATION = "Spoken Explanation";
+
 
     public static final String FORMAT_FRACTION = "fraction";
     public static final String FORMAT_TEXT = "value";

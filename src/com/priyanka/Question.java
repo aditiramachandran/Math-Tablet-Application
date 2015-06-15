@@ -16,7 +16,12 @@ public class Question {
     public String hint1;
     public String hint2;
     public String hint3;
+    public String spokenHint1;
+    public String spokenHint2;
+    public String spokenHint3;
 
+    public String spokenAnswer;
+    public String spokenExplanation;
     public String explanation;
 
     public int value;
@@ -41,14 +46,20 @@ public class Question {
                 value = a.getInt(Questions.KEY_VALUE);
             }
 
-            //TODO Parse the explanation from the JSON file
-            explanation = "Put the dib dap on the jibber jabber.";
-
             JSONObject h = question.getJSONObject(Questions.KEY_HINTS);
 
             hint1 = h.getString(Questions.KEY_HINT1);
             hint2 = h.getString(Questions.KEY_HINT2);
             hint3 = h.getString(Questions.KEY_HINT3);
+            spokenHint1 = h.getString(Questions.KEY_SPOKENHINT1);
+            spokenHint2 = h.getString(Questions.KEY_SPOKENHINT2);
+            spokenHint3 = h.getString(Questions.KEY_SPOKENHINT3);
+
+            //TODO Parse the explanation from the JSON file
+            spokenAnswer = question.getString(Questions.KEY_SPOKEN_ANSWER);
+            explanation = question.getString(Questions.KEY_EXPLANATION);
+            spokenExplanation = question.getString(Questions.KEY_SPOKEN_EXPLANATION);
+
         }catch (Exception e){
             e.printStackTrace();
         }
