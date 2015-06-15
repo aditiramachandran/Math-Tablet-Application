@@ -26,6 +26,9 @@ class TutoringSession:
 		self.numCorrect = 0
 		self.numIncorrect = 0
 		self.numRepeatHints = 0
+		self.pid = -1
+		self.sessionNum = -1
+		self.logFile = ''
 
 	def log_answer(self,history,q_type,answer,correct):
 		history.write("Type: %d, Answered: %s, %s\n"%(q_type,answer,correct))
@@ -71,12 +74,18 @@ class TutoringSession:
 				print "received msg:", msg
 
 				#parse message type to know what to do with it
-				msgType = msg.split(":")[0]
-				msg = msg.split(":")[1]
+				msgType = msg.split(";",1)[0]
+				msg = msg.split(";",1)[1]
 
 				robot_speech = msg.replace("...","and so on").strip()
 				#robot_speech = "What does " + robot_speech + " equal?"
 
+				if msgType == 'START': #starting session
+					info = msg.split(";")
+					self.pid = info[0]
+					self.sessionNum = info[1]
+					self.logFile = "P"+self.pid+"_S"+self.sessionNum+".txt"
+					
 				if msgType == 'Q': #question
 					self.numQuestions += 1
 					if self.goNao is None:

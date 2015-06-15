@@ -8,7 +8,7 @@
   	"Answer" :
   	{
          "Numerator" : 12,
-  		   "Denominator" : 32
+  		 "Denominator" : 32
   	},
   	"Hints" :
   	{
@@ -18,7 +18,10 @@
          "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
          "Hint3" : "Try multiplying the numerator and denominator of 3/8 by 4.",
          "Spoken Hint3" : "Try multiplying the numerator and denominator of three-eighths by 4."
-  	}
+  	},
+    "Spoken Answer" : "The correct answer is twelve-thirty-secondths.",
+    "Written Explanation" : "In this problem, you multiply the numerator 3 and the denominator 8 of the fraction by 4 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "In this problem, you multiply the numerator 3 and the denominator 8 of the fraction by 4 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -40,7 +43,10 @@
          "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
          "Hint3" : "Try multiplying the numerator and denominator of 2/7 by 8.",
          "Spoken Hint3" : "Try multiplying the numerator and denominator of two-sevenths by 8."
-    }
+    },
+    "Spoken Answer" : "The correct answer is sixteen-fifty-sixths.",
+    "Written Explanation" : "For this problem, you multiply the numerator 2 and the denominator 7 of the fraction by 8 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "For this problem, you multiply the numerator 2 and the denominator 7 of the fraction by 8 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -62,7 +68,10 @@
          "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
          "Hint3" : "Try dividing the numerator and denominator of 8/12 by 4.",
          "Spoken Hint3" : "Try dividing the numerator and denominator of eight-twelfths by 4."
-    }
+    },
+    "Spoken Answer" : "The correct answer is two-thirds.",
+    "Written Explanation" : "In this problem, you divide the numerator 8 and the denominator 12 each by 4. This gives you the simplest fraction.",
+    "Spoken Explanation" : "In this problem, you divide the numerator 8 and the denominator 12 each by 4. This gives you the simplest fraction."
   },
 
   {
@@ -84,7 +93,10 @@
          "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
          "Hint3" : "Try dividing the numerator and denominator of 16/48 by 16.",
          "Spoken Hint3" : "Try dividing the numerator and denominator of sixteen-forty-eighths by 16."
-    }
+    },
+    "Spoken Answer" : "The correct answer is one-third.",
+    "Written Explanation" : "To do this problem, you divide the numerator 16 and the denominator 48 each by 16. This gives you the simplest fraction.",
+    "Spoken Explanation" : "To do this problem, you divide the numerator 16 and the denominator 48 each by 16. This gives you the simplest fraction."
   },
 
   {
@@ -105,7 +117,10 @@
          "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
          "Hint3" : "Try listing out the multiples of the denominators. The multiples of 4 are 4, 8, 12, ... and the multiples of 16 are 16, 32, 48, ... Where do the two lists match up?",
          "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 4 are 4, 8, 12, and so on, and the multiples of 16 are 16, 32, 48, and so on. Where do the two lists match up?"
-    }
+    },
+    "Spoken Answer" : "The correct answer is 16.",
+    "Written Explanation" : "When you list the multiples of the denominators, 4 and 16, the two lists first match up at the number 16, meaning that this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 4 and 16, the two lists first match up at the number 16, meaning that this is the least common denominator of the two fractions."
   },
 
   {
@@ -126,7 +141,10 @@
          "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators. Do not worry about the whole number.",
          "Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, ... and the multiples of 6 are 6, 12, 18, ... Where do the two lists match up?",
          "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, and so on, and the multiples of 6 are 6, 12, 18, and so on. Where do the two lists match up?"
-    }
+    },
+    "Spoken Answer" : "The correct answer is 42.",
+    "Written Explanation" : "When you list the multiples of the denominators, 7 and 6, the two lists first match up at the number 42, meaning that this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 7 and 6, the two lists first match up at the number 42, meaning that this is the least common denominator of the two fractions."
   },
 
   {
@@ -148,7 +166,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is thirteen-fourths.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 4 by the whole number 3 and add this to the numerator 1. 4 times 3 plus 1 is 13. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 4 by the whole number 3 and add this to the numerator 1. 4 times 3 plus 1 is 13. The denominator stays the same."
   },
 
   {
@@ -170,7 +191,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is forty-three-tenths.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 10 by the whole number 4 and then add this to the numerator 3. 10 times 4 plus 3 is 43. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 10 by the whole number 4 and then add this to the numerator 3. 10 times 4 plus 3 is 43. The denominator stays the same."
   },
 
   {
@@ -192,7 +216,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is fifty-nine-fifths.",
+    "Written Explanation" : "First, you multiply the denominator 5 by the whole number 11 and then add this to the numerator 4. 5 times 11 plus 4 is 59. The denominator stays the same.",
+    "Spoken Explanation" : "First, you multiply the denominator 5 by the whole number 11 and then add this to the numerator 4. 5 times 11 plus 4 is 59. The denominator stays the same."
   },
 
   {
@@ -214,7 +241,10 @@
          "Spoken Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
          "Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is ten-elevenths.",
+    "Written Explanation" : "For this problem, since the two fractions have the same denominator, you need to add the numerators, 3 and 7, and keep the denominator 11 the same.",
+    "Spoken Explanation" : "For this problem, since the two fractions have the same denominator, you need to add the numerators, 3 and 7, and keep the denominator 11 the same."
   },
 
   {
@@ -236,12 +266,15 @@
          "Spoken Hint2" : "In order to add fractions, should you add the numerators or the denominators?",
          "Hint3" : "Add the numerators of all of the fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Add the numerators of all of the fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is twenty-three-tenths.",
+    "Written Explanation" : "This is an addition problem, because we want to know how much pizza was eaten in total. Since the three fractions have the same denominator, you need to add the numerators 15, 3, and 5, and keep the denominator 10 the same, to get the answer.",
+    "Spoken Explanation" : "This is an addition problem, because we want to know how much pizza was eaten in total. Since the three fractions have the same denominator, you need to add the numerators 15, 3, and 5, and keep the denominator 10 the same, to get the answer."
   },
 
   {
-    "Question" : "Derek drank 5/14 cups of milk, and Pam drank 2/14 cups of milk. How much more milk did Derek drink than Pam?",
-    "Spoken Question" : "Derek drank five-fourteenths cups of milk, and Pam drank two-fourteenths cups of milk. How much more milk did Derek drink than Pam?",
+    "Question" : "Derek drank 5/14 cups of milk, and Pam drank 2/14 cups of milk. How many more cups of milk did Derek drink than Pam?",
+    "Spoken Question" : "Derek drank five-fourteenths cups of milk, and Pam drank two-fourteenths cups of milk. How many more cups of milk did Derek drink than Pam?",
     "Type" : "Subtracting Like Denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
@@ -258,7 +291,10 @@
          "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
          "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is three-fourteenths.",
+    "Written Explanation" : "This is a subtraction problem, since you want to know how much more Derek drank. The two fractions have the same denominator, so you need to subtract the numerators, 5 and 2, and keep the denominator 14 the same.",
+    "Spoken Explanation" : "This is a subtraction problem, since you want to know how much more Derek drank. The two fractions have the same denominator, so you need to subtract the numerators, 5 and 2, and keep the denominator 14 the same."
   },
 
   {
@@ -280,7 +316,10 @@
          "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the two fractions is 20. Now make both fractions have the same denominator. Then you can add them!",
          "Spoken Hint3" : "The common denominator of the two fractions is 20. Now make both fractions have the same denominator. Then you can add them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is nineteen-twentieths.",
+    "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 20. 2/10 can be written as 4/20, and 3/4 can be written as 15/20. Then, 4/20 + 15/20 gives you the answer.",
+    "Spoken Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 20. Two-tenths can be written as four-twentieths, and three-fourths can be written as fifteen-twentieths. Then, four-twentieths plus fifteen-twentieths gives you the answer."
   },
 
   {
@@ -302,7 +341,10 @@
          "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the two fractions is 21. Now make both fractions have the same denominator. Then you can subtract them!",
          "Spoken Hint3" : "The common denominator of the two fractions is 21. Now make both fractions have the same denominator. Then you can subtract them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is one-twenty-first.",
+    "Written Explanation" : "The two fractions have different denominators, and their common denominator is 21. 5/7 can be written as 15/21, and 2/3 can be written as 14/21. Then, 15/21 - 14/21 gives you the answer.",
+    "Spoken Explanation" : "The two fractions have different denominators, and their common denominator is 21. Five-sevenths can be written as fifteen-twenty-firsts, and two-thirds can be written as fourteen-twenty-firsts. Then, fifteen-twenty-firsts minus fourteen-twenty-firsts gives you the answer."
   },
 
   {
@@ -324,6 +366,9 @@
          "Spoken Hint2" : "In order to subtract fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the three fractions is 16. Now make the fractions have the same denominator. Then you can subtract them!",
          "Spoken Hint3" : "The common denominator of the three fractions is 16. Now make the fractions have the same denominator. Then you can subtract them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is one-sixteenth.",
+    "Written Explanation" : "The fractions have different denominators, and their common denominator is 16. 3/4 can be written as 12/16, and 1/8 can be written as 2/16. Then, 15/16 - 12/16 - 2/16 gives you the answer.",
+    "Spoken Explanation" : "The fractions have different denominators, and their common denominator is 16. Three-fourths can be written as twelve-sixteenths, and one-eighth can be written as two-sixteenths. Then, fifteen-sixteenths minus twelve-sixteenths minus two-sixteenths gives you the answer."
   }
 ]

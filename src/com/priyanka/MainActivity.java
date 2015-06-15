@@ -48,6 +48,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         connectButton = (Button) findViewById(R.id.ConnectButton);
         connectionStatus = (TextView) findViewById(R.id.ConnectionStatus);
 
+        participantID = (EditText) findViewById(R.id.ParticipantID);
+        participantID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                participantID.setHint("");
+            }
+        });
+
         session1Button = (Button) findViewById(R.id.Session1Button);
         session2Button = (Button) findViewById(R.id.Session2Button);
         session3Button = (Button) findViewById(R.id.Session3Button);
@@ -82,6 +90,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Intent intent = new Intent(this, com.priyanka.MathActivity.class);
         intent.putExtra("sessionNum", ""+sessionNum);
         intent.putExtra("expGroup", ""+expGroup);
+        String pid = participantID.getText().toString();
+        intent.putExtra("participantID", pid);
+        //send message to computer to convey session starting
+        mTcpClient.sendMessage("START;"+pid+";"+sessionNum+";"+expGroup);
         startActivity(intent);
     }
 

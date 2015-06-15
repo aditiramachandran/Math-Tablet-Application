@@ -8,7 +8,7 @@
   	"Answer" :
   	{
          "Numerator" : 12,
-  		   "Denominator" : 15
+  		 "Denominator" : 15
   	},
   	"Hints" :
   	{
@@ -18,7 +18,10 @@
          "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
          "Hint3" : "Try multiplying the numerator and denominator of 4/5 by 3.",
          "Spoken Hint3" : "Try multiplying the numerator and denominator of four-fifths by 3."
-  	}
+  	},
+    "Spoken Answer" : "The correct answer is twelve-fifteenths.",
+    "Written Explanation" : "In this problem, you multiply the numerator 4 and the denominator 5 by 3 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "In this problem, you multiply the numerator 4 and the denominator 5 by 3 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -40,7 +43,10 @@
          "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
          "Hint3" : "Try multiplying the numerator and denominator of 4/9 by 7.",
          "Spoken Hint3" : "Try multiplying the numerator and denominator of four-ninths by 7."
-    }
+    },
+    "Spoken Answer" : "The correct answer is twenty-eight-sixty-thirds.",
+    "Written Explanation" : "For this problem, you multiply the numerator 4 and the denominator 9 by 7 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation": "For this problem, you multiply the numerator 4 and the denominator 9 by 7 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -62,7 +68,10 @@
          "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
          "Hint3" : "Try dividing the numerator and denominator of 2/8 by 2.",
          "Spoken Hint3" : "Try dividing the numerator and denominator of two-eighths by 2."
-    }
+    },
+    "Spoken Answer" : "The correct answer is one-fourth.",
+    "Written Explanation" : "In this problem, you divide the numerator 2 and the denominator 8 each by 2. This gives you the answer.",
+    "Spoken Explanation" : "In this problem, you divide the numerator 2 and the denominator 8 each by 2. This gives you the answer."
   },
 
   {
@@ -84,7 +93,10 @@
          "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
          "Hint3" : "Try dividing the numerator and denominator of 14/49 by 7.",
          "Spoken Hint3" : "Try dividing the numerator and denominator of fourteen-forty-ninths by 7."
-    }
+    },
+    "Spoken Answer" : "The correct answer is two-sevenths.",
+    "Written Explanation" : "To do this problem, you divide the numerator 14 and the denominator 49 each by 7. This gives you the answer.",
+    "Spoken Explanation" : "To do this problem, you divide the numerator 14 and the denominator 49 each by 7. This gives you the answer."
   },
 
   {
@@ -105,7 +117,10 @@
          "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
          "Hint3" : "Try listing out the multiples of the denominators. The multiples of 3 are 3, 6, 9, ... and the multiples of 4 are 4, 8, 12, ... Where do the two lists match up?",
          "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 3 are 3, 6, 9, and so on, and the multiples of 4 are 4, 8, 12, and so on. Where do the two lists match up?"
-    }
+    },
+    "Spoken Answer" : "The correct answer is 12.",
+    "Written Explanation" : "When you list the multiples of the denominators, 3 and 4, the two lists first match up at the number 12. So this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 3 and 4, the two lists first match up at the number 12. So this is the least common denominator of the two fractions."
   },
 
   {
@@ -126,7 +141,10 @@
          "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
          "Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, ... and the multiples of 8 are 8, 16, 24, ... Where do the two lists match up?",
          "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, and so on, and the multiples of 8 are 8, 16, 24, and so on. Where do the two lists match up?"
-    }
+    },
+    "Spoken Answer" : "The correct answer is 56.",
+    "Written Explanation" : "When you list the multiples of the denominators, 7 and 8, the two lists first match up at the number 56. So this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 7 and 8, the two lists first match up at the number 56. So this is the least common denominator of the two fractions."
   },
 
   {
@@ -148,7 +166,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is five-thirds.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 3 by the whole number 1 and then add this to the numerator 2. 3 times 1 plus 2 is 5. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 3 by the whole number 1 and then add this to the numerator 2. 3 times 1 plus 2 is 5. The denominator stays the same."
   },
 
   {
@@ -170,7 +191,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is thirteen-sevenths.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 7 by the whole number 1 and then add this to the numerator 6. 7 times 1 plus 6 is 13. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 7 by the whole number 1 and then add this to the numerator 6. 7 times 1 plus 6 is 13. The denominator stays the same."
   },
 
   {
@@ -192,7 +216,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is eighty-ninths.",
+    "Written Explanation" : "First, you multiply the denominator 9 by the whole number 8 and then add this to the numerator 8. 9 times 8 plus 8 is 80. The denominator stays the same.",
+    "Spoken Explanation" : "First, you multiply the denominator 9 by the whole number 8 and then add this to the numerator 8. 9 times 8 plus 8 is 80. The denominator stays the same."
   },
 
   {
@@ -214,7 +241,10 @@
          "Spoken Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
          "Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is five-sevenths.",
+    "Written Explanation" : "For this problem, since the two fractions have the same denominator, you need to add the numerators, 2 and 3, and keep the denominator 7 the same. This gives you the correct answer.",
+    "Spoken Explanation" : "For this problem, since the two fractions have the same denominator, you need to add the numerators, 2 and 3, and keep the denominator 7 the same. This gives you the correct answer."
   },
 
   {
@@ -236,7 +266,10 @@
          "Spoken Hint2" : "In order to add fractions, should you add the numerators or the denominators?",
          "Hint3" : "Add the numerators of all of the fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Add the numerators of all of the fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is thirty-two-ninths.",
+    "Written Explanation" : "In this problem, since the three fractions have the same denominator, you need to add the numerators, 24, 7, and 1, and keep the denominator 9 the same. This gives you the correct answer.",
+    "Spoken Explanation" : "In this problem, since the three fractions have the same denominator, you need to add the numerators, 24, 7, and 1, and keep the denominator 9 the same. This gives you the correct answer."
   },
 
   {
@@ -258,7 +291,10 @@
          "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
          "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is three-eighths.",
+    "Written Explanation" : "Since the two fractions have the same denominator, you need to subtract the two numerators, 5 and 2, and keep the denominator 8 the same.",
+    "Spoken Explanation" : "Since the two fractions have the same denominator, you need to subtract the two numerators, 5 and 2, and keep the denominator 8 the same."
   },
 
   {
@@ -280,7 +316,10 @@
          "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
          "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is eleven-sixteenths.",
+    "Written Explanation" : "This is a subtraction problem, since you want to know how much gas Amy has left. The two fractions have the same denominator, so you need to subtract the numerators, 17 and 6, and keep the denominator 16 the same, to get the correct answer.",
+    "Spoken Explanation" : "This is a subtraction problem, since you want to know how much gas Amy has left. The two fractions have the same denominator, so you need to subtract the numerators, 17 and 6, and keep the denominator 16 the same, to get the correct answer."
   },
 
   {
@@ -302,7 +341,10 @@
          "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the two fractions is 8. Now make both fractions have the same denominator. Then you can add them!",
          "Spoken Hint3" : "The common denominator of the two fractions is 8. Now make both fractions have the same denominator. Then you can add them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is three-eighths.",
+    "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 8. 1/4 can also be written as 2/8. Then, you can add the two fractions to get the correct answer.",
+    "Spoken Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 8. One-fourth can also be written as two-eighths. Then, you can add the two fractions to get the correct answer."
   },
 
   {
@@ -324,6 +366,9 @@
          "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the two fractions is 8. Now make both fractions have the same denominator. Then you can subtract them!",
          "Spoken Hint3" : "The common denominator of the two fractions is 8. Now make both fractions have the same denominator. Then you can subtract them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is one-eighth.",
+    "Written Explanation" : "The two fractions have different denominators, and their common denominator is 8. 1/2 can also be written as 4/8. Then, you can subtract the two fractions to get the correct answer.",
+    "Spoken Explanation" : "The two fractions have different denominators, and their common denominator is 8. One-half can also be written as four-eighths. Then, you can subtract the two fractions to get the correct answer."
   }
 ]

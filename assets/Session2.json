@@ -18,7 +18,10 @@
          "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
          "Hint3" : "Try multiplying the numerator and denominator of 1/7 by 3.",
          "Spoken Hint3" : "Try multiplying the numerator and denominator of one-seventh by 3."
-  	}
+  	},
+    "Spoken Answer" : "The correct answer is three-twenty-firsts.",
+    "Written Explanation" : "In this problem, you multiply the numerator 1 and the denominator 7 of the fraction by 3 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "In this problem, you multiply the numerator 1 and the denominator 7 of the fraction by 3 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -40,7 +43,10 @@
          "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
          "Hint3" : "Try multiplying the numerator and denominator of 7/12 by 5.",
          "Spoken Hint3" : "Try multiplying the numerator and denominator of seven-twelfths by 5."
-    }
+    },
+    "Spoken Answer" : "The correct answer is thirty-five-sixtieths.",
+    "Written Explanation" : "For this problem, you multiply the numerator 7 and the denominator 12 of the fraction by 5 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "For this problem, you multiply the numerator 7 and the denominator 12 of the fraction by 5 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -62,7 +68,10 @@
          "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
          "Hint3" : "Try dividing the numerator and denominator of 3/15 by 3.",
          "Spoken Hint3" : "Try dividing the numerator and denominator of three-fifteenths by 3."
-    }
+    },
+    "Spoken Answer" : "The correct answer is one-fifth.",
+    "Written Explanation" : "In this problem, you divide the numerator 3 and the denominator 15 each by 3. This gives you the simplest fraction.",
+    "Spoken Explanation" : "In this problem, you divide the numerator 3 and the denominator 15 each by 3. This gives you the simplest fraction."
   },
 
   {
@@ -84,7 +93,10 @@
          "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
          "Hint3" : "Try dividing the numerator and denominator of 24/56 by 8.",
          "Spoken Hint3" : "Try dividing the numerator and denominator of twenty-four-fifty-sixths by 8."
-    }
+    },
+    "Spoken Answer" : "The correct answer is three-sevenths.",
+    "Written Explanation" : "For this problem, you divide the numerator 24 and the denominator 56 each by 8. This gives you the simplest fraction.",
+    "Spoken Explanation" : "For this problem, you divide the numerator 24 and the denominator 56 each by 8. This gives you the simplest fraction."
   },
 
   {
@@ -105,7 +117,10 @@
          "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
          "Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, ... and the multiples of 5 are 5, 10, 15, ... Where do the two lists match up?",
          "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, and so on, and the multiples of 5 are 5, 10, 15, and so on. Where do the two lists match up?"
-    }
+    },
+    "Spoken Answer" : "The correct answer is 35.",
+    "Written Explanation" : "When you list the multiples of the denominators, 7 and 5, the two lists first match up at the number 35, meaning that this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 7 and 5, the two lists first match up at the number 35, meaning that this is the least common denominator of the two fractions."
   },
 
   {
@@ -126,7 +141,10 @@
          "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators. Do not worry about the numerators.",
          "Hint3" : "Try listing out the multiples of the denominators. The multiples of 4 are 4, 8, 12, ... and the multiples of 24 are 24, 48, 72, ... Where do the two lists match up?",
          "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 4 are 4, 8, 12, and so on, and the multiples of 24 are 24, 48, 72, and so on. Where do the two lists match up?"
-    }
+    },
+    "Spoken Answer" : "The correct answer is 24.",
+    "Written Explanation" : "When you list the multiples of the denominators, 4 and 24, the two lists first match up at the number 24, meaning that this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 4 and 24, the two lists first match up at the number 24, meaning that this is the least common denominator of the two fractions."
   },
 
   {
@@ -148,7 +166,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is twelve-fifths.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 5 by the whole number 2 and then add this to the numerator 2. 5 times 2 plus 2 is 12. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 5 by the whole number 2 and then add this to the numerator 2. 5 times 2 plus 2 is 12. The denominator stays the same."
   },
 
   {
@@ -170,7 +191,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is twenty-nine-eighths.",
+    "Written Explanation" : "In this problem, you first multiply the denominator 8 by the whole number 3 and add this to the numerator 5. 8 times 3 plus 5 is 29. The denominator stays the same.",
+    "Spoken Explanation" : "In this problem, you first multiply the denominator 8 by the whole number 3 and add this to the numerator 5. 8 times 3 plus 5 is 29. The denominator stays the same."
   },
 
   {
@@ -192,7 +216,10 @@
          "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
          "Hint3" : "After multiplying the denominator and whole number, add that to the numerator.",
          "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator."
-    }
+    },
+    "Spoken Answer" : "The correct answer is seventy-three-sevenths.",
+    "Written Explanation" : "First, you multiply the denominator 7 by the whole number 10 and then add this to the numerator 3. 7 times 10 plus 3 is 73. The denominator stays the same.",
+    "Spoken Explanation" : "First, you multiply the denominator 7 by the whole number 10 and then add this to the numerator 3. 7 times 10 plus 3 is 73. The denominator stays the same."
   },
 
   {
@@ -214,7 +241,10 @@
          "Spoken Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
          "Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Add the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is nine-tenths.",
+    "Written Explanation" : "For this problem, since the two fractions have the same denominator, you need to add the numerators, 4 and 5, and keep the denominator 10 the same.",
+    "Spoken Explanation" : "For this problem, since the two fractions have the same denominator, you need to add the numerators, 4 and 5, and keep the denominator 10 the same."
   },
 
   {
@@ -236,12 +266,15 @@
          "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
          "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is seven-tenths.",
+    "Written Explanation" : "In this problem, since the two fractions have the same denominator, you need to subtract the numerators, 8 and 1, and keep the denominator 10 the same.",
+    "Spoken Explanation" : "In this problem, since the two fractions have the same denominator, you need to subtract the numerators, 8 and 1, and keep the denominator 10 the same."
   },
 
   {
-    "Question" : "A recipe for fruit punch requires 20/6 cups of apple juice and 13/6 cups of lemon juice. How much more apple juice than lemon juice is needed? Leave your answer as an improper fraction.",
-    "Spoken Question" : "A recipe for fruit punch requires twenty-sixths cups of apple juice and thirteen-sixths cups of lemon juice. How much more apple juice than lemon juice is needed? Leave your answer as an improper fraction.",
+    "Question" : "A recipe for fruit punch requires 20/6 cups of apple juice and 13/6 cups of lemon juice. How many more cups of apple juice than lemon juice is needed? Leave your answer as an improper fraction.",
+    "Spoken Question" : "A recipe for fruit punch requires twenty-sixths cups of apple juice and thirteen-sixths cups of lemon juice. How many more cups of apple juice than lemon juice is needed? Leave your answer as an improper fraction.",
     "Type" : "Subtracting Like Denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
@@ -258,7 +291,10 @@
          "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
          "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change.",
          "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator shouldn't change."
-    }
+    },
+    "Spoken Answer" : "The correct answer is seven-sixths.",
+    "Written Explanation" : "This is a subtractino problem, since you want to know how much more apple juice is needed. The two fractions both have the denominator 6, so you need to subtract the numerators, 20 and 13, and keep the denominator the same.",
+    "Spoken Explanation" : "This is a subtraction problem, since you want to know how much more apple juice is needed. The two fractions both have the denominator 6, so you need to subtract the numerators, 20 and 13, and keep the denominator the same."
   },
 
   {
@@ -280,7 +316,10 @@
          "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the two fractions is 12. Now make both fractions have the same denominator. Then you can add them!",
          "Spoken Hint3" : "The common denominator of the two fractions is 12. Now make both fractions have the same denominator. Then you can add them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is seven-twelfths.",
+    "Written Explanation" : "For this problem, the two fractions have different denominators, and their common denominator is 12. 1/6 can also be written as 2/12. Then, 2/12 + 5/12 gives you the answer.",
+    "Spoken Explanation" : "For this problem, the two fractions have different denominators, and their common denominator is 12. One-sixth can also be written as two-twelfths. Then, two-twelfths plus five-twelfths gives you the answer."
   },
 
   {
@@ -302,7 +341,10 @@
          "Spoken Hint2" : "In order to add fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the three fractions is 8. Now make both fractions have the same denominator. Then you can add them!",
          "Spoken Hint3" : "The common denominator of the three fractions is 8. Now make both fractions have the same denominator. Then you can add them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is twenty-seven-eighths.",
+    "Written Explanation" : "This is an addition problem, because you want to know the total time. Since the three fractions have different denominators, you need to find their common denominator, which is 8. 1/4 can be written as 2/8, and 5/2 can be written as 20/8. Then, 5/8 + 2/8 + 20/8 gives you the answer.",
+    "Spoken Explanation" : "This is an addition problem, because you want to know the total time. Since the three fractions have different denominators, you need to find their common denominator, which is 8. One-fourth can be written as two-eighths, and five-halves can be written as twenty-eighths. Then, five-eighths plus two-eighths plus twenty-eighths gives you the answer."
   },
 
   {
@@ -324,6 +366,9 @@
          "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
          "Hint3" : "The common denominator of the two fractions is 16. Now make both fractions have the same denominator. Then you can subtract them!",
          "Spoken Hint3" : "The common denominator of the two fractions is 16. Now make both fractions have the same denominator. Then you can subtract them!"
-    }
+    },
+    "Spoken Answer" : "The correct answer is nine-sixteenths.",
+    "Written Explanation" : "The two fractions have different denominators, and their common denominator is 16. 7/8 can be written as 14/16. Then 14/16 - 5/16 gives you the answer.",
+    "Spoken Explanation" : "The two fractions have different denominators, and their common denominator is 16. Seven-eighths can be written as fourteen-sixteenths. Then, fourteen-sixteenths minus five-sixteenths gives you the answer."
   }
 ]
