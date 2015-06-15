@@ -96,12 +96,13 @@ class Gesture:
 
 
     def intro(self):
-        self.posture.goToPosture("Stand", 1.0)
+        self.posture.goToPosture("Sit", 1.0)
         self.led.fadeListRGB("FaceLeds",[0x00FFFFFF],[0.1])
 
         self.genSpeech("Hello! My name is Nao, your personal robot tutor.")     
-
-        self.genSpeech("Let's work on some math problems together.")
+        self.genSpeech("Let's work on some fractions problems together.")
+        #self.genSpeech("I'm going to put some problems on your tablet!")
+        #self.genSpeech("Press the start button on your screen and we can begin!")
         time.sleep(8)
 
     def move_head(self):

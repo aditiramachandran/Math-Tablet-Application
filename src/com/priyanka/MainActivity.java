@@ -18,6 +18,7 @@ import android.util.Log;
 import android.os.AsyncTask;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 /**
@@ -33,7 +34,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button session4Button;
     private EditText participantID;
     private TextView connectionStatus;
+    private RadioButton controlRB;
+    private RadioButton adaptiveRB;
     private int sessionNum;
+    private int expGroup;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +81,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void startMathSession(View view) {
         Intent intent = new Intent(this, com.priyanka.MathActivity.class);
         intent.putExtra("sessionNum", ""+sessionNum);
+        intent.putExtra("expGroup", ""+expGroup);
         startActivity(intent);
+    }
+
+    public void onRadioButtonClicked(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.controlRB:
+                if (checked)
+                    expGroup = 0;
+                    break;
+            case R.id.adaptiveRB:
+                if (checked)
+                    expGroup = 1;
+                    break;
+        }
     }
 
     public void connectTablet(View view){

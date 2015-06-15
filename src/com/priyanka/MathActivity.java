@@ -52,6 +52,7 @@ public class MathActivity extends Activity {
     private TextView AskRobotLabel;
     private KeyboardView mKeyboardView;
     private int sessionNum = -1;
+    private int expGroup = 0;
 
     private Questions questions;
 
@@ -101,6 +102,8 @@ public class MathActivity extends Activity {
         if (extras != null){
             sessionNum = Integer.parseInt(extras.getString("sessionNum"));
             json_file = "Session"+sessionNum+".json";
+            expGroup = Integer.parseInt(extras.getString("expGroup"));
+            System.out.println("expGroup is: " + expGroup);
         }
 
         String json = "";
@@ -263,7 +266,9 @@ public class MathActivity extends Activity {
                     AnswerText1.requestFocus();
                 } else {
                     too_many_incorrect_string += " " + TOO_MANY_INCORRECT_POSTFIX;
-
+                    //Send message
+                    if (com.priyanka.TCPClient.singleton != null)
+                        com.priyanka.TCPClient.singleton.sendMessage("LIA:" + too_many_incorrect_string);
                     RightWrongLabel.setText(too_many_incorrect_string);
                     SubmitButton.setText(NEXT_QUESTION_STRING);
                     questionState = QState.DISPLAYCORRECT;
@@ -326,7 +331,7 @@ public class MathActivity extends Activity {
     }
 
 
-    public void NextQuestion(){
+    public void NextQuestion() {
         currentQuestionIndex++;
 
         RightWrongLabel.setText("");
@@ -348,6 +353,16 @@ public class MathActivity extends Activity {
 
         if (currentQuestionIndex >= questions.length()) {
             Intent intent = new Intent(this, com.priyanka.Completed.class);
+            //send END message before displaying completed screen
+            String goodbyeMessage = "Congratulations! You have completed the session. ";
+            if (sessionNum < 4) {
+                goodbyeMessage += "See you next time!";
+            }
+            else {
+                goodbyeMessage += "Bye! I had a great time doing math with you!";
+            }
+            if (com.priyanka.TCPClient.singleton != null)
+                com.priyanka.TCPClient.singleton.sendMessage("END:" + goodbyeMessage);
             startActivity(intent);
             return;
         }

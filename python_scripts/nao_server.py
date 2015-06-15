@@ -74,7 +74,7 @@ class TutoringSession:
 				msgType = msg.split(":")[0]
 				msg = msg.split(":")[1]
 
-				robot_speech = msg #.replace("=","").strip()
+				robot_speech = msg.replace("...","and so on").strip()
 				#robot_speech = "What does " + robot_speech + " equal?"
 
 				if msgType == 'Q': #question
@@ -97,6 +97,13 @@ class TutoringSession:
 						os.system("say " + robot_speech)
 					else:
 						self.goNao.assess("wrong")
+				elif msgType == 'LIA': #incorrect attempt
+					self.numIncorrect += 1
+					print 'incorrect answer (last attempt)'
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.genSpeech(robot_speech)		
 				elif msgType == 'H1': #hint request
 					self.numHintRequests += 1
 					print 'hint 1 request'
@@ -121,6 +128,13 @@ class TutoringSession:
 				elif msgType == 'HR': #repeat hint request
 					self.numRepeatHints += 1
 					print 'repeat hint request'
+				elif msgType == 'END': #session ended
+					print 'tutoring session ended'
+					if self.goNao is None:
+						os.system("say " + robot_speech)
+					else:
+						self.goNao.genSpeech(robot_speech)	
+					break
 				else:
 					print 'error: unknown message type'
 
@@ -260,7 +274,7 @@ def main():
 		#Set all the possible commands
 		commands=collections.OrderedDict((("i","Run the intro"),
 		("r","Release motors"),
-		("t","Test new code"),
+		("t","Type something for the nao to say"),
 		("m","Move nao head - test"),
 		("s","Start tutoring interaction"),
 		("q", "Quit"),
@@ -281,15 +295,17 @@ def main():
 
 		#Execute the user's choice
 		if(choice == "i"):
-		    postureProxy.goToPosture("Stand", 1.0)
+		    postureProxy.goToPosture("Sit", 1.0)
 		    goNao.intro()
 
 		elif(choice=="r"):
 		    goNao.releaseNao()
 
 		elif(choice == "t"):
-			history = open("data/Tony.txt","a")
-			tutor(history)
+			phrase = raw_input('Type phrase here: ')
+			goNao.genSpeech(phrase)
+			#history = open("data/Tony.txt","a")
+			#tutor(history)
 
 		elif(choice == "m"):
 			goNao.move_head()
