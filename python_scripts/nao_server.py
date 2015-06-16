@@ -6,7 +6,8 @@ import time
 import datetime
 import collections
 import socket
-sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
+sys.path.append("nao_libs")
+#sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
 
 import naoqi
 from naoqi import ALBroker
