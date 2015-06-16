@@ -298,8 +298,9 @@
   },
 
   {
-    "Question" : "2/10 + 3/4 = ",
-    "Spoken Question" : "What is two-tenths plus three-fourths?",
+    "Question" : "2/10 + 3/4 = 
+    Write your answer in lowest terms.",
+    "Spoken Question" : "What is two-tenths plus three-fourths? Write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
@@ -348,8 +349,9 @@
   },
 
   {
-    "Question" : "15/16 - 3/4 - 1/8 = ",
-    "Spoken Question" : "What is fifteen-sixteenths minus three-fourths minus one-eighth?",
+    "Question" : "15/16 - 3/4 - 1/8 = 
+    Write your answer in lowest terms.",
+    "Spoken Question" : "What is fifteen-sixteenths minus three-fourths minus one-eighth? Write your answer in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",

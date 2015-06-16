@@ -124,7 +124,11 @@ class TutoringSession:
 						self.logFile = open(fileString, "a")
 					else:
 						self.logFile = open(fileString, "w")
-					self.logFile.write("PARTICIPANT_ID,EXP_GROUP,SESSION_NUM,TIMESTAMP,QUESTION_NUM,TYPE,OTHER_INFO\n");	
+					self.logFile.write("PARTICIPANT_ID,EXP_GROUP,SESSION_NUM,TIMESTAMP,QUESTION_NUM,TYPE,OTHER_INFO\n");
+
+					#do intro depending on the sessionNum
+					if self.goNao is not None:
+						self.goNao.session_intro(self.sessionNum) 	
 
 				elif msgType == 'Q': #question
 					self.numQuestions += 1

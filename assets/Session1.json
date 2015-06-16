@@ -46,7 +46,7 @@
     },
     "Spoken Answer" : "The correct answer is twenty-eight-sixty-thirds.",
     "Written Explanation" : "For this problem, you multiply the numerator 4 and the denominator 9 by 7 to get the equivalent fraction, which gives you the answer.",
-    "Spoken Explanation": "For this problem, you multiply the numerator 4 and the denominator 9 by 7 to get the equivalent fraction, which gives you the answer."
+    "Spoken Explanation" : "For this problem, you multiply the numerator 4 and the denominator 9 by 7 to get the equivalent fraction, which gives you the answer."
   },
 
   {
@@ -323,8 +323,9 @@
   },
 
   {
-    "Question" : "1/4 + 1/8 = ",
-    "Spoken Question" : "What is one-fourth plus one-eighth?",
+    "Question" : "1/4 + 1/8 = 
+    Write your answer in lowest terms.",
+    "Spoken Question" : "What is one-fourth plus one-eighth? Write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
@@ -348,8 +349,9 @@
   },
 
   {
-    "Question" : "1/2 - 3/8 = ",
-    "Spoken Question" : "What is one-half minus three-eighths?",
+    "Question" : "1/2 - 3/8 = 
+    Write your answer in lowest terms.",
+    "Spoken Question" : "What is one-half minus three-eighths? Write your answer in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",

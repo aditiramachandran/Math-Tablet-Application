@@ -94,6 +94,19 @@ class Gesture:
         time.sleep(5)
         self.posture.goToPosture("SitRelax", 1.0)
 
+    def session_intro(self,sessionNum):
+        if sessionNum == 1:
+            self.genSpeech("Hello! My name is Nao. I am your personal robot tutor!")
+            self.genSpeech("For each session, I have put fractions problems on the tablet in front of you.")
+            self.genSpeech("Let's work on some problems together!")
+        elif sessionNum == 2:
+            self.genSpeech("Welcome back! Let's get started on our next session.")
+        elif sessionNum == 3:
+            self.genSpeech("Nice to see you again! Let's try doing some more problems!")
+        elif sessionNum == 4:
+            self.genSpeech("Hello again! Today is our last session. Let's get started!")
+        else:
+            print "invalid sessionNum: no intro"
 
     def intro(self):
         self.posture.goToPosture("Sit", 1.0)
@@ -102,7 +115,6 @@ class Gesture:
         self.genSpeech("Hello! My name is Nao, your personal robot tutor.")     
         self.genSpeech("Let's work on some fractions problems together.")
         #self.genSpeech("I'm going to put some problems on your tablet!")
-        #self.genSpeech("Press the start button on your screen and we can begin!")
         time.sleep(8)
 
     def move_head(self):

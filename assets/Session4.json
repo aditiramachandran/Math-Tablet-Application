@@ -125,7 +125,7 @@
 
   {
     "Question" : "Find the least common denominator of 17/10 and 3 1/25.",
-    "Spoken Question" : "Find the least common denominator of nine-fourths and one-twenty-fourth.",
+    "Spoken Question" : "Find the least common denominator of seventeen-tenths and three and one-twenty-fifth.",
     "Type" : "Common Denominator",
     "Difficulty Level" : 3,
     "Format" : "value",
@@ -299,8 +299,8 @@
 
   {
     "Question" : "3/8 + 1/4 + 3/5 = 
-    Leave your answer as an improper fraction.",
-    "Spoken Question" : "What is three-eighths plus one-fourth plus three-fifths? Leave your answer as an improper fraction.",
+    Leave your answer as an improper fraction, and write your answer in lowest terms.",
+    "Spoken Question" : "What is three-eighths plus one-fourth plus three-fifths? Leave your answer as an improper fraction, and write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
