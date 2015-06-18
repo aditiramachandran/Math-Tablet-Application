@@ -113,6 +113,8 @@ public class MathActivity extends Activity {
             expGroup = Integer.parseInt(extras.getString("expGroup"));
             System.out.println("expGroup is: " + expGroup);
         }
+        //set this MathActivity as the sessionOwner for the tcpClient
+        TCPClient.singleton.setSessionOwner(this);
 
         String json = "";
         try {
@@ -195,6 +197,32 @@ public class MathActivity extends Activity {
         });
 
         NextQuestion();
+    }
+
+    public void disableButtons() {
+        System.out.println("MATHACTIVITY: IN disableButtons method!");
+        HintButton1.setEnabled(false);
+        HintButton2.setEnabled(false);
+        HintButton3.setEnabled(false);
+        SubmitButton.setEnabled(false);
+        mKeyboardView.setEnabled(false);
+        //mKeyboardView.getKeyboard().getKeys().get(0).
+    }
+
+    public void enableButtons(){
+        System.out.println("MATHACTIVITY: IN enableButtons method!");
+        HintButton1.setEnabled(true);
+        HintButton2.setEnabled(true);
+        HintButton3.setEnabled(true);
+        SubmitButton.setEnabled(true);
+        mKeyboardView.setEnabled(true);
+    }
+
+    public void messageReceived(String message){
+        System.out.println("message received from server is: " + message);
+        if (message.equals("done")){
+            enableButtons();
+        }
     }
 
     public void AnswerButtonPress(View view) {

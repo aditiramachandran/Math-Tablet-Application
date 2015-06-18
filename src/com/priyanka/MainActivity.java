@@ -145,8 +145,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Log.e("MainActivity", "Message received from server: hiding options");
 
                     // showMoodMeter = false;
-                    //if (message.equalsIgnoreCase("showOptions"))
-                    // aditi showOptions = true;
+                    //if (message.equalsIgnoreCase("done"))
+                    //    showOptions = true;
                     // aditi currentlyPlaying = new String("");
 	                    /*thread.setRunning(false);
 	    				((Activity)getContext()).finish();*/

@@ -21,6 +21,7 @@ public class TCPClient {
     private String ipAddressVar;
     private int ipPortVar;
     private com.priyanka.MainActivity owner;
+    private MathActivity sessionOwner;
 
     PrintWriter out;
     BufferedReader in;
@@ -34,6 +35,11 @@ public class TCPClient {
         mMessageListener = listener;
         ipAddressVar = null;
         this.owner = owner;
+        this.sessionOwner = null;
+    }
+
+    public void setSessionOwner(MathActivity sessionOwner){
+        this.sessionOwner = sessionOwner;
     }
 
     /**
@@ -42,6 +48,16 @@ public class TCPClient {
      */
     public void sendMessage(String message){
         if (out != null && !out.checkError()) {
+            /**if (sessionOwner != null) {
+                Handler buttonHandler = new Handler(sessionOwner.getMainLooper());
+                Runnable myRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        sessionOwner.disableButtons();
+                    }
+                };
+                buttonHandler.post(myRunnable);
+            }**/
             out.println(message);
             out.flush();
         }
@@ -106,6 +122,14 @@ public class TCPClient {
                     if (serverMessage != null && mMessageListener != null) {
                         //call the method messageReceived from MyActivity class
                         mMessageListener.messageReceived(serverMessage);
+                        Handler buttonHandler = new Handler(sessionOwner.getMainLooper());
+                        Runnable myRunnable2 = new Runnable(){
+                            @Override
+                            public void run() {
+                                sessionOwner.enableButtons();
+                            }
+                        };
+                        buttonHandler.post(myRunnable2);
                     }
                     serverMessage = null;
 
