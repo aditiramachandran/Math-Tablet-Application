@@ -120,9 +120,10 @@ class TutoringSession:
 				for line in msg:
 					print "msg line is: ", line
 					#parse message type to know what to do with it
-					msgType = line.split(";",3)[0]
-					questionNum = int(line.split(";",3)[1])+1
-					robot_speech = line.split(";",3)[2]
+					msgType = line.split(";",4)[0]
+					questionNum = int(line.split(";",2)[1])+1
+					questionType = line.split(";",4)[2]
+					robot_speech = line.split(";",4)[3]
 					otherInfo = ''
 
 					robot_speech = robot_speech.replace("'","").strip()
@@ -155,7 +156,7 @@ class TutoringSession:
 							self.goNao.genSpeech(robot_speech) 
 					elif msgType == 'CA': #correct attempt
 						self.numCorrect += 1
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'correct answer' 
 						if self.goNao is None:
 							os.system("say " + robot_speech)
@@ -163,7 +164,7 @@ class TutoringSession:
 							self.goNao.assess("correct")
 					elif msgType == 'IA': #incorrect attempt
 						self.numIncorrect += 1
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'incorrect answer'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
@@ -172,7 +173,7 @@ class TutoringSession:
 							self.goNao.assess("wrong")
 					elif msgType == 'LIA': #incorrect attempt
 						self.numIncorrect += 1
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'incorrect answer (last attempt)'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
@@ -180,7 +181,7 @@ class TutoringSession:
 							self.goNao.genSpeech(robot_speech)		
 					elif msgType == 'H1': #hint request
 						self.numHintRequests += 1
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'hint 1 request'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
@@ -190,7 +191,7 @@ class TutoringSession:
 							self.goNao.genSpeech(robot_speech)
 					elif msgType == 'H2': #hint request
 						self.numHintRequests += 1
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'hint 2 request'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
@@ -200,7 +201,7 @@ class TutoringSession:
 							self.goNao.genSpeech(robot_speech)
 					elif msgType == 'H3': #hint request
 						self.numHintRequests += 1
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'hint 3 request'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
@@ -216,7 +217,7 @@ class TutoringSession:
 							self.goNao.genSpeech(robot_speech)
 					elif msgType == 'DH': #denied hint
 						self.numHintRequests += 1 #do we want to do this?
-						otherInfo = line.split(";",3)[3].strip()
+						otherInfo = line.split(";",4)[4].strip()
 						print 'hint request denied'
 						if self.goNao is None:
 							os.system("say " + robot_speech)

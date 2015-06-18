@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         intent.putExtra("participantID", pid);
         //send message to computer to convey session starting
         if (com.priyanka.TCPClient.singleton != null) {
-            String startMessage = "START;" + "-1;" + pid + "," + sessionNum + "," + expGroup;
+            String startMessage = "START;" + "-1;-1;" + pid + "," + sessionNum + "," + expGroup;
             mTcpClient.sendMessage(startMessage);
         }
         startActivity(intent);
