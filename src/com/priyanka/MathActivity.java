@@ -37,6 +37,8 @@ public class MathActivity extends Activity {
     private final String TITLE_PREFIX = "Question " /* number */;
     private final String INVALID_STRING_FRACTION = "Type in an answer into both boxes before submitting!";
     private final String INVALID_STRING_VALUE = "Type in an answer before submitting!";
+    private final String AUTO_HINT_VALUE = "Let me give you a hint!";
+    private final String DENIED_HINT_VALUE = "Try making an attempt before requesting more help!";
 
 
     private TextView fractionLine;
@@ -59,8 +61,13 @@ public class MathActivity extends Activity {
     public final int MAX_HINTS = 3;
     public int hintsRemaining = MAX_HINTS;
 
-    public final int MAX_ATTEMPTS = 3;
+    public final int MAX_ATTEMPTS = 5;
     public int attemptsRemaining = MAX_ATTEMPTS;
+
+    public final int NUM_HINTS_TO_LIMIT = 3;
+    public int numConsecHintsRequested = 0;
+    public final int NUM_INCORRECT_TO_AUTO_HINT = 2;
+    public int numIncorrectWithoutHint = 0;
 
     //States
     private enum QState {
@@ -78,6 +85,7 @@ public class MathActivity extends Activity {
     private int numberCorrect = 0;
     private int numberWrong = 0;
     private int numberHints = 0;
+    private boolean autoHint = false;
 
 
     public String AssetJSONFile (String filename) throws IOException {
@@ -205,6 +213,7 @@ public class MathActivity extends Activity {
         } else if (questionState == QState.INIT || questionState == QState.DISPLAYINCORRECT
                 || questionState == QState.INVALID) {
 
+            numConsecHintsRequested = 0; //reset since attempt is made here
             Question question = questions.get(currentQuestionIndex);
 
             Boolean correct = false;
@@ -240,6 +249,7 @@ public class MathActivity extends Activity {
                 numberCorrect++;
             } else {
                 attemptsRemaining--;
+                numIncorrectWithoutHint++;
 
                 String incorrect_string = "";
                 String incorrect_message = "";
@@ -258,8 +268,8 @@ public class MathActivity extends Activity {
                     too_many_incorrect_string += ""+question.value;
                 }
                 too_many_incorrect_string += ".";
-                too_many_incorrect_string += " " + question.explanation;
-                too_many_incorrect_message += question.spokenExplanation;
+                //too_many_incorrect_string += " " + question.explanation;
+                //too_many_incorrect_message += question.spokenExplanation;
 
                 if (attemptsRemaining > 0) {
                     incorrect_message += " " + attemptsRemaining + REMAINING_POSTFIX;
@@ -274,7 +284,28 @@ public class MathActivity extends Activity {
                     AnswerText2.setText("");
                     numberWrong++;
                     AnswerText1.requestFocus();
+
+                    //adaptive group: automatically give hint if max num incorrect attempts made w/o requesting help
+                    if (expGroup==1 && numIncorrectWithoutHint==NUM_INCORRECT_TO_AUTO_HINT){
+                        int relevantHint = MAX_HINTS - hintsRemaining + 1;
+                        Button button = null;
+                        if (relevantHint == 1)
+                            button = HintButton1;
+                        else if (relevantHint == 2)
+                            button = HintButton2;
+                        else if (relevantHint == 3)
+                            button = HintButton3;
+
+                        //send message that hint was automatically initiated, then send appropriate hint
+                        //if (com.priyanka.TCPClient.singleton != null)
+                        //    com.priyanka.TCPClient.singleton.sendMessage("AH;" + currentQuestionIndex + ";" + AUTO_HINT_VALUE);
+
+                        autoHint = true;
+                        HintPressed((View)button);
+                    }
+
                 } else {
+
                     too_many_incorrect_string += " " + TOO_MANY_INCORRECT_POSTFIX;
                     too_many_incorrect_message += " " + TOO_MANY_INCORRECT_POSTFIX;
                     //Send message
@@ -315,35 +346,57 @@ public class MathActivity extends Activity {
         else if (button==HintButton3) buttonNumber = 3;
 
         int newHintButtonNumber = MAX_HINTS - hintsRemaining + 1;
-
-        if (buttonNumber <= newHintButtonNumber){
-            String hintMessage = "";
-            if (buttonNumber == 1) {
-                hintMessage = currentQuestion.spokenHint1;
-                HintButton1.setText(REPEAT_HINT_STRING1);
-                HintButton1.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
-                HintButton2.setVisibility(View.VISIBLE);
-            } else if (buttonNumber == 2) {
-                hintMessage = currentQuestion.spokenHint2;
-                HintButton2.setText(REPEAT_HINT_STRING2);
-                HintButton2.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
-                HintButton3.setVisibility(View.VISIBLE);
-            } else if (buttonNumber == 3) {
-                hintMessage = currentQuestion.spokenHint3;
-                HintButton3.setText(REPEAT_HINT_STRING3);
-                HintButton3.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
-            }
-
-            if (com.priyanka.TCPClient.singleton != null)
-                com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ";" + currentQuestionIndex + ";" + hintMessage);
+        numIncorrectWithoutHint = 0; //reset to 0 since hint is requested
+        //if (!autoHint)
+        //    numConsecHintsRequested++;
+        if (!autoHint && buttonNumber==newHintButtonNumber){
+            numConsecHintsRequested++;
         }
 
-        hintsRemaining--;
+        if ((expGroup==1) && (buttonNumber==newHintButtonNumber) && (numConsecHintsRequested >= NUM_HINTS_TO_LIMIT)) {
+            System.out.println("numConsecHintsRequested is: " + numConsecHintsRequested);
+            System.out.println("newHintButtonNumber is: " + newHintButtonNumber);
+            //send message indicating that a hint request was denied
+            if (com.priyanka.TCPClient.singleton != null)
+                com.priyanka.TCPClient.singleton.sendMessage("DH;" + currentQuestionIndex + ";" + DENIED_HINT_VALUE + ";" + buttonNumber);
+
+        }
+
+        else { //control group or no need to limit hints in this case
+            if (buttonNumber <= newHintButtonNumber) {
+                String hintMessage = "";
+                if (buttonNumber == 1) {
+                    hintMessage = currentQuestion.spokenHint1;
+                    HintButton1.setText(REPEAT_HINT_STRING1);
+                    HintButton1.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
+                    HintButton2.setVisibility(View.VISIBLE);
+                } else if (buttonNumber == 2) {
+                    hintMessage = currentQuestion.spokenHint2;
+                    HintButton2.setText(REPEAT_HINT_STRING2);
+                    HintButton2.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
+                    HintButton3.setVisibility(View.VISIBLE);
+                } else if (buttonNumber == 3) {
+                    hintMessage = currentQuestion.spokenHint3;
+                    HintButton3.setText(REPEAT_HINT_STRING3);
+                    HintButton3.setBackground(getResources().getDrawable(R.drawable.repeat_drawable));
+                }
+
+                if (com.priyanka.TCPClient.singleton != null)
+                    com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ";" + currentQuestionIndex + ";" + hintMessage + ";" + autoHint);
+            }
+
+            if (buttonNumber==newHintButtonNumber)
+                hintsRemaining--;
+            System.out.println("hintsRemaining: " + hintsRemaining);
+        }
+        autoHint = false;
     }
 
 
     public void NextQuestion() {
         currentQuestionIndex++;
+        numConsecHintsRequested = 0; //reset at new question
+        numIncorrectWithoutHint = 0; //reset at new question
 
         RightWrongLabel.setText("");
         AnswerText1.setText("");
