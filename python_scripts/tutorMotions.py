@@ -32,6 +32,7 @@ class Gesture:
         self.trouble = anim.trouble
         self.hint = anim.hint
         self.confused = anim.confused
+        self.auto_hint = anim.auto_hint
         self.connectNao()
     
     
@@ -166,6 +167,11 @@ class Gesture:
             randnr = random.randint(0,len(self.confused)-1)
             self.genSpeech(self.confused[randnr])
             time.sleep(3)
+        elif(what is "auto_hint"):
+            randnr = random.randint(0,len(self.auto_hint)-1)
+            self.genSpeech(self.auto_hint[randnr])
+            time.sleep(3)
+
 
 
     def ask(self, question):

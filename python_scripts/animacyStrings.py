@@ -23,6 +23,10 @@ trouble = ['Sorry, that is not right. Do you want to take a break?',
 
 hint = ['You seem to be having some trouble. Would you like a hint?']
 
+auto_hint = ['Let me give you a hint.',
+'Hmmm. Here is a hint to help you.',
+'How about a hint!']
+
 confused = ['You usually do well with these questions. Try it again!',
 'You know how to do this, just try once more!',
 'I know you have got this. Try again!']

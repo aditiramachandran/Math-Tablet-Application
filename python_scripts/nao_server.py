@@ -6,8 +6,9 @@ import time
 import datetime
 import collections
 import socket
-sys.path.append("nao_libs")
+#sys.path.append("nao_libs")
 #sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
+sys.path.append("nao_libs_1.14")
 
 import naoqi
 from naoqi import ALBroker
@@ -59,15 +60,23 @@ class TutoringSession:
 			fullType = 'HINT 2'
 		elif msgType == 'H3':
 			fullType = 'HINT 3'
-
+		elif msgType == 'AH':
+			fullType = 'AUTOMATIC HINT'
+		elif msgType == 'DH':
+			fullType = 'DENIED HINT'
 		return fullType
 
-	def log_transaction(self,msgType,questionNum,msg,attempt):
+	def log_transaction(self,msgType,questionNum,otherInfo):
+		if otherInfo == 'true':
+			otherInfo = 'automatic'
+		else:
+			otherInfo = ''
+
 		transaction = self.pid + "," + self.expGroup + "," + self.sessionNum + ","
 		transaction += str(datetime.datetime.now()) + ","
 		transaction += str(questionNum) + ","
 		transaction += self.map_msg_type(msgType) + ","
-		transaction += attempt #should only have something for some msgTypes
+		transaction += otherInfo #should only have something for some msgTypes
 		self.logFile.write(transaction+"\n")
 
 	#def tutor(history, data, categ):
@@ -103,101 +112,128 @@ class TutoringSession:
 				if not msg: break
 				print "received msg:", msg
 
-				#parse message type to know what to do with it
-				msgType = msg.split(";",3)[0]
-				questionNum = int(msg.split(";",3)[1])+1
-				robot_speech = msg.split(";",3)[2]
-				attempt = ''
+				#in case multiple messages got sent, split by \n
+				msg = msg.split('\n')
+				while '' in msg:
+					msg.remove('')
 
-				robot_speech = robot_speech.replace("'","").strip()
-				if self.goNao is None:
-					robot_speech = robot_speech.replace("/", " over ").strip()
-				#robot_speech = "What does " + robot_speech + " equal?"
+				for line in msg:
+					print "msg line is: ", line
+					#parse message type to know what to do with it
+					msgType = line.split(";",3)[0]
+					questionNum = int(line.split(";",3)[1])+1
+					robot_speech = line.split(";",3)[2]
+					otherInfo = ''
 
-				if msgType == 'START': #starting session
-					info = robot_speech.split(",")
-					self.pid = info[0]
-					self.sessionNum = info[1]
-					self.expGroup = info[2].strip()
-					fileString = "data/"+"P"+self.pid+"_S"+self.sessionNum+".txt"
-					print fileString
-					if os.path.exists(fileString):
-						self.logFile = open(fileString, "a")
-					else:
-						self.logFile = open(fileString, "w")
-					self.logFile.write("PARTICIPANT_ID,EXP_GROUP,SESSION_NUM,TIMESTAMP,QUESTION_NUM,TYPE,OTHER_INFO\n");
+					robot_speech = robot_speech.replace("'","").strip()
+					if self.goNao is None:
+						robot_speech = robot_speech.replace("/", " over ").strip()
+					#robot_speech = "What does " + robot_speech + " equal?"
 
-					#do intro depending on the sessionNum
-					if self.goNao is not None:
-						self.goNao.session_intro(self.sessionNum) 	
+					if msgType == 'START': #starting session
+						info = robot_speech.split(",")
+						self.pid = info[0]
+						self.sessionNum = info[1]
+						self.expGroup = info[2].strip()
+						fileString = "data/"+"P"+self.pid+"_S"+self.sessionNum+".txt"
+						print fileString
+						if os.path.exists(fileString):
+							self.logFile = open(fileString, "a")
+						else:
+							self.logFile = open(fileString, "w")
+						self.logFile.write("PARTICIPANT_ID,EXP_GROUP,SESSION_NUM,TIMESTAMP,QUESTION_NUM,TYPE,OTHER_INFO\n");
 
-				elif msgType == 'Q': #question
-					self.numQuestions += 1
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech) 
-				elif msgType == 'CA': #correct attempt
-					self.numCorrect += 1
-					attempt = msg.split(";",3)[3].strip()
-					print 'correct answer' 
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.assess("correct")
-				elif msgType == 'IA': #incorrect attempt
-					self.numIncorrect += 1
-					attempt = msg.split(";",3)[3].strip()
-					print 'incorrect answer'
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech)
-						self.goNao.assess("wrong")
-				elif msgType == 'LIA': #incorrect attempt
-					self.numIncorrect += 1
-					attempt = msg.split(";",3)[3].strip()
-					print 'incorrect answer (last attempt)'
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech)		
-				elif msgType == 'H1': #hint request
-					self.numHintRequests += 1
-					print 'hint 1 request'
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech)
-				elif msgType == 'H2': #hint request
-					self.numHintRequests += 1
-					print 'hint 2 request'
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech)
-				elif msgType == 'H3': #hint request
-					self.numHintRequests += 1
-					print 'hint 3 request'
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech)				
-				elif msgType == 'HR': #repeat hint request
-					self.numRepeatHints += 1
-					print 'repeat hint request'
-				elif msgType == 'END': #session ended
-					print 'tutoring session ended'
-					sessionEnded = True
-					if self.goNao is None:
-						os.system("say " + robot_speech)
-					else:
-						self.goNao.genSpeech(robot_speech)	
-					#break
-				else:
-					print 'error: unknown message type'
+						#do intro depending on the sessionNum
+						if self.goNao is not None:
+							self.goNao.session_intro(self.sessionNum) 	
 
-				self.log_transaction(msgType,questionNum,msg,attempt)
+					elif msgType == 'Q': #question
+						self.numQuestions += 1
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.genSpeech(robot_speech) 
+					elif msgType == 'CA': #correct attempt
+						self.numCorrect += 1
+						otherInfo = line.split(";",3)[3].strip()
+						print 'correct answer' 
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.assess("correct")
+					elif msgType == 'IA': #incorrect attempt
+						self.numIncorrect += 1
+						otherInfo = line.split(";",3)[3].strip()
+						print 'incorrect answer'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.genSpeech(robot_speech)
+							self.goNao.assess("wrong")
+					elif msgType == 'LIA': #incorrect attempt
+						self.numIncorrect += 1
+						otherInfo = line.split(";",3)[3].strip()
+						print 'incorrect answer (last attempt)'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.genSpeech(robot_speech)		
+					elif msgType == 'H1': #hint request
+						self.numHintRequests += 1
+						otherInfo = line.split(";",3)[3].strip()
+						print 'hint 1 request'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							if otherInfo == 'true':
+								self.goNao.assess("auto_hint")
+							self.goNao.genSpeech(robot_speech)
+					elif msgType == 'H2': #hint request
+						self.numHintRequests += 1
+						otherInfo = line.split(";",3)[3].strip()
+						print 'hint 2 request'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							if otherInfo == 'true':
+								self.goNao.assess("auto_hint")
+							self.goNao.genSpeech(robot_speech)
+					elif msgType == 'H3': #hint request
+						self.numHintRequests += 1
+						otherInfo = line.split(";",3)[3].strip()
+						print 'hint 3 request'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							if otherInfo == 'true':
+								self.goNao.assess("auto_hint")
+							self.goNao.genSpeech(robot_speech)				
+					elif msgType == 'AH': #automatic hint triggered
+						print 'automatic hint triggered'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.genSpeech(robot_speech)
+					elif msgType == 'DH': #denied hint
+						self.numHintRequests += 1 #do we want to do this?
+						otherInfo = line.split(";",3)[3].strip()
+						print 'hint request denied'
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.genSpeech(robot_speech)			
+					elif msgType == 'END': #session ended
+						print 'tutoring session ended'
+						sessionEnded = True
+						if self.goNao is None:
+							os.system("say " + robot_speech)
+						else:
+							self.goNao.genSpeech(robot_speech)	
+						#break
+					else:
+						print 'error: unknown message type'
+
+					self.log_transaction(msgType,questionNum,otherInfo)
 				if sessionEnded:
 					self.logFile.close()
 					break
@@ -326,9 +362,10 @@ def main():
 		try:
 		    postureProxy = ALProxy("ALRobotPosture", NAO_IP, NAO_PORT)
 		except Exception, e:
-		    print "Could not create proxy to ALRobotPosture"
-		    print "Error was: ", e
+			print "Could not create proxy to ALRobotPosture"
+			print "Error was: ", e
 
+		motionProxy = ALProxy("ALMotion", NAO_IP, NAO_PORT)
 
 
 	ongoing = True
@@ -359,7 +396,11 @@ def main():
 
 		#Execute the user's choice
 		if(choice == "i"):
-		    postureProxy.goToPosture("Sit", 1.0)
+		    postureProxy.goToPosture("Stand", 1.0)
+		    print 'nao is sitting'
+		    motionProxy.setBreathEnabled('Body', True)
+		    print 'nao is breathing'
+		    time.sleep(10) 
 		    goNao.intro()
 
 		elif(choice=="r"):
