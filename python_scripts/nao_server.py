@@ -373,11 +373,29 @@ def main():
 	while ongoing:
 		#Choose an action
 		#Set all the possible commands
-		commands=collections.OrderedDict((("i","Run the intro"),
-		("r","Release motors"),
-		("t","Type something for the nao to say"),
-		("m","Move nao head - test"),
-		("s","Start tutoring interaction"),
+		commands=collections.OrderedDict((("i", "Run the intro"),
+		("r", "Release motors"),
+		("t", "Type something for the nao to say"),
+		("m", "Move nao head - test"),
+		("w", "Wave arm"),
+		("f", "Fist of triumph for correct answer"),
+		#("n", "Nod for correct answer"),
+		("a", "Shake for incorrect answer"),
+		#("o", "Head off to the side for thinking"),
+		#("h", "Hands together for thinking"),
+		#("b", "Stand up and try to breathe"),
+		("u", "Scale up"),
+		("d", "Scale down"),
+		("p", "Adding and subtracting problems"),
+		("k", "While talking"),
+		("l", "Idle behavior"),
+		("x", "Relaxed idle behavior left"),
+		("y", "Relaxed idle behavior right"),
+		("n", "Numerator"),
+		("e", "Denominator"),
+		("o", "And so on"),
+		("c", "Conversion problems"),
+		("s", "Start tutoring interaction"),
 		("q", "Quit"),
 		))
 
@@ -414,6 +432,60 @@ def main():
 
 		elif(choice == "m"):
 			goNao.move_head()
+
+		elif(choice == "w"):
+			goNao.wave()
+
+		elif(choice == "f"):
+			goNao.juddNelson()
+
+		#elif(choice == 'n'):
+		#	goNao.nod()
+
+		elif(choice == "a"):
+			goNao.shake()
+
+		elif(choice == "u"):
+			goNao.scale_up()
+
+		elif(choice == "d"):
+			goNao.scale_down()
+
+		elif(choice == "p"):
+			goNao.two_fractions()
+
+		elif(choice == "k"):
+			goNao.look()
+
+		elif(choice == "l"):
+			goNao.sit()
+
+		elif(choice == "x"):
+			goNao.left_relaxed_sit()
+
+		elif(choice == "y"):
+			goNao.right_relaxed_sit()
+
+		elif(choice == "n"):
+			goNao.numerator()
+
+		elif(choice == "e"):
+			goNao.denominator()
+
+		elif(choice == "o"):
+			goNao.etc()
+
+		elif(choice == "c"):
+			goNao.conversion()
+
+		#elif(choice == 'o'):
+		#	goNao.tilt()
+
+		#elif(choice == 'h'):
+		#	goNao.hands()
+
+		#elif(choice == 'b'):
+		#	goNao.breathe()
 
 		elif(choice == "s"):
 			if useRobot:
