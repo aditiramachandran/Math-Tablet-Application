@@ -6,9 +6,9 @@ import time
 import datetime
 import collections
 import socket
-#sys.path.append("nao_libs")
+sys.path.append("nao_libs")
 #sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
-sys.path.append("nao_libs_1.14")
+#sys.path.append("nao_libs_1.14")
 
 import naoqi
 from naoqi import ALBroker
@@ -152,6 +152,7 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.assessQuestion(otherInfo)
 							self.goNao.genSpeech(robot_speech) 
 					elif msgType == 'CA': #correct attempt
 						self.numCorrect += 1
@@ -161,6 +162,7 @@ class TutoringSession:
 							os.system("say " + robot_speech)
 						else:
 							self.goNao.assess("correct")
+							self.goNao.juddNelson()
 					elif msgType == 'IA': #incorrect attempt
 						self.numIncorrect += 1
 						otherInfo = line.split(";",3)[3].strip()
@@ -170,6 +172,7 @@ class TutoringSession:
 						else:
 							self.goNao.genSpeech(robot_speech)
 							self.goNao.assess("wrong")
+							self.goNao.shake()
 					elif msgType == 'LIA': #incorrect attempt
 						self.numIncorrect += 1
 						otherInfo = line.split(";",3)[3].strip()
@@ -177,7 +180,8 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.genSpeech(robot_speech)		
+							self.goNao.genSpeech(robot_speech)
+							self.goNao.last_shake()		
 					elif msgType == 'H1': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",3)[3].strip()
