@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         intent.putExtra("participantID", pid);
         //send message to computer to convey session starting
         if (com.priyanka.TCPClient.singleton != null) {
-            String startMessage = "START;" + "-1;" + pid + "," + sessionNum + "," + expGroup;
+            String startMessage = "START;" + "-1;-1;" + pid + "," + sessionNum + "," + expGroup;
             mTcpClient.sendMessage(startMessage);
         }
         startActivity(intent);
@@ -145,8 +145,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     Log.e("MainActivity", "Message received from server: hiding options");
 
                     // showMoodMeter = false;
-                    //if (message.equalsIgnoreCase("showOptions"))
-                    // aditi showOptions = true;
+                    //if (message.equalsIgnoreCase("done"))
+                    //    showOptions = true;
                     // aditi currentlyPlaying = new String("");
 	                    /*thread.setRunning(false);
 	    				((Activity)getContext()).finish();*/

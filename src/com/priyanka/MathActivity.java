@@ -113,6 +113,8 @@ public class MathActivity extends Activity {
             expGroup = Integer.parseInt(extras.getString("expGroup"));
             System.out.println("expGroup is: " + expGroup);
         }
+        //set this MathActivity as the sessionOwner for the tcpClient
+        TCPClient.singleton.setSessionOwner(this);
 
         String json = "";
         try {
@@ -197,6 +199,32 @@ public class MathActivity extends Activity {
         NextQuestion();
     }
 
+    public void disableButtons() {
+        System.out.println("MATHACTIVITY: IN disableButtons method!");
+        HintButton1.setEnabled(false);
+        HintButton2.setEnabled(false);
+        HintButton3.setEnabled(false);
+        SubmitButton.setEnabled(false);
+        mKeyboardView.setEnabled(false);
+        //mKeyboardView.getKeyboard().getKeys().get(0).
+    }
+
+    public void enableButtons(){
+        System.out.println("MATHACTIVITY: IN enableButtons method!");
+        HintButton1.setEnabled(true);
+        HintButton2.setEnabled(true);
+        HintButton3.setEnabled(true);
+        SubmitButton.setEnabled(true);
+        mKeyboardView.setEnabled(true);
+    }
+
+    public void messageReceived(String message){
+        System.out.println("message received from server is: " + message);
+        if (message.equals("done")){
+            enableButtons();
+        }
+    }
+
     public void AnswerButtonPress(View view) {
 
         String format = questions.get(currentQuestionIndex).format;
@@ -215,6 +243,7 @@ public class MathActivity extends Activity {
 
             numConsecHintsRequested = 0; //reset since attempt is made here
             Question question = questions.get(currentQuestionIndex);
+            String questionType = question.type;
 
             Boolean correct = false;
 
@@ -234,7 +263,7 @@ public class MathActivity extends Activity {
             //include TCP server stuff
             if (correct) {
                 if (com.priyanka.TCPClient.singleton != null)
-                    com.priyanka.TCPClient.singleton.sendMessage("CA;" + currentQuestionIndex + ";" + CORRECT_STRING + ";" + attempt);
+                    com.priyanka.TCPClient.singleton.sendMessage("CA;" + currentQuestionIndex + ";" + questionType + ";" + CORRECT_STRING + ";" + attempt);
                 RightWrongLabel.setText(CORRECT_STRING);
                 SubmitButton.setText(NEXT_QUESTION_STRING);
                 questionState = QState.DISPLAYCORRECT;
@@ -277,7 +306,7 @@ public class MathActivity extends Activity {
 
                     //Send message
                     if (com.priyanka.TCPClient.singleton != null)
-                        com.priyanka.TCPClient.singleton.sendMessage("IA;" + currentQuestionIndex + ";" + incorrect_message + ";" + attempt);
+                        com.priyanka.TCPClient.singleton.sendMessage("IA;" + currentQuestionIndex + ";" + questionType + ";" + incorrect_message + ";" + attempt);
                     RightWrongLabel.setText(incorrect_string);
                     questionState = QState.DISPLAYINCORRECT;
                     AnswerText1.setText("");
@@ -310,7 +339,7 @@ public class MathActivity extends Activity {
                     too_many_incorrect_message += " " + TOO_MANY_INCORRECT_POSTFIX;
                     //Send message
                     if (com.priyanka.TCPClient.singleton != null)
-                        com.priyanka.TCPClient.singleton.sendMessage("LIA;" + currentQuestionIndex + ";" + too_many_incorrect_message + ";" + attempt);
+                        com.priyanka.TCPClient.singleton.sendMessage("LIA;" + currentQuestionIndex + ";" + questionType + ";" + too_many_incorrect_message + ";" + attempt);
                     RightWrongLabel.setText(too_many_incorrect_string);
                     SubmitButton.setText(NEXT_QUESTION_STRING);
                     questionState = QState.DISPLAYCORRECT;
@@ -336,6 +365,7 @@ public class MathActivity extends Activity {
     public void HintPressed(View view){
 
         Question currentQuestion = questions.get(currentQuestionIndex);
+        String questionType = currentQuestion.type;
 
         int buttonNumber = -1;
 
@@ -358,7 +388,7 @@ public class MathActivity extends Activity {
             System.out.println("newHintButtonNumber is: " + newHintButtonNumber);
             //send message indicating that a hint request was denied
             if (com.priyanka.TCPClient.singleton != null)
-                com.priyanka.TCPClient.singleton.sendMessage("DH;" + currentQuestionIndex + ";" + DENIED_HINT_VALUE + ";" + buttonNumber);
+                com.priyanka.TCPClient.singleton.sendMessage("DH;" + currentQuestionIndex + ";" + questionType + ";" + DENIED_HINT_VALUE + ";" + buttonNumber);
 
         }
 
@@ -382,7 +412,7 @@ public class MathActivity extends Activity {
                 }
 
                 if (com.priyanka.TCPClient.singleton != null)
-                    com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ";" + currentQuestionIndex + ";" + hintMessage + ";" + autoHint);
+                    com.priyanka.TCPClient.singleton.sendMessage("H" + buttonNumber + ";" + currentQuestionIndex + ";" + questionType + ";" + hintMessage + ";" + autoHint);
             }
 
             if (buttonNumber==newHintButtonNumber)
@@ -414,6 +444,7 @@ public class MathActivity extends Activity {
 
         hintsRemaining = MAX_HINTS;
         attemptsRemaining = MAX_ATTEMPTS;
+        String questionType = "none";
 
         if (currentQuestionIndex >= questions.length()) {
             Intent intent = new Intent(this, com.priyanka.Completed.class);
@@ -426,7 +457,7 @@ public class MathActivity extends Activity {
                 goodbyeMessage += "Bye! I had a great time doing math with you!";
             }
             if (com.priyanka.TCPClient.singleton != null) {
-                com.priyanka.TCPClient.singleton.sendMessage("END;" + currentQuestionIndex + ";" + goodbyeMessage);
+                com.priyanka.TCPClient.singleton.sendMessage("END;" + currentQuestionIndex + ";" + questionType + ";" + goodbyeMessage);
                 com.priyanka.TCPClient.singleton.stopClient();
             }
             startActivity(intent);
@@ -435,6 +466,7 @@ public class MathActivity extends Activity {
 
         Question question = questions.get(currentQuestionIndex);
         String newQuestion = question.question;
+        questionType = question.type;
         SubmitButton.setText(SUBMIT_STRING);
         CurrentQuestion.setText(newQuestion);
         questionState = QState.INIT;
@@ -461,7 +493,7 @@ public class MathActivity extends Activity {
 
         //Send message
         if (com.priyanka.TCPClient.singleton != null)
-            com.priyanka.TCPClient.singleton.sendMessage("Q;" + currentQuestionIndex + ";" + question.spokenQuestion);
+            com.priyanka.TCPClient.singleton.sendMessage("Q;" + currentQuestionIndex + ";" + questionType + ";" + question.spokenQuestion);
 
         AnswerText1.requestFocus();
     }
