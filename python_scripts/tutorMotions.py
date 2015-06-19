@@ -78,6 +78,7 @@ class Gesture:
 
     def genSpeech(self, sentence):
         try:
+            #self.look()
             id = self.speechDevice.post.say(sentence)
             return id
         except Exception, e:
@@ -110,6 +111,8 @@ class Gesture:
             self.genSpeech("Hello again! Today is our last session. Let's get started!")
         else:
             print "invalid sessionNum: no intro"
+        self.wave()
+        time.sleep(2)
 
     def intro(self):
         self.posture.goToPosture("Sit", 1.0)
@@ -152,14 +155,16 @@ class Gesture:
         #self.posture.goToPosture("Sit", 0.5)
         #self.motion.closeHand("RHand")
         #self.motion.closeHand("LHand")
-        time.sleep(0.5)
+        #time.sleep(0.5)
 
-        self.motion.setAngles("RShoulderPitch",-1.0, 0.25)
-        self.motion.setAngles("RShoulderRoll", -1.2, 0.25)
-        self.motion.setAngles("RElbowRoll", 1.0, 0.25)
-        self.motion.setAngles("RElbowYaw", 0.5, 0.25)
-        self.motion.setAngles("RWristYaw", 0, 0.25)
+        self.motion.setAngles("RShoulderPitch",-1.0, 0.15)
+        self.motion.setAngles("RShoulderRoll", -1.2, 0.15)
+        self.motion.setAngles("RElbowRoll", 1.0, 0.1)
+        self.motion.setAngles("RElbowYaw", 0.5, 0.1)
+        self.motion.setAngles("RWristYaw", 0, 0.1)
         self.motion.openHand("RHand")
+
+        time.sleep(0.7)
         #self.motion.setAngles("RShoulderRoll", -1.2, 0.5)
         #self.motion.setAngles("RHand", Open, 1.0)
         #self.motion.setAngles("RElbowRoll",angleBotElbow,0.3)
@@ -184,30 +189,31 @@ class Gesture:
         time.sleep(2)
 
         self.motion.closeHand("RHand")
-        self.posture.goToPosture("Sit", 1.0)
-        self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        self.posture.goToPosture("Sit", 0.5)
+        #self.motion.setAngles("HeadPitch", 0.3, 0.15)
         
     def juddNelson(self):
         #this bit of code makes the robot thrust its hand into the air
         #start in sitting position
         #self.posture.goToPosture("Sit", 0.5)
-        time.sleep(0.5)
+        time.sleep(0.1)
         #move to position
-        self.motion.setAngles("RShoulderPitch", -1.0, 0.5)
-        self.motion.setAngles("RShoulderRoll", -1.3, 0.5)
-        self.motion.setAngles("RElbowRoll", 1.5, 0.5)
-        self.motion.setAngles("RWristYaw", 0, 0.5)
+        self.motion.setAngles("RShoulderPitch", -1.0, 0.3)
+        self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.3)
+        self.motion.setAngles("RWristYaw", 0, 0.3)
         self.motion.closeHand("RHand")
-        time.sleep(1.0)
+        time.sleep(0.1)
+        #time.sleep(1.0)
         #self.genSpeech("good job! that's correct!")
         self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
         self.motion.setAngles("RElbowRoll", 1.0, 0.5)
         #self.genSpeech("yay you did it!")
         #time.sleep(2)
         #self.genSpeech("now i will put my hand back down")
-        time.sleep(2.5)
+        time.sleep(1)
         self.posture.goToPosture("Sit", 1.0)
-        self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        #self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
     def nod(self):
         #this bit of code makes the robot nod its head
@@ -253,7 +259,7 @@ class Gesture:
         #move back to the original position
         time.sleep(2.5)
         self.posture.goToPosture("Sit", 1.0)
-        self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        #self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
     def last_shake(self):
         #this bit of code makes the robot shake its head
@@ -278,16 +284,16 @@ class Gesture:
         #move back to the original position
         time.sleep(2.5)
         self.posture.goToPosture("Sit", 1.0)
-        self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        #self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
     def scale_up(self):
         #start position of the arm
         self.motion.setAngles("HeadPitch", 0, 0.15)
-        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
-        self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
-        self.motion.setAngles("RElbowYaw", 1.5, 0.2)
-        self.motion.setAngles("RElbowRoll", 0.4, 0.2)
-        self.motion.setAngles("RWristYaw", 1.6, 0.2)
+        self.motion.setAngles("RShoulderPitch", 0.4, 0.1)
+        self.motion.setAngles("RShoulderRoll", -0.5, 0.1)
+        self.motion.setAngles("RElbowYaw", 1.5, 0.1)
+        self.motion.setAngles("RElbowRoll", 0.4, 0.1)
+        self.motion.setAngles("RWristYaw", 1.6, 0.1)
         self.motion.openHand("RHand")
 
         #time.sleep(0.3)
@@ -303,17 +309,17 @@ class Gesture:
     def scale_down(self):
         #start position of the arm
         self.motion.setAngles("HeadPitch", 0, 0.15)
-        self.motion.setAngles("RShoulderPitch", 0.7, 0.25)
-        self.motion.setAngles("RShoulderRoll", -1.2, 0.25)
-        self.motion.setAngles("RElbowYaw", 1.5, 0.3)
-        self.motion.setAngles("RElbowRoll", 1.4, 0.25)
+        self.motion.setAngles("RShoulderPitch", 0.7, 0.2)
+        self.motion.setAngles("RShoulderRoll", -1.2, 0.2)
+        self.motion.setAngles("RElbowYaw", 1.5, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.4, 0.2)
         self.motion.setAngles("RWristYaw", 0, 0.2)
         self.motion.openHand("RHand")
 
         #time.sleep(0.3)
 
         #end position of the arm
-        self.motion.setAngles("RShoulderPitch", 1.5, 0.2)
+        self.motion.setAngles("RShoulderPitch", 1.5, 0.1)
 
         time.sleep(4)
 
@@ -326,14 +332,40 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
+    def scale_down_left(self):
+        #start position of the arm
+        self.motion.setAngles("HeadPitch", 0, 0.15)
+        self.motion.setAngles("LShoulderPitch", 0.7, 0.2)
+        self.motion.setAngles("LShoulderRoll", 1.2, 0.2)
+        self.motion.setAngles("LElbowYaw", -1.5, 0.2)
+        self.motion.setAngles("LElbowRoll", -1.4, 0.2)
+        self.motion.setAngles("LWristYaw", 0, 0.2)
+        self.motion.openHand("LHand")
+
+        #time.sleep(0.3)
+
+        #end position of the arm
+        self.motion.setAngles("LShoulderPitch", 1.5, 0.1)
+
+        time.sleep(4)
+
+        #raise hand before sitting so no collision with leg
+        self.motion.setAngles("LElbowRoll", -1.54, 0.2)
+        self.motion.setAngles("LElbowYaw", -2.0, 0.2)
+        self.motion.setAngles("LShoulderPitch", 1.0, 0.2)
+
+        time.sleep(0.15)
+
+        self.posture.goToPosture("Sit", 0.5)
+
     def two_fractions(self):
         #moving the right hand to the beginning position
         self.motion.setAngles("HeadPitch", 0, 0.15)
-        self.motion.setAngles("RShoulderRoll", -0.5, 0.25)
-        self.motion.setAngles("RShoulderPitch", 0.4, 0.25)
-        self.motion.setAngles("RElbowRoll", 1.2, 0.25)
-        self.motion.setAngles("RElbowYaw", 1.7, 0.25)
-        self.motion.setAngles("RWristYaw", 1.5, 0.25)
+        self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
+        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.2, 0.2)
+        self.motion.setAngles("RElbowYaw", 1.7, 0.2)
+        self.motion.setAngles("RWristYaw", 1.5, 0.2)
 
         time.sleep(0.8)
 
@@ -374,12 +406,63 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
+    def multiples(self):
+        #moving the right hand to the beginning position
+        self.motion.setAngles("HeadPitch", 0, 0.15)
+        self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
+        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.2, 0.2)
+        self.motion.setAngles("RElbowYaw", 1.7, 0.2)
+        self.motion.setAngles("RWristYaw", 1.5, 0.2)
+
+        time.sleep(0.8)
+
+        #emphasize the right hand
+        self.motion.setAngles("HeadYaw", -0.7, 0.2)
+        self.motion.setAngles("RElbowRoll", 0.2, 0.2)
+
+        time.sleep(2.5)
+
+        #moving the left hand to the beginning position
+        self.motion.setAngles("LShoulderRoll", 0.5, 0.25)
+        self.motion.setAngles("LShoulderPitch", 0.4, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.2, 0.25)
+        self.motion.setAngles("LElbowYaw", -1.7, 0.25)
+        self.motion.setAngles("LWristYaw", -1.5, 0.25)
+
+        time.sleep(0.8)
+
+        #emphasize the left hand
+        self.motion.setAngles("HeadYaw", 0.7, 0.2)
+        self.motion.setAngles("LElbowRoll", -0.2, 0.2)
+
+        #wait to bring hands together
+        #time.sleep(2)
+
+        #open both hands and move the head back center
+        self.motion.openHand("RHand")
+        self.motion.setAngles("HeadYaw", 0, 0.05)
+        self.motion.openHand("LHand")
+
+        time.sleep(0.9)
+
+        #bring arms in to avoid scooching sit
+        self.motion.setAngles("RShoulderRoll", -0.15, 0.2)
+        self.motion.setAngles("LShoulderRoll", 0.15, 0.2)
+        self.motion.setAngles("RElbowYaw", 0, 0.2)
+        self.motion.setAngles("LElbowYaw", 0, 0.2)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.2)
+        time.sleep(1)
+
+        self.posture.goToPosture("Sit", 0.5)
+
     def look(self):
         #head looking straight ahead
         self.posture.goToPosture("Sit", 0.2)
 
     def sit(self):
-        self.posture.goToPosture("Sit", 0.2)
+        #self.posture.goToPosture("Sit", 0.2)
         #head looks down at tablet and student
         self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
@@ -520,7 +603,7 @@ class Gesture:
         self.motion.setAngles("LShoulderRoll", 0.2, 0.1)
         self.motion.openHand("LHand")
 
-        time.sleep(1)
+        time.sleep(0.2)
 
         #move right hand to represent the whole number
         self.motion.setAngles("RShoulderRoll", -0.35, 0.2)
@@ -529,7 +612,7 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 1.2, 0.2)
         self.motion.openHand("RHand")
 
-        time.sleep(1)
+        time.sleep(0.2)
 
         #move left hand to represent the numerator
         self.motion.setAngles("LShoulderPitch", -0.05, 0.2)
@@ -587,53 +670,64 @@ class Gesture:
         if(what is "correct"):
             randnr = random.randint(0,len(self.right)-1)
             id = self.genSpeech(self.right[randnr])
-            time.sleep(3)
+            #time.sleep(3)
         elif(what is "wrong"):
             randnr = random.randint(0,len(self.wrong_postfix)-1)
             id = self.genSpeech(self.wrong_postfix[randnr])
-            time.sleep(3)
+            #time.sleep(3)
         elif(what is "trouble"):
             randnr = random.randint(0,len(self.trouble)-1)
             id = self.genSpeech(self.trouble[randnr])
-            time.sleep(3)
+            #time.sleep(3)
         elif(what is "hint"): 
             randnr = random.randint(0,len(self.hint)-1)
             id = self.genSpeech(self.hint[randnr])
-            time.sleep(3)
+            #time.sleep(3)
         elif(what is "confused"):
             randnr = random.randint(0,len(self.confused)-1)
             id = self.genSpeech(self.confused[randnr])
-            time.sleep(3)
+            #time.sleep(3)
         elif(what is "auto_hint"):
             randnr = random.randint(0,len(self.auto_hint)-1)
             id = self.genSpeech(self.auto_hint[randnr])
-            time.sleep(3)
+            #time.sleep(3)
         return id
 
     def assessQuestion(self, what):
-        if(what is "Scaling Up"):
+        #print what
+        if(what == "Scaling Up"):
+            #print "scaling up question, movement"
             self.scale_up()
-            time.sleep(3)
-        elif(what is "Scaling Down"):
-            self.scale_down()
-            time.sleep(3)
-        elif(what is "Common Denominator"):
+            #time.sleep(3)
+        elif(what == "Scaling Down"):
+            self.scale_down_left()
+            #time.sleep(3)
+        elif(what == "Common Denominator"):
             self.two_fractions()
-            time.sleep(3)
-        elif(what is "Conversion"):
+            #time.sleep(3)
+        #elif(what == "Conversion"):
             #UNSURE HERE
-            time.sleep(3)
-        elif(what is "Adding Like Denominators"):
+            #time.sleep(3)
+        elif(what == "Adding Like Denominators"):
             self.two_fractions()
-            time.sleep(3)
-        elif(what is "Subtracting Like Denominators"):
+            #time.sleep(3)
+        elif(what == "Subtracting Like Denominators"):
             self.two_fractions()
-            time.sleep(3)
-        elif(what is "Adding Unlike Denominators"):
+            #time.sleep(3)
+        elif(what == "Adding Unlike Denominators"):
             self.two_fractions()
-            time.sleep(3)
-        elif(what is "Subtracting Unlike Denominators"):
+            #time.sleep(3)
+        elif(what == "Subtracting Unlike Denominators"):
             self.two_fractions()
+            #time.sleep(3)
+
+    def assessHint(self, what):
+        if(what == "Conversion"):
+            self.conversion()
+            time.sleep(3)
+        elif (what == "Common Denominator"):
+            time.sleep(4)
+            self.multiples()
             time.sleep(3)
 
     def ask(self, question):
