@@ -125,6 +125,7 @@ class TutoringSession:
 					questionType = line.split(";",4)[2]
 					robot_speech = line.split(";",4)[3]
 					otherInfo = ''
+					id = -1
 
 					robot_speech = robot_speech.replace("'","").strip()
 					if self.goNao is None:
@@ -146,14 +147,14 @@ class TutoringSession:
 
 						#do intro depending on the sessionNum
 						if self.goNao is not None:
-							self.goNao.session_intro(self.sessionNum) 	
+							self.goNao.session_intro(int(self.sessionNum)) 	
 
 					elif msgType == 'Q': #question
 						self.numQuestions += 1
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.genSpeech(robot_speech) 
+							id = self.goNao.genSpeech(robot_speech) 
 					elif msgType == 'CA': #correct attempt
 						self.numCorrect += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -161,7 +162,7 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.assess("correct")
+							id = self.goNao.assess("correct")
 					elif msgType == 'IA': #incorrect attempt
 						self.numIncorrect += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -170,7 +171,7 @@ class TutoringSession:
 							os.system("say " + robot_speech)
 						else:
 							self.goNao.genSpeech(robot_speech)
-							self.goNao.assess("wrong")
+							id = self.goNao.assess("wrong")
 					elif msgType == 'LIA': #incorrect attempt
 						self.numIncorrect += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -178,7 +179,7 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.genSpeech(robot_speech)		
+							id = self.goNao.genSpeech(robot_speech)		
 					elif msgType == 'H1': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -188,7 +189,7 @@ class TutoringSession:
 						else:
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
-							self.goNao.genSpeech(robot_speech)
+							id = self.goNao.genSpeech(robot_speech)
 					elif msgType == 'H2': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -198,7 +199,7 @@ class TutoringSession:
 						else:
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
-							self.goNao.genSpeech(robot_speech)
+							id = self.goNao.genSpeech(robot_speech)
 					elif msgType == 'H3': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -208,13 +209,13 @@ class TutoringSession:
 						else:
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
-							self.goNao.genSpeech(robot_speech)				
+							id = self.goNao.genSpeech(robot_speech)				
 					elif msgType == 'AH': #automatic hint triggered
 						print 'automatic hint triggered'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.genSpeech(robot_speech)
+							id = self.goNao.genSpeech(robot_speech)
 					elif msgType == 'DH': #denied hint
 						self.numHintRequests += 1 #do we want to do this?
 						otherInfo = line.split(";",4)[4].strip()
@@ -222,18 +223,23 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.genSpeech(robot_speech)			
+							id = self.goNao.genSpeech(robot_speech)			
 					elif msgType == 'END': #session ended
 						print 'tutoring session ended'
 						sessionEnded = True
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.genSpeech(robot_speech)	
+							id = self.goNao.genSpeech(robot_speech)	
 						#break
 					else:
 						print 'error: unknown message type'
 
+					if self.goNao is not None: #should we check that id != -1
+						if id != -1:
+							self.goNao.speechDevice.wait(id, 0)
+							conn.send("DONE\n")
+							print 'send tablet message that robot is done'
 					self.log_transaction(msgType,questionNum,otherInfo)
 				if sessionEnded:
 					self.logFile.close()

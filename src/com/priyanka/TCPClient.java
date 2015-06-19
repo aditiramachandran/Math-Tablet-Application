@@ -48,7 +48,7 @@ public class TCPClient {
      */
     public void sendMessage(String message){
         if (out != null && !out.checkError()) {
-            /**if (sessionOwner != null) {
+            if (sessionOwner != null) {
                 Handler buttonHandler = new Handler(sessionOwner.getMainLooper());
                 Runnable myRunnable = new Runnable() {
                     @Override
@@ -57,7 +57,7 @@ public class TCPClient {
                     }
                 };
                 buttonHandler.post(myRunnable);
-            }**/
+            }
             out.println(message);
             out.flush();
         }

@@ -78,7 +78,8 @@ class Gesture:
 
     def genSpeech(self, sentence):
         try:
-            self.speechDevice.post.say(sentence)
+            id = self.speechDevice.post.say(sentence)
+            return id
         except Exception, e:
             print "Error when saying a sentence: "+str(e)
 
@@ -96,6 +97,7 @@ class Gesture:
         self.posture.goToPosture("SitRelax", 1.0)
 
     def session_intro(self,sessionNum):
+        print sessionNum
         if sessionNum == 1:
             self.genSpeech("Hello! My name is Nao. I am your personal robot tutor!")
             self.genSpeech("For each session, I have put fractions problems on the tablet in front of you.")
@@ -404,31 +406,32 @@ class Gesture:
         self.posture.goToPosture("Stand", 1.0)
         #self.motion.setBreathEnabled("Body", True)
 
-    def assess(self, what):
+    def assess(self, what): #should we take the time.sleep() out since we are waiting using post?
         if(what is "correct"):
             randnr = random.randint(0,len(self.right)-1)
-            self.genSpeech(self.right[randnr])
+            id = self.genSpeech(self.right[randnr])
             time.sleep(3)
         elif(what is "wrong"):
             randnr = random.randint(0,len(self.wrong_postfix)-1)
-            self.genSpeech(self.wrong_postfix[randnr])
+            id = self.genSpeech(self.wrong_postfix[randnr])
             time.sleep(3)
         elif(what is "trouble"):
             randnr = random.randint(0,len(self.trouble)-1)
-            self.genSpeech(self.trouble[randnr])
+            id = self.genSpeech(self.trouble[randnr])
             time.sleep(3)
         elif(what is "hint"): 
             randnr = random.randint(0,len(self.hint)-1)
-            self.genSpeech(self.hint[randnr])
+            id = self.genSpeech(self.hint[randnr])
             time.sleep(3)
         elif(what is "confused"):
             randnr = random.randint(0,len(self.confused)-1)
-            self.genSpeech(self.confused[randnr])
+            id = self.genSpeech(self.confused[randnr])
             time.sleep(3)
         elif(what is "auto_hint"):
             randnr = random.randint(0,len(self.auto_hint)-1)
-            self.genSpeech(self.auto_hint[randnr])
+            id = self.genSpeech(self.auto_hint[randnr])
             time.sleep(3)
+        return id
 
 
 
