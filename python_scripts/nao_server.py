@@ -122,7 +122,7 @@ class TutoringSession:
 					#parse message type to know what to do with it
 					msgType = line.split(";",4)[0]
 					questionNum = int(line.split(";",2)[1])+1
-					questionType = line.split(";",4)[2]
+					questionType = line.split(";",4)[2].strip()
 					robot_speech = line.split(";",4)[3]
 					otherInfo = ''
 					id = -1
@@ -154,8 +154,10 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							self.goNao.assessQuestion(otherInfo)
-							id = self.goNao.genSpeech(robot_speech) 
+							self.goNao.look()
+							#self.goNao.assessQuestion(questionType)
+							id = self.goNao.genSpeech(robot_speech)
+							self.goNao.assessQuestion(questionType) 
 					elif msgType == 'CA': #correct attempt
 						self.numCorrect += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -163,8 +165,11 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
+							#self.goNao.juddNelson()
 							id = self.goNao.assess("correct")
 							self.goNao.juddNelson()
+							#self.goNao.sit()
 					elif msgType == 'IA': #incorrect attempt
 						self.numIncorrect += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -172,9 +177,11 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
 							self.goNao.genSpeech(robot_speech)
 							id = self.goNao.assess("wrong")
 							self.goNao.shake()
+							#self.goNao.sit()
 					elif msgType == 'LIA': #incorrect attempt
 						self.numIncorrect += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -182,8 +189,10 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
 							id = self.goNao.genSpeech(robot_speech)
-							self.goNao.last_shake()		
+							#self.goNao.last_shake()
+							#self.goNao.sit()		
 					elif msgType == 'H1': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -191,9 +200,11 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
 							id = self.goNao.genSpeech(robot_speech)
+							#self.goNao.sit()
 					elif msgType == 'H2': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -201,9 +212,11 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
 							id = self.goNao.genSpeech(robot_speech)
+							#self.goNao.sit()
 					elif msgType == 'H3': #hint request
 						self.numHintRequests += 1
 						otherInfo = line.split(";",4)[4].strip()
@@ -211,15 +224,21 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
+							#self.goNao.assessHint(questionType)
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
-							id = self.goNao.genSpeech(robot_speech)				
+							id = self.goNao.genSpeech(robot_speech)
+							self.goNao.assessHint(questionType)
+							#self.goNao.sit()				
 					elif msgType == 'AH': #automatic hint triggered
 						print 'automatic hint triggered'
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							self.goNao.look()
 							id = self.goNao.genSpeech(robot_speech)
+							#self.goNao.sit()
 					elif msgType == 'DH': #denied hint
 						self.numHintRequests += 1 #do we want to do this?
 						otherInfo = line.split(";",4)[4].strip()
@@ -227,14 +246,18 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							id = self.goNao.genSpeech(robot_speech)			
+							self.goNao.look()
+							id = self.goNao.genSpeech(robot_speech)
+							#self.goNao.sit()			
 					elif msgType == 'END': #session ended
 						print 'tutoring session ended'
 						sessionEnded = True
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
-							id = self.goNao.genSpeech(robot_speech)	
+							self.goNao.look()
+							id = self.goNao.genSpeech(robot_speech)
+							#self.goNao.sit()	
 						#break
 					else:
 						print 'error: unknown message type'
@@ -242,6 +265,7 @@ class TutoringSession:
 					if self.goNao is not None: #should we check that id != -1
 						if id != -1:
 							self.goNao.speechDevice.wait(id, 0)
+							self.goNao.sit()
 							conn.send("DONE\n")
 							print 'send tablet message that robot is done'
 					self.log_transaction(msgType,questionNum,otherInfo)
@@ -500,7 +524,7 @@ def main():
 
 		elif(choice == "s"):
 			if useRobot:
-				postureProxy.goToPosture("Sit", 1.0)
+				postureProxy.goToPosture("Sit", 0.5)
 			session = TutoringSession(TCP_IP, TCP_PORT, goNao)
 			with open('topics.txt') as f:
 				categ = sum(1 for _ in f)
