@@ -267,8 +267,8 @@ class TutoringSession:
 							os.system("say " + robot_speech)
 						else:
 							self.goNao.look()
-							self.goNao.congratulations()
 							id = self.goNao.genSpeech(robot_speech)
+							self.goNao.congratulations()
 							#self.goNao.sit()	
 						#break
 					else:

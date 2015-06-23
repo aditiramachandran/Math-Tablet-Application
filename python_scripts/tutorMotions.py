@@ -120,7 +120,7 @@ class Gesture:
             self.genSpeech("If you need any help, you can ask me by pressing the hint buttons at the bottom of each screen.")
             id = self.genSpeech("Great! Now let's work on some questions together!")
         elif sessionNum == 2:
-            self.genSpeech("Just remember that if you need help on the problems, you can ask me by pressing the buttons on the bottom of the screen.")
+            self.genSpeech("Just remember, if you need help on the problems, you can ask me by pressing the buttons on the bottom of the screen.")
             id = self.genSpeech("Let's get started!")
         elif sessionNum == 3:
             self.genSpeech("Let's try doing some more problems!")
@@ -282,9 +282,9 @@ class Gesture:
         time.sleep(0.5)
 
         #shake head
-        self.motion.setAngles("HeadPitch", 0, 0.2)
-        self.motion.setAngles("HeadYaw", 0, 0.2)
-        time.sleep(0.5)
+        self.motion.setAngles("HeadPitch", 0, 0.05)
+        #self.motion.setAngles("HeadYaw", 0, 0.05)
+        #time.sleep(0.5)
         self.motion.setAngles("HeadYaw", -0.5, 0.3)
         time.sleep(0.5)
         self.motion.setAngles("HeadYaw", 0.5, 0.3)
@@ -839,7 +839,11 @@ class Gesture:
             self.two_fractions()
             #time.sleep(3)
 
-    def assessHint(self, what):
+    def assessHint2(self, what):
+        if (what == "Scaling Up"):
+            self.numerator()
+
+    def assessHint3(self, what):
         if(what == "Conversion"):
             self.conversion()
             time.sleep(3)
