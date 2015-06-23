@@ -629,6 +629,36 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
+    def numerator_denominator(self):
+        #start position of the arm
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
+
+        time.sleep(2.5)
+
+        self.motion.setAngles("RShoulderPitch", -0.3, 0.2)
+        self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
+        self.motion.setAngles("RElbowYaw", 1.5, 0.2)
+        self.motion.setAngles("RElbowRoll", 0.4, 0.2)
+        self.motion.setAngles("RWristYaw", 1.6, 0.2)
+        self.motion.openHand("RHand")
+
+        time.sleep(0.3)
+
+        self.motion.setAngles("RShoulderPitch", 0.8, 0.2)
+        self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
+        self.motion.setAngles("RElbowYaw", 1.5, 0.2)
+        self.motion.setAngles("RElbowRoll", 0.4, 0.2)
+        self.motion.setAngles("RWristYaw", 1.6, 0.2)
+        self.motion.openHand("RHand")
+
+        time.sleep(0.5)
+
+        #raise up elbow to avoid collision
+        self.motion.setAngles("RElbowRoll", 0.8, 0.2)
+        self.motion.setAngles("RWristYaw", 1.3, 0.2)
+
+        self.posture.goToPosture("Sit", 0.5)
+
     def etc(self):
         #head faces straight
         self.motion.setAngles("HeadPitch", 0, 0.15)
@@ -841,7 +871,11 @@ class Gesture:
 
     def assessHint2(self, what):
         if (what == "Scaling Up"):
-            self.numerator()
+            self.numerator_denominator()
+            time.sleep(2)
+        elif (what == "Scaling Down"):
+            self.numerator_denominator()
+            time.sleep(2)
 
     def assessHint3(self, what):
         if(what == "Conversion"):

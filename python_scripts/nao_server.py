@@ -227,6 +227,7 @@ class TutoringSession:
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
 							id = self.goNao.genSpeech(robot_speech)
+							self.goNao.assessHint2(questionType)
 							#self.goNao.sit()
 					elif msgType == 'H3': #hint request
 						self.numHintRequests += 1
@@ -240,7 +241,7 @@ class TutoringSession:
 							if otherInfo == 'true':
 								self.goNao.assess("auto_hint")
 							id = self.goNao.genSpeech(robot_speech)
-							self.goNao.assessHint(questionType)
+							self.goNao.assessHint3(questionType)
 							#self.goNao.sit()				
 					elif msgType == 'AH': #automatic hint triggered
 						print 'automatic hint triggered'
