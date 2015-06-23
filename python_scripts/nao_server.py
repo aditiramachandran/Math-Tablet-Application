@@ -69,7 +69,7 @@ class TutoringSession:
 	def log_transaction(self,msgType,questionNum,otherInfo):
 		if otherInfo == 'true':
 			otherInfo = 'automatic'
-		else:
+		if otherInfo == 'false':
 			otherInfo = ''
 
 		transaction = self.pid + "," + self.expGroup + "," + self.sessionNum + ","
@@ -274,6 +274,9 @@ class TutoringSession:
 							self.goNao.sit()
 							conn.send("DONE\n")
 							print 'send tablet message that robot is done'
+					else: #case just for testing without robot
+						time.sleep(2)
+						conn.send("DONE\n")
 					self.log_transaction(msgType,questionNum,otherInfo)
 				if sessionEnded:
 					self.logFile.close()
