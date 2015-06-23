@@ -787,29 +787,30 @@ class Gesture:
     def assess(self, what): #should we take the time.sleep() out since we are waiting using post?
         if(what is "correct"):
             randnr = random.randint(0,len(self.right)-1)
-            id = self.genSpeech(self.right[randnr])
+            speech = self.right[randnr]
             #time.sleep(3)
         elif(what is "wrong"):
             randnr = random.randint(0,len(self.wrong_postfix)-1)
-            id = self.genSpeech(self.wrong_postfix[randnr])
+            speech = self.wrong_postfix[randnr]
             #time.sleep(3)
         elif(what is "trouble"):
             randnr = random.randint(0,len(self.trouble)-1)
-            id = self.genSpeech(self.trouble[randnr])
+            speech = self.trouble[randnr]
             #time.sleep(3)
         elif(what is "hint"): 
             randnr = random.randint(0,len(self.hint)-1)
-            id = self.genSpeech(self.hint[randnr])
+            speech = self.hint[randnr]
             #time.sleep(3)
         elif(what is "confused"):
             randnr = random.randint(0,len(self.confused)-1)
-            id = self.genSpeech(self.confused[randnr])
+            speech = self.confused[randnr]
             #time.sleep(3)
         elif(what is "auto_hint"):
             randnr = random.randint(0,len(self.auto_hint)-1)
-            id = self.genSpeech(self.auto_hint[randnr])
+            speech = self.auto_hint[randnr]
             #time.sleep(3)
-        return id
+        id = self.genSpeech(speech)    
+        return [id,speech]
 
     def assessQuestion(self, what):
         #print what

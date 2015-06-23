@@ -174,12 +174,17 @@ class TutoringSession:
 						else:
 							self.goNao.look()
 							#self.goNao.juddNelson()
-							id = self.goNao.assess("correct")
+							[id,speech] = self.goNao.assess("correct")[0]
+							self.log_transaction("RS",questionNum,speech)
+							pump = "no_pump"
 							rand_choice = random.randint(0,3)
 							if(rand_choice == 1):
 								self.goNao.juddNelson()
+								pump = "right_pump"
 							elif(rand_choice == 2):
 								self.goNao.juddNelson_left()
+								pump = "left_pump"
+							self.log_transaction("RA",questionNum,pump)	
 							#self.goNao.sit()
 					elif msgType == 'IA': #incorrect attempt
 						self.numIncorrect += 1
@@ -190,7 +195,8 @@ class TutoringSession:
 						else:
 							self.goNao.look()
 							self.goNao.genSpeech(robot_speech)
-							id = self.goNao.assess("wrong")
+							[id,speech] = self.goNao.assess("wrong")
+							self.log_transaction("RS",questionNum,speech)
 							self.goNao.shake()
 							#self.goNao.sit()
 					elif msgType == 'LIA': #incorrect attempt
@@ -213,7 +219,8 @@ class TutoringSession:
 						else:
 							self.goNao.look()
 							if otherInfo == 'true':
-								self.goNao.assess("auto_hint")
+								speech = self.goNao.assess("auto_hint")[1]
+								self.log_transaction("RS",questionNum,speech)
 							id = self.goNao.genSpeech(robot_speech)
 							#self.goNao.sit()
 					elif msgType == 'H2': #hint request
@@ -225,7 +232,8 @@ class TutoringSession:
 						else:
 							self.goNao.look()
 							if otherInfo == 'true':
-								self.goNao.assess("auto_hint")
+								speech = self.goNao.assess("auto_hint")[1]
+								self.log_transaction("RS",questionNum,speech)
 							id = self.goNao.genSpeech(robot_speech)
 							#self.goNao.sit()
 					elif msgType == 'H3': #hint request
@@ -238,7 +246,8 @@ class TutoringSession:
 							self.goNao.look()
 							#self.goNao.assessHint(questionType)
 							if otherInfo == 'true':
-								self.goNao.assess("auto_hint")
+								speech = self.goNao.assess("auto_hint")[1]
+								self.log_transaction("RS",questionNum,speech)
 							id = self.goNao.genSpeech(robot_speech)
 							self.goNao.assessHint(questionType)
 							#self.goNao.sit()				
@@ -279,8 +288,8 @@ class TutoringSession:
 							self.goNao.speechDevice.wait(id, 0)
 							if introFlag is not True:
 								self.goNao.sit()
-							conn.send("DONE\n")
-							print 'send tablet message that robot is done'
+								conn.send("DONE\n")
+								print 'send tablet message that robot is done'
 					else: #case just for testing without robot
 						time.sleep(2)
 						conn.send("DONE\n")
