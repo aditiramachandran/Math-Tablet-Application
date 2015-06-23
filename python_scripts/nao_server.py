@@ -64,7 +64,7 @@ class TutoringSession:
 			fullType = 'AUTOMATIC HINT'
 		elif msgType == 'DH':
 			fullType = 'DENIED HINT'
-		elif msgType == 'RS'
+		elif msgType == 'RS':
 			fullType = 'ROBOT SPEECH'
 		elif msgType == 'RA':
 			fullType = 'ROBOT ACTION'
