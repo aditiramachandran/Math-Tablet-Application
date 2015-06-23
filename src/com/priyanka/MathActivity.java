@@ -339,9 +339,10 @@ public class MathActivity extends Activity {
                         //send message that hint was automatically initiated, then send appropriate hint
                         //if (com.priyanka.TCPClient.singleton != null)
                         //    com.priyanka.TCPClient.singleton.sendMessage("AH;" + currentQuestionIndex + ";" + AUTO_HINT_VALUE);
-
-                        autoHint = true;
-                        HintPressed((View)button);
+                        if (button != null) {
+                            autoHint = true;
+                            HintPressed((View) button);
+                        }
                     }
 
                 } else {
