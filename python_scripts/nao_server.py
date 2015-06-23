@@ -127,6 +127,7 @@ class TutoringSession:
 					robot_speech = line.split(";",4)[3]
 					otherInfo = ''
 					id = -1
+					introFlag = False
 
 					robot_speech = robot_speech.replace("'","").strip()
 					if self.goNao is None:
@@ -148,7 +149,8 @@ class TutoringSession:
 
 						#do intro depending on the sessionNum
 						if self.goNao is not None:
-							self.goNao.session_intro(int(self.sessionNum)) 	
+							introFlag = True
+							id = self.goNao.session_intro(int(self.sessionNum)) 	
 
 					elif msgType == 'Q': #question
 						self.numQuestions += 1
@@ -169,7 +171,7 @@ class TutoringSession:
 							self.goNao.look()
 							#self.goNao.juddNelson()
 							id = self.goNao.assess("correct")
-							rand_choice = random.randint(0,2)
+							rand_choice = random.randint(0,3)
 							if(rand_choice == 1):
 								self.goNao.juddNelson()
 							elif(rand_choice == 2):
@@ -271,7 +273,8 @@ class TutoringSession:
 					if self.goNao is not None: #should we check that id != -1
 						if id != -1:
 							self.goNao.speechDevice.wait(id, 0)
-							self.goNao.sit()
+							if introFlag is not True:
+								self.goNao.sit()
 							conn.send("DONE\n")
 							print 'send tablet message that robot is done'
 					else: #case just for testing without robot

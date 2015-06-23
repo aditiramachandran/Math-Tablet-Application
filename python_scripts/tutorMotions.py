@@ -98,26 +98,40 @@ class Gesture:
         self.posture.goToPosture("SitRelax", 1.0)
 
     def session_intro(self,sessionNum):
-        print sessionNum
+        #print sessionNum
+        welcomePhrase = ''
         if sessionNum == 1:
-            self.genSpeech("Hello! My name is Nao. I am your personal robot tutor!")
+            welcomePhrase = "Hello! My name is Nao. I am your personal robot tutor!"
+        elif sessionNum == 2:
+            welcomePhrase = "Welcome back!"
+        elif sessionNum == 3:
+            welcomePhrase = "Nice to see you again!"
+        elif sessionNum == 4:
+            welcomePhrase = "Hello again! Today is our last session."
+
+        self.genSpeech(welcomePhrase)
+        self.look()
+        self.wave()
+        self.look()
+
+        if sessionNum == 1:
             self.genSpeech("I'm here to help you with some fractions problems today.")
             self.genSpeech("For each session, I have put the math problems on the tablet in front of you.")
             self.genSpeech("If you need any help, you can ask me by pressing the hint buttons at the bottom of each screen.")
-            self.genSpeech("Great! Now let's work on some questions together!")
+            id = self.genSpeech("Great! Now let's work on some questions together!")
         elif sessionNum == 2:
-            self.genSpeech("Welcome back! Just remember that if you need help on the problems, you can ask me by pressing the buttons on the bottom of the screen.")
-            self.genSpeech("Let's get started!")
+            self.genSpeech("Just remember that if you need help on the problems, you can ask me by pressing the buttons on the bottom of the screen.")
+            id = self.genSpeech("Let's get started!")
         elif sessionNum == 3:
-            self.genSpeech("Nice to see you again! Let's try doing some more problems!")
-            self.genSpeech("Remember to ask me for hints if you need them by using the buttons at the bottom of the screen.")
+            self.genSpeech("Let's try doing some more problems!")
+            id = self.genSpeech("Remember to ask me for hints if you need them by using the buttons at the bottom of the screen.")
         elif sessionNum == 4:
-            self.genSpeech("Hello again! Today is our last session. If you need help, the hint buttons are on the bottom of each screen.")
-            self.genSpeech("Let's get started!")
+            self.genSpeech("If you need help, the hint buttons are on the bottom of each screen.")
+            id = self.genSpeech("Let's get started!")
         else:
             print "invalid sessionNum: no intro"
-        self.wave()
-        time.sleep(2)
+        #time.sleep(2)
+        return id
 
     def intro(self):
         self.posture.goToPosture("Crouch", 1.0)
@@ -193,7 +207,7 @@ class Gesture:
         #time.sleep(0.5)
         #self.genSpeech("hello there!")
 
-        time.sleep(2)
+        time.sleep(1)
 
         self.motion.closeHand("RHand")
         self.posture.goToPosture("Sit", 0.5)
@@ -268,7 +282,8 @@ class Gesture:
         time.sleep(0.5)
 
         #shake head
-        self.motion.setAngles("HeadPitch", 0, 0.3)
+        self.motion.setAngles("HeadPitch", 0, 0.2)
+        self.motion.setAngles("HeadYaw", 0, 0.2)
         time.sleep(0.5)
         self.motion.setAngles("HeadYaw", -0.5, 0.3)
         time.sleep(0.5)
@@ -279,11 +294,15 @@ class Gesture:
         self.motion.setAngles("HeadYaw", 0.5, 0.3)
         time.sleep(0.5)
         self.motion.setAngles("HeadYaw", 0, 0.3)
+
+        time.sleep(1)
+        self.look()
+        time.sleep(0.5)
         #self.genSpeech("i'm sorry, that's incorrect. try again!")
 
         #move back to the original position
-        time.sleep(2.5)
-        self.posture.goToPosture("Sit", 1.0)
+        #time.sleep(2.5)
+        #self.posture.goToPosture("Sit", 0.3)
         #self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
     def last_shake(self):
@@ -497,8 +516,8 @@ class Gesture:
     def sit(self):
         #self.posture.goToPosture("Sit", 0.2)
         #head looks down at tablet, for right handers
-        self.motion.setAngles("HeadYaw", 0, 0.1)
-        self.motion.setAngles("HeadPitch", 0.33, 0.1)
+        self.motion.setAngles("HeadYaw", 0.3, 0.1)
+        self.motion.setAngles("HeadPitch", 0.37, 0.1)
         #self.motion.setAngles("HeadYaw", 0.25, 0.15)
 
     def sit_left(self):
@@ -685,7 +704,7 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 1.0, 0.5)
         self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
         self.motion.setAngles("LElbowRoll", -1.0, 0.5)
-
+        """
         time.sleep(0.4)
 
         self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
@@ -715,6 +734,7 @@ class Gesture:
         #self.genSpeech("yay you did it!")
         #time.sleep(2)
         #self.genSpeech("now i will put my hand back down")
+        """
         time.sleep(2)
         self.posture.goToPosture("Sit", 1.0)
         
