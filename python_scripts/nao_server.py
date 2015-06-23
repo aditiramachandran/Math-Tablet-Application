@@ -168,7 +168,11 @@ class TutoringSession:
 							self.goNao.look()
 							#self.goNao.juddNelson()
 							id = self.goNao.assess("correct")
-							self.goNao.juddNelson()
+							rand_choice = random.randint(0,2)
+							if(rand_choice == 1):
+								self.goNao.juddNelson()
+							elif(rand_choice == 2):
+								self.goNao.juddNelson_left()
 							#self.goNao.sit()
 					elif msgType == 'IA': #incorrect attempt
 						self.numIncorrect += 1
@@ -256,6 +260,7 @@ class TutoringSession:
 							os.system("say " + robot_speech)
 						else:
 							self.goNao.look()
+							self.goNao.congratulations()
 							id = self.goNao.genSpeech(robot_speech)
 							#self.goNao.sit()	
 						#break
@@ -414,6 +419,7 @@ def main():
 		("m", "Move nao head - test"),
 		("w", "Wave arm"),
 		("f", "Fist of triumph for correct answer"),
+		("g", "Right fist of triumph for correct answer"),
 		#("n", "Nod for correct answer"),
 		("a", "Shake for incorrect answer"),
 		#("o", "Head off to the side for thinking"),
@@ -430,6 +436,7 @@ def main():
 		("e", "Denominator"),
 		("o", "And so on"),
 		("c", "Conversion problems"),
+		("z", "Congratulations!"),
 		("s", "Start tutoring interaction"),
 		("q", "Quit"),
 		))
@@ -474,6 +481,9 @@ def main():
 		elif(choice == "f"):
 			goNao.juddNelson()
 
+		elif(choice == "g"):
+			goNao.juddNelson_left()
+
 		#elif(choice == 'n'):
 		#	goNao.nod()
 
@@ -512,6 +522,9 @@ def main():
 
 		elif(choice == "c"):
 			goNao.conversion()
+
+		elif(choice == "z"):
+			goNao.congratulations()
 
 		#elif(choice == 'o'):
 		#	goNao.tilt()

@@ -101,25 +101,32 @@ class Gesture:
         print sessionNum
         if sessionNum == 1:
             self.genSpeech("Hello! My name is Nao. I am your personal robot tutor!")
-            self.genSpeech("For each session, I have put fractions problems on the tablet in front of you.")
-            self.genSpeech("Let's work on some problems together!")
+            self.genSpeech("I'm here to help you with some fractions problems today.")
+            self.genSpeech("For each session, I have put the math problems on the tablet in front of you.")
+            self.genSpeech("If you need any help, you can ask me by pressing the hint buttons at the bottom of each screen.")
+            self.genSpeech("Great! Now let's work on some questions together!")
         elif sessionNum == 2:
-            self.genSpeech("Welcome back! Let's get started on our next session.")
+            self.genSpeech("Welcome back! Just remember that if you need help on the problems, you can ask me by pressing the buttons on the bottom of the screen.")
+            self.genSpeech("Let's get started!")
         elif sessionNum == 3:
             self.genSpeech("Nice to see you again! Let's try doing some more problems!")
+            self.genSpeech("Remember to ask me for hints if you need them by using the buttons at the bottom of the screen.")
         elif sessionNum == 4:
-            self.genSpeech("Hello again! Today is our last session. Let's get started!")
+            self.genSpeech("Hello again! Today is our last session. If you need help, the hint buttons are on the bottom of each screen.")
+            self.genSpeech("Let's get started!")
         else:
             print "invalid sessionNum: no intro"
         self.wave()
         time.sleep(2)
 
     def intro(self):
-        self.posture.goToPosture("Sit", 1.0)
+        self.posture.goToPosture("Crouch", 1.0)
         self.led.fadeListRGB("FaceLeds",[0x00FFFFFF],[0.1])
-
-        self.genSpeech("Hello! My name is Nao, your personal robot tutor.")     
-        self.genSpeech("Let's work on some fractions problems together.")
+        self.genSpeech("Hello everyone! My name is Nao, your personal robot tutor.")
+        self.genSpeech("I'm really excited to meet you guys and work on some problems together!")
+        self.genSpeech("Have a great day, and I look forward to seeing you again soon!")
+        self.wave()     
+        #self.genSpeech("Let's work on some fractions problems together.")
         #self.genSpeech("I'm going to put some problems on your tablet!")
         time.sleep(8)
 
@@ -193,7 +200,7 @@ class Gesture:
         #self.motion.setAngles("HeadPitch", 0.3, 0.15)
         
     def juddNelson(self):
-        #this bit of code makes the robot thrust its hand into the air
+        #this bit of code makes the robot thrust its right hand into the air
         #start in sitting position
         #self.posture.goToPosture("Sit", 0.5)
         time.sleep(0.1)
@@ -214,6 +221,24 @@ class Gesture:
         time.sleep(1)
         self.posture.goToPosture("Sit", 1.0)
         #self.motion.setAngles("HeadPitch", 0.3, 0.15)
+
+    def juddNelson_left(self):
+        #this bit of code makes the robot thrust its left hand into the air
+        #start in sitting position
+        time.sleep(0.1)
+        #move to position
+        self.motion.setAngles("LShoulderPitch", -1.0, 0.3)
+        self.motion.setAngles("LShoulderRoll", 1.3, 0.3)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.3)
+        self.motion.setAngles("LWristYaw", 0, 0.3)
+        self.motion.closeHand("LHand")
+        time.sleep(0.1)
+        #pump fist upward
+        self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.0, 0.5)
+        time.sleep(1)
+        #return to sitting position
+        self.posture.goToPosture("Sit", 1.0)
 
     def nod(self):
         #this bit of code makes the robot nod its head
@@ -288,7 +313,7 @@ class Gesture:
 
     def scale_up(self):
         #start position of the arm
-        self.motion.setAngles("HeadPitch", 0, 0.15)
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
         self.motion.setAngles("RShoulderPitch", 0.4, 0.1)
         self.motion.setAngles("RShoulderRoll", -0.5, 0.1)
         self.motion.setAngles("RElbowYaw", 1.5, 0.1)
@@ -308,7 +333,7 @@ class Gesture:
 
     def scale_down(self):
         #start position of the arm
-        self.motion.setAngles("HeadPitch", 0, 0.15)
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
         self.motion.setAngles("RShoulderPitch", 0.7, 0.2)
         self.motion.setAngles("RShoulderRoll", -1.2, 0.2)
         self.motion.setAngles("RElbowYaw", 1.5, 0.2)
@@ -334,7 +359,7 @@ class Gesture:
 
     def scale_down_left(self):
         #start position of the arm
-        self.motion.setAngles("HeadPitch", 0, 0.15)
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
         self.motion.setAngles("LShoulderPitch", 0.7, 0.2)
         self.motion.setAngles("LShoulderRoll", 1.2, 0.2)
         self.motion.setAngles("LElbowYaw", -1.5, 0.2)
@@ -458,13 +483,28 @@ class Gesture:
         self.posture.goToPosture("Sit", 0.5)
 
     def look(self):
-        #head looking straight ahead
-        self.posture.goToPosture("Sit", 0.2)
+        #head looking at student and talking, for right handers
+        #CAN I REMOVE THIS
+        #self.posture.goToPosture("Sit", 0.2)
+        self.motion.setAngles("HeadYaw", -0.25, 0.1)
+        self.motion.setAngles("HeadPitch", 0.15, 0.1)
+
+    def look_left(self):
+        #head looking at student and talking, for left handers
+        self.motion.setAngles("HeadYaw", 0.25, 0.1)
+        self.motion.setAngles("HeadPitch", 0.15, 0.1)
 
     def sit(self):
         #self.posture.goToPosture("Sit", 0.2)
-        #head looks down at tablet and student
-        self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        #head looks down at tablet, for right handers
+        self.motion.setAngles("HeadYaw", 0, 0.1)
+        self.motion.setAngles("HeadPitch", 0.33, 0.1)
+        #self.motion.setAngles("HeadYaw", 0.25, 0.15)
+
+    def sit_left(self):
+        #head looks down at tablet, for left handers
+        self.motion.setAngles("HeadYaw", 0, 0.1)
+        self.motion.setAngles("HeadPitch", 0.33, 0.1)
 
     def left_relaxed_sit(self):
         #move the left hand up and out of the way to avoid collision
@@ -538,7 +578,7 @@ class Gesture:
         #self.posture.goToPosture("Sit", 0.5)
 
         #start position of the arm
-        self.motion.setAngles("HeadPitch", 0, 0.15)
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
         self.motion.setAngles("RShoulderPitch", -0.3, 0.2)
         self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
         self.motion.setAngles("RElbowYaw", 1.5, 0.2)
@@ -554,7 +594,7 @@ class Gesture:
         #self.posture.goToPosture("Sit", 0.5)
 
         #start position of the arm
-        self.motion.setAngles("HeadPitch", 0, 0.15)
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
         self.motion.setAngles("RShoulderPitch", 0.8, 0.2)
         self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
         self.motion.setAngles("RElbowYaw", 1.5, 0.2)
@@ -596,7 +636,7 @@ class Gesture:
 
     def conversion(self):
         #head faces straight
-        self.motion.setAngles("HeadPitch", 0, 0.15)
+        #self.motion.setAngles("HeadPitch", 0, 0.15)
 
         #move left hand to represent the denominator
         self.motion.setAngles("LShoulderPitch", 0.7, 0.15)
@@ -620,6 +660,64 @@ class Gesture:
         time.sleep(3)
 
         self.posture.goToPosture("Sit", 0.5)
+
+    def congratulations(self):
+        #this bit of code makes the robot thrust its right hand into the air
+        #start in sitting position
+        #self.posture.goToPosture("Sit", 0.5)
+        #time.sleep(0.1)
+        #move to position
+        self.motion.closeHand("LHand")
+        self.motion.setAngles("RShoulderPitch", -1.0, 0.3)
+        self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.3)
+        self.motion.setAngles("RWristYaw", 0, 0.3)
+        self.motion.setAngles("LShoulderPitch", -1.0, 0.3)
+        self.motion.setAngles("LShoulderRoll", 1.3, 0.3)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.3)
+        self.motion.setAngles("LWristYaw", 0, 0.3)
+        self.motion.closeHand("RHand")
+
+        time.sleep(0.1)
+        #time.sleep(1.0)
+        #self.genSpeech("good job! that's correct!")
+        self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
+        self.motion.setAngles("RElbowRoll", 1.0, 0.5)
+        self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.0, 0.5)
+
+        time.sleep(0.4)
+
+        self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.3)
+        self.motion.setAngles("LShoulderRoll", 1.3, 0.3)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.3)
+
+        time.sleep(0.2)
+        self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
+        self.motion.setAngles("RElbowRoll", 1.0, 0.5)
+        self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.0, 0.5)
+
+        time.sleep(0.4)
+
+        self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.3)
+        self.motion.setAngles("LShoulderRoll", 1.3, 0.3)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.3)
+
+        time.sleep(0.2)
+        self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
+        self.motion.setAngles("RElbowRoll", 1.0, 0.5)
+        self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.0, 0.5)
+
+        #self.genSpeech("yay you did it!")
+        #time.sleep(2)
+        #self.genSpeech("now i will put my hand back down")
+        time.sleep(2)
+        self.posture.goToPosture("Sit", 1.0)
+        
 
     def tilt(self):
         #this bit of code makes the robot tilt its head
