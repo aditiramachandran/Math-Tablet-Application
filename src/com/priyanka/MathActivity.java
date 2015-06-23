@@ -34,6 +34,7 @@ public class MathActivity extends Activity {
     private final String REPEAT_HINT_STRING3 = "Repeat Hint 3";
     private final String INCORRECT_POSTFIX = /* Answer */ " is incorrect!";
     private final String REMAINING_POSTFIX = " attempts remaining.";
+    private final String REMAINING_POSTFIX_ONE = " attempt remaining.";
     private final String TITLE_PREFIX = "Question " /* number */;
     private final String INVALID_STRING_FRACTION = "Type in an answer into both boxes before submitting!";
     private final String INVALID_STRING_VALUE = "Type in an answer before submitting!";
@@ -57,6 +58,8 @@ public class MathActivity extends Activity {
     private int expGroup = 0;
 
     private Questions questions;
+
+    public final int MAX_NUM_DIGITS = 6;
 
     public final int MAX_HINTS = 3;
     public int hintsRemaining = MAX_HINTS;
@@ -114,7 +117,8 @@ public class MathActivity extends Activity {
             System.out.println("expGroup is: " + expGroup);
         }
         //set this MathActivity as the sessionOwner for the tcpClient
-        TCPClient.singleton.setSessionOwner(this);
+        if (com.priyanka.TCPClient.singleton != null)
+            TCPClient.singleton.setSessionOwner(this);
 
         String json = "";
         try {
@@ -154,7 +158,8 @@ public class MathActivity extends Activity {
                 if (AnswerText2.hasFocus())    target=AnswerText2;
 
                 if (primaryCode >= 0 && primaryCode <= 9) {
-                    target.setText(target.getText().toString() + primaryCode + "");
+                    if (target.getText().toString().length() < MAX_NUM_DIGITS)
+                        target.setText(target.getText().toString() + primaryCode + "");
                 } else if (primaryCode == -1) {
                     if (target.getText().toString().length() > 0) {
                         String old_string = target.getText().toString();
@@ -200,7 +205,7 @@ public class MathActivity extends Activity {
     }
 
     public void disableButtons() {
-        System.out.println("MATHACTIVITY: IN disableButtons method!");
+        //System.out.println("MATHACTIVITY: IN disableButtons method!");
         HintButton1.setEnabled(false);
         HintButton2.setEnabled(false);
         HintButton3.setEnabled(false);
@@ -210,7 +215,7 @@ public class MathActivity extends Activity {
     }
 
     public void enableButtons(){
-        System.out.println("MATHACTIVITY: IN enableButtons method!");
+        //System.out.println("MATHACTIVITY: IN enableButtons method!");
         HintButton1.setEnabled(true);
         HintButton2.setEnabled(true);
         HintButton3.setEnabled(true);
@@ -301,9 +306,14 @@ public class MathActivity extends Activity {
                 //too_many_incorrect_message += question.spokenExplanation;
 
                 if (attemptsRemaining > 0) {
-                    incorrect_message += " " + attemptsRemaining + REMAINING_POSTFIX;
-                    incorrect_string += " " + attemptsRemaining + REMAINING_POSTFIX;
-
+                    if (attemptsRemaining == 1) {
+                        incorrect_message += " " + attemptsRemaining + REMAINING_POSTFIX_ONE;
+                        incorrect_string += " " + attemptsRemaining + REMAINING_POSTFIX_ONE;
+                    }
+                    else {
+                        incorrect_message += " " + attemptsRemaining + REMAINING_POSTFIX;
+                        incorrect_string += " " + attemptsRemaining + REMAINING_POSTFIX;
+                    }
                     //Send message
                     if (com.priyanka.TCPClient.singleton != null)
                         com.priyanka.TCPClient.singleton.sendMessage("IA;" + currentQuestionIndex + ";" + questionType + ";" + incorrect_message + ";" + attempt);
@@ -317,6 +327,7 @@ public class MathActivity extends Activity {
                     //adaptive group: automatically give hint if max num incorrect attempts made w/o requesting help
                     if (expGroup==1 && numIncorrectWithoutHint==NUM_INCORRECT_TO_AUTO_HINT){
                         int relevantHint = MAX_HINTS - hintsRemaining + 1;
+                        System.out.println("relevant hint for AUTO hint is: " + relevantHint);
                         Button button = null;
                         if (relevantHint == 1)
                             button = HintButton1;
