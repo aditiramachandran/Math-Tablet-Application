@@ -450,6 +450,54 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
+    def two_hands(self):
+        time.sleep(9)
+
+        #moving the right hand to the beginning position
+        self.motion.setAngles("HeadPitch", 0, 0.15)
+        self.motion.setAngles("RShoulderRoll", -0.5, 0.2)
+        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.2, 0.2)
+        self.motion.setAngles("RElbowYaw", 1.7, 0.2)
+        self.motion.setAngles("RWristYaw", 1.5, 0.2)
+
+        #moving the left hand to the beginning position
+        self.motion.setAngles("LShoulderRoll", 0.5, 0.25)
+        self.motion.setAngles("LShoulderPitch", 0.4, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.2, 0.25)
+        self.motion.setAngles("LElbowYaw", -1.7, 0.25)
+        self.motion.setAngles("LWristYaw", -1.5, 0.25)
+
+        time.sleep(0.8)
+
+        #emphasize the right hand
+        #self.motion.setAngles("HeadYaw", -0.7, 0.2)
+        self.motion.setAngles("RElbowRoll", 0.2, 0.2)
+
+        #time.sleep(0.3)
+
+        #emphasize the left hand
+        #self.motion.setAngles("HeadYaw", 0.7, 0.2)
+        self.motion.setAngles("LElbowRoll", -0.2, 0.2)
+
+        #open both hands and move the head back center
+        self.motion.openHand("RHand")
+        self.motion.setAngles("HeadYaw", 0, 0.05)
+        self.motion.openHand("LHand")
+
+        time.sleep(0.5)
+
+        #bring arms in to avoid scooching sit
+        self.motion.setAngles("RShoulderRoll", -0.15, 0.2)
+        self.motion.setAngles("LShoulderRoll", 0.15, 0.2)
+        self.motion.setAngles("RElbowYaw", 0, 0.2)
+        self.motion.setAngles("LElbowYaw", 0, 0.2)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.2)
+        time.sleep(1)
+
+        self.posture.goToPosture("Sit", 0.5)
+
     def multiples(self):
         #moving the right hand to the beginning position
         self.motion.setAngles("HeadPitch", 0, 0.15)
@@ -767,7 +815,9 @@ class Gesture:
         """
         time.sleep(2)
         self.posture.goToPosture("Sit", 1.0)
-        
+
+    #def two_hands(self):
+
 
     def tilt(self):
         #this bit of code makes the robot tilt its head
@@ -861,7 +911,8 @@ class Gesture:
             self.two_fractions()
             #time.sleep(3)
         elif(what == "Subtracting Like Denominators"):
-            self.two_fractions()
+            self.two_hands()
+            #self.two_fractions()
             #time.sleep(3)
         elif(what == "Adding Unlike Denominators"):
             self.two_fractions()
