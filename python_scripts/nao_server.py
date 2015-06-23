@@ -64,6 +64,10 @@ class TutoringSession:
 			fullType = 'AUTOMATIC HINT'
 		elif msgType == 'DH':
 			fullType = 'DENIED HINT'
+		elif msgType == 'RS'
+			fullType = 'ROBOT SPEECH'
+		elif msgType == 'RA':
+			fullType = 'ROBOT ACTION'
 		return fullType
 
 	def log_transaction(self,msgType,questionNum,otherInfo):
