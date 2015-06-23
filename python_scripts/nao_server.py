@@ -174,7 +174,7 @@ class TutoringSession:
 						else:
 							self.goNao.look()
 							#self.goNao.juddNelson()
-							[id,speech] = self.goNao.assess("correct")[0]
+							[id,speech] = self.goNao.assess("correct")
 							self.log_transaction("RS",questionNum,speech)
 							pump = "no_pump"
 							rand_choice = random.randint(0,3)
