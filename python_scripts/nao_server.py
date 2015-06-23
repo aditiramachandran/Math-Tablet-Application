@@ -78,6 +78,7 @@ class TutoringSession:
 		transaction += self.map_msg_type(msgType) + ","
 		transaction += otherInfo #should only have something for some msgTypes
 		self.logFile.write(transaction+"\n")
+		self.logFile.flush()
 
 	#def tutor(history, data, categ):
 	def tutor(self,categ):
@@ -278,6 +279,7 @@ class TutoringSession:
 					self.logFile.close()
 					break
 			except KeyboardInterrupt:
+				self.logFile.flush()
 				self.logFile.close()
 				conn.close()
 				sys.exit(0)
