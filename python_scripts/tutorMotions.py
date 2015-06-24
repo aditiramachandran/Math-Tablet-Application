@@ -907,11 +907,23 @@ class Gesture:
         #elif(what == "Conversion"):
             #UNSURE HERE
             #time.sleep(3)
+        elif(what == "Adding Like Denominators Word Problem"):
+            self.two_hands()
+            #time.sleep(3)
+        elif(what == "Subtracting Like Denominators Word Problem"):
+            self.two_hands()
+            #self.two_fractions()
+            #time.sleep(3)
+        elif(what == "Adding Unlike Denominators Word Problem"):
+            self.two_hands()
+            #time.sleep(3)
+        elif(what == "Subtracting Unlike Denominators Word Problem"):
+            self.two_hands()
         elif(what == "Adding Like Denominators"):
             self.two_fractions()
             #time.sleep(3)
         elif(what == "Subtracting Like Denominators"):
-            self.two_hands()
+            self.two_fractions()
             #self.two_fractions()
             #time.sleep(3)
         elif(what == "Adding Unlike Denominators"):

@@ -250,7 +250,7 @@
   {
     "Question" : "Adam ate 15/10 of a pizza, Bill ate 3/10 of a pizza, and Casper ate 5/10 of a pizza. How much pizza did they eat in total? Leave your answer as an improper fraction.",
     "Spoken Question" : "Adam ate fifteen-tenths of a pizza, Bill ate three-tenths of a pizza, and Casper ate five-tenths of a pizza. How much pizza did they eat in total? Leave your answer as an improper fraction.",
-    "Type" : "Adding Like Denominators",
+    "Type" : "Adding Like Denominators Word Problem",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -275,7 +275,7 @@
   {
     "Question" : "Derek drank 5/14 cups of milk, and Pam drank 2/14 cups of milk. How many more cups of milk did Derek drink than Pam?",
     "Spoken Question" : "Derek drank five-fourteenths cups of milk, and Pam drank two-fourteenths cups of milk. How many more cups of milk did Derek drink than Pam?",
-    "Type" : "Subtracting Like Denominators",
+    "Type" : "Subtracting Like Denominators Word Problem",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :

@@ -225,7 +225,7 @@
   {
     "Question" : "In Charlie's closet, 1/5 of the clothes are black and 3/5 of the clothes are white. What fraction of the clothes are either black of white?",
     "Spoken Question" : "In Charlie's closet, one-fifth of the clothes are black and three-fifths of the clothes are white. What fraction of the clothes are either black or white?",
-    "Type" : "Adding Like Denominators",
+    "Type" : "Adding Like Denominators Word Problem",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -352,7 +352,7 @@
   {
     "Question" : "A movie is 9/5 hours long, and a baseball game is 13/6 hours long. How much longer is the baseball game than the movie?",
     "Spoken Question" : "A movie is nine-fifths hours long, and a baseball game is thirteen-sixths hours long. How much longer is the baseball game than the movie?",
-    "Type" : "Subtracting Unlike Denominators",
+    "Type" : "Subtracting Unlike Denominators Word Problem",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :

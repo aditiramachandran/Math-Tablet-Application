@@ -275,7 +275,7 @@
   {
     "Question" : "A recipe for fruit punch requires 20/6 cups of apple juice and 13/6 cups of lemon juice. How many more cups of apple juice than lemon juice is needed? Leave your answer as an improper fraction.",
     "Spoken Question" : "A recipe for fruit punch requires twenty-sixths cups of apple juice and thirteen-sixths cups of lemon juice. How many more cups of apple juice than lemon juice is needed? Leave your answer as an improper fraction.",
-    "Type" : "Subtracting Like Denominators",
+    "Type" : "Subtracting Like Denominators Word Problem",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -326,7 +326,7 @@
   {
     "Question" : "At the zoo, the lion show lasts for 5/8 of an hour, and the penguin show lasts for 1/4 of an hour. The guided tour of the zoo lasts 5/2 hours. How long will it take to do all the activities? Leave your answer as an improper fraction, and write your answer in lowest terms.",
     "Spoken Question" : "At the zoo, the lion show lasts for five-eighths of an hour, and the penguin show lasts for one-fourth of an hour. The guided tour of the zoo lasts five-halves hours. How long will it take to do all the activities? Leave your answer as an improper fraction, and write your answer in lowest terms.",
-    "Type" : "Adding Unlike Denominators",
+    "Type" : "Adding Unlike Denominators Word Problem",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
