@@ -193,6 +193,11 @@ class TutoringSession:
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
+							if otherInfo.find("/")!=-1:
+								num = otherInfo.split("/")[0]
+								denom = otherInfo.split("/")[1]
+								if int(num)==0 or int(denom)==0:
+									robot_speech = robot_speech.replace("/", " over ").strip()
 							self.goNao.look()
 							self.goNao.genSpeech(robot_speech)
 							[id,speech] = self.goNao.assess("wrong")
