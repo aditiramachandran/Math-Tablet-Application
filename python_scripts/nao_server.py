@@ -132,6 +132,7 @@ class TutoringSession:
 					otherInfo = ''
 					id = -1
 					introFlag = False
+					returnMessage = "DONE"
 
 					robot_speech = robot_speech.replace("'","").strip()
 					if self.goNao is None:
@@ -158,6 +159,8 @@ class TutoringSession:
 
 					elif msgType == 'Q': #question
 						self.numQuestions += 1
+						otherInfo = line.split(";",4)[4].strip()
+						returnMessage = otherInfo
 						if self.goNao is None:
 							os.system("say " + robot_speech)
 						else:
@@ -294,11 +297,11 @@ class TutoringSession:
 							self.goNao.speechDevice.wait(id, 0)
 							if introFlag is not True:
 								self.goNao.sit()
-								conn.send("DONE\n")
+								conn.send(returnMessage+"\n")
 								print 'send tablet message that robot is done'
 					else: #case just for testing without robot
 						time.sleep(2)
-						conn.send("DONE\n")
+						conn.send(returnMessage+"\n")
 					self.log_transaction(msgType,questionNum,otherInfo)
 				if sessionEnded:
 					self.logFile.close()

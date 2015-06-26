@@ -40,6 +40,8 @@ public class MathActivity extends Activity {
     private final String INVALID_STRING_VALUE = "Type in an answer before submitting!";
     private final String AUTO_HINT_VALUE = "Let me give you a hint!";
     private final String DENIED_HINT_VALUE = "Try making an attempt before requesting more help!";
+    private final String QUESTION_INTRO_PREFIX = "This is a question for you about ";
+    private final String QUESTION_INTRO_POSTFIX = ". Here it is!";
 
 
     private TextView fractionLine;
@@ -214,7 +216,7 @@ public class MathActivity extends Activity {
         //mKeyboardView.getKeyboard().getKeys().get(0).
     }
 
-    public void enableButtons(){
+    public void enableButtons() {
         //System.out.println("MATHACTIVITY: IN enableButtons method!");
         HintButton1.setEnabled(true);
         HintButton2.setEnabled(true);
@@ -223,9 +225,44 @@ public class MathActivity extends Activity {
         mKeyboardView.setEnabled(true);
     }
 
+    public void disableQuestion() {
+        CurrentQuestion.setVisibility(View.INVISIBLE);
+        AnswerText1.setEnabled(false);
+        AnswerText2.setEnabled(false);
+        mKeyboardView.setVisibility(View.INVISIBLE);
+        mKeyboardView.setEnabled(false);
+        SubmitButton.setVisibility(View.INVISIBLE);
+        AskRobotLabel.setVisibility(View.INVISIBLE);
+        HintButton1.setVisibility(View.INVISIBLE);
+        AnswerText1.setVisibility(View.INVISIBLE);
+        AnswerText2.setVisibility(View.INVISIBLE);
+        fractionLine.setVisibility(View.INVISIBLE);
+    }
+
+    public void enableQuestion(String answerType){
+        CurrentQuestion.setVisibility(View.VISIBLE);
+        AnswerText1.setEnabled(true);
+        AnswerText2.setEnabled(true);
+        mKeyboardView.setVisibility(View.VISIBLE);
+        mKeyboardView.setEnabled(true);
+        SubmitButton.setVisibility(View.VISIBLE);
+        AskRobotLabel.setVisibility(View.VISIBLE);
+        HintButton1.setVisibility(View.VISIBLE);
+        AnswerText1.setVisibility(View.VISIBLE);
+        if (answerType.equals(Questions.FORMAT_FRACTION)){
+            fractionLine.setVisibility(View.VISIBLE);
+            AnswerText2.setVisibility(View.VISIBLE);
+        }
+        AnswerText1.requestFocus();
+    }
+
     public void messageReceived(String message){
-        System.out.println("message received from server is: " + message);
-        if (message.equals("done")){
+        System.out.println("IN MATHACTIVITY, message received from server is: " + message);
+        if (message.equals("DONE")){
+            enableButtons();
+        }
+        else if (message.equals(Questions.FORMAT_FRACTION) || message.equals(Questions.FORMAT_TEXT)){
+            enableQuestion(message);
             enableButtons();
         }
     }
@@ -479,6 +516,7 @@ public class MathActivity extends Activity {
         Question question = questions.get(currentQuestionIndex);
         String newQuestion = question.question;
         questionType = question.type;
+        String questionIntro = QUESTION_INTRO_PREFIX + questionType + QUESTION_INTRO_POSTFIX;
         SubmitButton.setText(SUBMIT_STRING);
         CurrentQuestion.setText(newQuestion);
         questionState = QState.INIT;
@@ -504,9 +542,10 @@ public class MathActivity extends Activity {
         TitleLabel.setText(TITLE_PREFIX + " " + (currentQuestionIndex + 1));
 
         //Send message
-        if (com.priyanka.TCPClient.singleton != null)
-            com.priyanka.TCPClient.singleton.sendMessage("Q;" + currentQuestionIndex + ";" + questionType + ";" + question.spokenQuestion);
-
+        if (com.priyanka.TCPClient.singleton != null) {
+            disableQuestion();
+            com.priyanka.TCPClient.singleton.sendMessage("Q;" + currentQuestionIndex + ";" + questionType + ";" + questionIntro + ";" + question.format);
+        }
         AnswerText1.requestFocus();
     }
 }

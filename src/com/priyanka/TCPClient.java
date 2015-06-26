@@ -126,7 +126,7 @@ public class TCPClient {
                         Runnable myRunnable2 = new Runnable(){
                             @Override
                             public void run() {
-                                sessionOwner.enableButtons();
+                                sessionOwner.messageReceived(serverMessage);
                             }
                         };
                         buttonHandler.post(myRunnable2);
