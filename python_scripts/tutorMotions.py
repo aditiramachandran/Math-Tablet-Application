@@ -933,6 +933,14 @@ class Gesture:
             self.two_fractions()
             #time.sleep(3)
 
+    def introQuestion(self, what):
+        randnr = random.randint(0,len(self.question_intro)-1)
+        speech = self.question_intro[randnr]
+        speech = speech + what + ". Here it is!"
+        id = self.genSpeech(speech)
+        return [id,speech]
+
+
     def assessHint2(self, what):
         if (what == "Scaling Up"):
             self.numerator_denominator()

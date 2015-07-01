@@ -166,7 +166,9 @@ class TutoringSession:
 						else:
 							self.goNao.look()
 							#self.goNao.assessQuestion(questionType)
-							id = self.goNao.genSpeech(robot_speech)
+							#id = self.goNao.genSpeech(robot_speech)
+							[id,speech] = self.goNao.introQuestion(robot_speech)
+							self.log_transaction("RS",questionNum,speech)
 							self.goNao.assessQuestion(questionType) 
 					elif msgType == 'CA': #correct attempt
 						self.numCorrect += 1
