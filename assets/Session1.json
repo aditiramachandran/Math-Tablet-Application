@@ -3,6 +3,7 @@
   	"Question" : "Scale up to find a fraction equivalent to 4/5 with the denominator 15.",
     "Spoken Question" : "Scale up to find a fraction equivalent to four-fifths with the denominator 15.",
   	"Type" : "Scaling Up",
+    "Spoken Type" : "scaling up",
   	"Difficulty Level" : 1,
   	"Format" : "fraction",
   	"Answer" :
@@ -28,6 +29,7 @@
     "Question" : "Scale down to find the simplest fraction equivalent to 14/49.",
     "Spoken Question" : "Scale down to find the simplest fraction equivalent to fourteen-forty-ninths.",
     "Type" : "Scaling Down",
+    "Spoken Type" : "scaling down",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -53,6 +55,7 @@
     "Question" : "Find the least common denominator of 4/7 and 1/8.",
     "Spoken Question" : "Find the least common denominator of four-sevenths and one-eighth.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 2,
     "Format" : "value",
     "Answer" :
@@ -77,6 +80,7 @@
     "Question" : "Convert the mixed number 8 8/9 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number eight and eight-ninths to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -103,6 +107,7 @@
     Write your answer in lowest terms.",
     "Spoken Question" : "What is one-seventh plus five-eighths? Write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -128,7 +133,8 @@
     "Question" : "2 2/3 + 7/9 + 1/9 = 
     Leave your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is two and two-thirds plus seven-ninths plus one-ninth? Leave your answer as an improper fraction in lowest terms.",
-    "Type" : "Adding Unike Denominators",
+    "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -155,6 +161,7 @@
     Write your answer in lowest terms.",
     "Spoken Question" : "What is eleven-twelfths minus three-eighths? Write your answer in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -179,7 +186,8 @@
   {
     "Question" : "Jeremy used 2 15/16 cups of flour and 1 1/2 cups of milk to make a cake. How many more cups of flour did Jeremy use? Leave your answer as an improper fraction in simplest terms.",
     "Spoken Question" : "Jeremy used two and fifteen-sixteenths cups of flour and one and one-half cups of milk to make a cake. How many more cups of flour did Jeremy use? Leave your answer as an improper fraction in simplest terms.",
-    "Type" : "Subtracting Unike Denominators Word Problem",
+    "Type" : "Subtracting Unlike Denominators Word Problem",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :

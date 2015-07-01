@@ -3,6 +3,7 @@
     "Question" : "Scale up to find a fraction equivalent to 3/11 with the denominator 99.",
     "Spoken Question" : "Scale up to find a fraction equivalent to three-elevenths with the denominator 99.",
     "Type" : "Scaling Up",
+    "Spoken Type" : "scaling up",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -28,6 +29,7 @@
     "Question" : "Scale down to find the simplest fraction equivalent to 36/81.",
     "Spoken Question" : "Scale down to find the simplest fraction equivalent to thirty-six-eighty-firsts.",
     "Type" : "Scaling Down",
+    "Spoken Type" : "scaling down",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -53,6 +55,7 @@
     "Question" : "Find the least common denominator of 5/7 and 3/4.",
     "Spoken Question" : "Find the least common denominator of five-sevenths and three-fourths.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 1,
     "Format" : "value",
     "Answer" :
@@ -77,6 +80,7 @@
     "Question" : "Find the least common denominator of 17/10 and 3 1/25.",
     "Spoken Question" : "Find the least common denominator of seventeen-tenths and three and one-twenty-fifth.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 3,
     "Format" : "value",
     "Answer" :
@@ -101,6 +105,7 @@
     "Question" : "Convert the mixed number 6 3/5 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number six and three-fifths to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -126,6 +131,7 @@
     "Question" : "Convert the mixed number 12 1/4 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number twelve and one-fourth to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -151,6 +157,7 @@
     "Question" : "In Charlie's closet, 1/10 of the clothes are black, 3/7 of the clothes are green, and 1/5 of the clothes are purple. The rest of his clothes are white. What fraction of the clothes are colored (not white)?",
     "Spoken Question" : "In Charlie's closet, one-tenth of the clothes are black, three-sevenths of the clothes are green, and one-fifth of the clothes are purple. The rest of his clothes are white. What fraction of the clothes are colored (not white)?",
     "Type" : "Adding Unlike Denominators Word Problem",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -177,6 +184,7 @@
     Leave your answer as an improper fraction, and write your answer in lowest terms.",
     "Spoken Question" : "What is three-eighths plus one-fourth plus three-fifths? Leave your answer as an improper fraction, and write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -203,6 +211,7 @@
     Leave your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is four and two-sevenths plus one and one-sixth? Leave your answer as an improper fraction in lowest terms.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -229,6 +238,7 @@
     Leave your answer as an improper fraction.",
     "Spoken Question" : "What is one and three-fourths minus one-ninth? Leave your answer as an improper fraction.",
     "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -254,6 +264,7 @@
     "Question" : "A movie is 9/5 hours long, and a baseball game is 13/6 hours long. How much longer is the baseball game than the movie?",
     "Spoken Question" : "A movie is nine-fifths hours long, and a baseball game is thirteen-sixths hours long. How much longer is the baseball game than the movie?",
     "Type" : "Subtracting Unlike Denominators Word Problem",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -279,7 +290,8 @@
     "Question" : "3 7/30 - 1 11/15 = 
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is three and seven-thirtieths minus one and eleven-fifteenths? Write your answer as an improper fraction in lowest terms.",
-    "Type" : "Subtracting Like Denominators",
+    "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :

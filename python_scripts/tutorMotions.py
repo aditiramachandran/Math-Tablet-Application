@@ -33,6 +33,7 @@ class Gesture:
         self.hint = anim.hint
         self.confused = anim.confused
         self.auto_hint = anim.auto_hint
+        self.question_intro = anim.question_intro
         self.connectNao()
     
     
@@ -279,7 +280,7 @@ class Gesture:
         #this bit of code makes the robot shake its head
         #self.posture.goToPosture("Sit", 0.5)
         self.motion.setStiffnesses("Head", 1.0)
-        time.sleep(0.5)
+        #time.sleep(0.5)
 
         #shake head
         self.motion.setAngles("HeadPitch", 0, 0.05)
@@ -346,7 +347,7 @@ class Gesture:
         self.motion.setAngles("RShoulderPitch", 0.4, 0.3)
         self.motion.setAngles("RElbowRoll", 1.3, 0.3)
 
-        time.sleep(4)
+        time.sleep(2)
 
         self.posture.goToPosture("Sit", 0.5)
 
@@ -365,7 +366,7 @@ class Gesture:
         #end position of the arm
         self.motion.setAngles("RShoulderPitch", 1.5, 0.1)
 
-        time.sleep(4)
+        time.sleep(2.5)
 
         #raise hand before sitting so no collision with leg
         self.motion.setAngles("RElbowRoll", 1.54, 0.2)
@@ -450,6 +451,7 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
+    #used for word problems
     def two_hands(self):
         time.sleep(9)
 
@@ -731,13 +733,31 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
+    def point_question(self):
+        #move left hand to point to tablet
+        time.sleep(5)
+        self.motion.setAngles("LShoulderRoll", 0.3, 0.25)
+        self.motion.setAngles("LShoulderPitch", 0.4, 0.25)
+        self.motion.setAngles("LElbowRoll", -0.2, 0.25)
+        self.motion.setAngles("LElbowYaw", -1.7, 0.25)
+        self.motion.setAngles("LWristYaw", -1.5, 0.25)
+
+        self.motion.openHand("LHand")
+
+        #look at the tablet/left hand?
+        self.motion.setAngles("HeadYaw", 0.2, 0.2)
+
+        time.sleep(1.5)
+        self.posture.goToPosture("Sit", 0.5)
+
+
     def conversion(self):
         #head faces straight
         #self.motion.setAngles("HeadPitch", 0, 0.15)
 
         #move left hand to represent the denominator
         self.motion.setAngles("LShoulderPitch", 0.7, 0.15)
-        self.motion.setAngles("LShoulderRoll", 0.2, 0.1)
+        self.motion.setAngles("LShoulderRoll", 0.15, 0.1)
         self.motion.openHand("LHand")
 
         time.sleep(0.2)
@@ -892,6 +912,7 @@ class Gesture:
         id = self.genSpeech(speech)    
         return [id,speech]
 
+    #this function is now used to determine the intro movement
     def assessQuestion(self, what):
         #print what
         if(what == "Scaling Up"):
@@ -902,30 +923,17 @@ class Gesture:
             self.scale_down_left()
             #time.sleep(3)
         elif(what == "Common Denominator"):
-            self.two_fractions()
+            self.point_question()
             #time.sleep(3)
-        #elif(what == "Conversion"):
+        elif(what == "Conversion"):
             #UNSURE HERE
-            #time.sleep(3)
-        elif(what == "Adding Like Denominators Word Problem"):
-            self.two_hands()
-            #time.sleep(3)
-        elif(what == "Subtracting Like Denominators Word Problem"):
-            self.two_hands()
-            #self.two_fractions()
+            self.point_question()
             #time.sleep(3)
         elif(what == "Adding Unlike Denominators Word Problem"):
-            self.two_hands()
+            self.two_fractions()
             #time.sleep(3)
         elif(what == "Subtracting Unlike Denominators Word Problem"):
-            self.two_hands()
-        elif(what == "Adding Like Denominators"):
             self.two_fractions()
-            #time.sleep(3)
-        elif(what == "Subtracting Like Denominators"):
-            self.two_fractions()
-            #self.two_fractions()
-            #time.sleep(3)
         elif(what == "Adding Unlike Denominators"):
             self.two_fractions()
             #time.sleep(3)
@@ -952,11 +960,11 @@ class Gesture:
     def assessHint3(self, what):
         if(what == "Conversion"):
             self.conversion()
-            time.sleep(3)
+            time.sleep(1)
         elif (what == "Common Denominator"):
             time.sleep(4)
             self.multiples()
-            time.sleep(3)
+            time.sleep(1)
 
     def ask(self, question):
         self.genSpeech(question)

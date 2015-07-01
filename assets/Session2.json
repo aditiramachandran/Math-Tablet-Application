@@ -3,6 +3,7 @@
     "Question" : "Scale up to find a fraction equivalent to 7/12 with the denominator 60.",
     "Spoken Question" : "Scale up to find a fraction equivalent to seven-twelfths with the denominator 60.",
     "Type" : "Scaling Up",
+    "Spoken Type": "scaling up",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -28,6 +29,7 @@
     "Question" : "Scale down to find the simplest fraction equivalent to 24/56.",
     "Spoken Question" : "Scale down to find the simplest fraction equivalent to twenty-four-fifty-sixths.",
     "Type" : "Scaling Down",
+    "Spoken Type" : "scaling down",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -53,6 +55,7 @@
     "Question" : "Find the least common denominator of 1/7 and 3/5.",
     "Spoken Question" : "Find the least common denominator of one-seventh and three-fifths.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 1,
     "Format" : "value",
     "Answer" :
@@ -77,6 +80,7 @@
     "Question" : "Find the least common denominator of 9/4 and 1/24.",
     "Spoken Question" : "Find the least common denominator of nine-fourths and one-twenty-fourth.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 2,
     "Format" : "value",
     "Answer" :
@@ -101,6 +105,7 @@
     "Question" : "Convert the mixed number 3 5/8 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number three and five-eighths to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -126,6 +131,7 @@
     "Question" : "Convert the mixed number 10 3/7 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number ten and three-sevenths to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -152,6 +158,7 @@
     Write your answer in lowest terms.",
     "Spoken Question" : "What is two and one-sixth plus three and five-twelfths? Write your answer in lowest terms and as an improper fraction.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -177,6 +184,7 @@
     "Question" : "At the zoo, the lion show lasts for 5/8 of an hour, and the penguin show lasts for 1/4 of an hour. The guided tour of the zoo lasts 5/2 hours. How long will it take to do all the activities? Leave your answer as an improper fraction, and write your answer in lowest terms.",
     "Spoken Question" : "At the zoo, the lion show lasts for five-eighths of an hour, and the penguin show lasts for one-fourth of an hour. The guided tour of the zoo lasts five-halves hours. How long will it take to do all the activities? Leave your answer as an improper fraction, and write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators Word Problem",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -203,6 +211,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is two and one-half plus three and five-sevenths? Write your answer as an improper fraction in lowest terms.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -228,6 +237,7 @@
     "Question" : "Amy started her car with 7/8 gallons of gas. When she finished driving, she had 5/16 gallons of gas left. How much gas did Amy use?",
     "Spoken Question" : "Amy started her car with seven-eighths gallons of gas. When she finished driving, she had five-sixteenths gallons of gas left. How much gas did Amy use?",
     "Type" : "Subtracting Unlike Denominators Word Problem",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -254,6 +264,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is three and seventeen-eighteenths minus two and one-third minus two-ninths? Write your answer as an improper fraction in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -280,6 +291,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is five and one-fourth minus two and two-thirds? Write your answer as an improper fraction in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :

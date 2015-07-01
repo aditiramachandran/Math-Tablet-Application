@@ -3,6 +3,7 @@
     "Question" : "Scale up to find a fraction equivalent to 2/7 with the denominator 56.",
     "Spoken Question" : "Scale up to find a fraction equivalent to two-sevenths with the denominator 56.",
     "Type" : "Scaling Up",
+    "Spoken Type" : "scaling up",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -28,6 +29,7 @@
     "Question" : "Scale down to find the simplest fraction equivalent to 16/48.",
     "Spoken Question" : "Scale down to find the simplest fraction equivalent to sixteen-forty-eighths.",
     "Type" : "Scaling Down",
+    "Spoken Type" : "scaling down",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -53,6 +55,7 @@
     "Question" : "Find the least common denominator of 3/4 and 3/16.",
     "Spoken Question" : "Find the least common denominator of three-fourths and three-sixteenths.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 1,
     "Format" : "value",
     "Answer" :
@@ -77,6 +80,7 @@
     "Question" : "Find the least common denominator of 1/7 and 4 1/6.",
     "Spoken Question" : "Find the least common denominator of one-sevenths and four and one-sixth.",
     "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
     "Difficulty Level" : 3,
     "Format" : "value",
     "Answer" :
@@ -101,6 +105,7 @@
     "Question" : "Convert the mixed number 4 3/10 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number four and three-tenths to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -126,6 +131,7 @@
     "Question" : "Convert the mixed number 11 4/5 to an improper fraction.",
     "Spoken Question" : "Convert the mixed number eleven and four-fifths to an improper fraction.",
     "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -152,6 +158,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is three and two-tenths plus three-fourths? Write your answer in lowest terms.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -177,6 +184,7 @@
     "Question" : "Adam ate 15/10 pizzas, Bill ate 3/5 of a pizza, and Casper ate 5/2 pizzas. How much pizza did they eat in total? Leave your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "Adam ate fifteen-tenths pizzas, Bill ate three-fifths of a pizza, and Casper ate five-halves pizzas. How much pizza did they eat in total? Leave your answer as an improper fraction in lowest terms.",
     "Type" : "Adding Unlike Denominators Word Problem",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -203,6 +211,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is one and three-eighths plus three and two-sevenths? Write your answer as an improper fraction in lowest terms.",
     "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
@@ -229,6 +238,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is three and five-sevenths minus one and two-thirds? Write your answer as an improper fraction in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 1,
     "Format" : "fraction",
     "Answer" :
@@ -253,7 +263,8 @@
   {
     "Question" : "Derek drank 1 5/14 cups of milk, and Pam drank 1 2/7 cups of milk. How many more cups of milk did Derek drink than Pam?",
     "Spoken Question" : "Derek drank one and five-fourteenths cups of milk, and Pam drank one and two-fourteenths cups of milk. How many more cups of milk did Derek drink than Pam?",
-    "Type" : "Subtracting Like Denominators Word Problem",
+    "Type" : "Subtracting Unlike Denominators Word Problem",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 2,
     "Format" : "fraction",
     "Answer" :
@@ -280,6 +291,7 @@
     Write your answer as an improper fraction in lowest terms.",
     "Spoken Question" : "What is four and fifteen-sixteenths minus two-thirds minus one-eighth? Write your answer as an improper fraction in lowest terms.",
     "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
     "Difficulty Level" : 3,
     "Format" : "fraction",
     "Answer" :
