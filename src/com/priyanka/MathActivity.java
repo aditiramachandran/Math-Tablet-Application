@@ -517,7 +517,7 @@ public class MathActivity extends Activity {
         String newQuestion = question.question;
         questionType = question.type;
         //String questionIntro = QUESTION_INTRO_PREFIX + questionType + QUESTION_INTRO_POSTFIX;
-        String questionIntro = questionType; // TODO: change to question.spokenType when added to json
+        String questionIntro = question.spokenType;
         SubmitButton.setText(SUBMIT_STRING);
         CurrentQuestion.setText(newQuestion);
         questionState = QState.INIT;

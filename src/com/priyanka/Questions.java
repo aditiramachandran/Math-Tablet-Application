@@ -19,6 +19,7 @@ public class Questions {
     public static final String KEY_QUESTION = "Question";
     public static final String KEY_SPOKEN_QUESTION = "Spoken Question";
     public static final String KEY_TYPE = "Type";
+    public static final String KEY_SPOKEN_TYPE = "Spoken Type";
     public static final String KEY_DIFFICULTY_LEVEL = "Difficulty Level";
     public static final String KEY_FORMAT = "Format";
     public static final String KEY_ANSWER = "Answer";

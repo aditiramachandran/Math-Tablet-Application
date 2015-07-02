@@ -10,6 +10,7 @@ public class Question {
     public String question;
     public String spokenQuestion;
     public String type;
+    public String spokenType;
     public String format;
     public String difficulty;
 
@@ -33,6 +34,7 @@ public class Question {
             this.question = question.getString(Questions.KEY_QUESTION);
             spokenQuestion = question.getString(Questions.KEY_SPOKEN_QUESTION);
             type = question.getString(Questions.KEY_TYPE);
+            spokenType = question.getString(Questions.KEY_SPOKEN_TYPE);
             difficulty = question.getString(Questions.KEY_DIFFICULTY_LEVEL);
             format = question.getString(Questions.KEY_FORMAT);
 
