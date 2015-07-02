@@ -412,13 +412,13 @@ class Gesture:
         self.motion.setAngles("RElbowYaw", 1.7, 0.2)
         self.motion.setAngles("RWristYaw", 1.5, 0.2)
 
-        time.sleep(0.8)
+        time.sleep(0.6)
 
         #emphasize the right hand
         self.motion.setAngles("HeadYaw", -0.7, 0.2)
         self.motion.setAngles("RElbowRoll", 0.2, 0.2)
 
-        time.sleep(0.3)
+        time.sleep(0.2)
 
         #moving the left hand to the beginning position
         self.motion.setAngles("LShoulderRoll", 0.5, 0.25)
@@ -427,27 +427,27 @@ class Gesture:
         self.motion.setAngles("LElbowYaw", -1.7, 0.25)
         self.motion.setAngles("LWristYaw", -1.5, 0.25)
 
-        time.sleep(0.8)
+        time.sleep(0.6)
 
         #emphasize the left hand
-        self.motion.setAngles("HeadYaw", 0.7, 0.2)
-        self.motion.setAngles("LElbowRoll", -0.2, 0.2)
+        self.motion.setAngles("HeadYaw", 0.7, 0.3)
+        self.motion.setAngles("LElbowRoll", -0.2, 0.3)
 
         #open both hands and move the head back center
         self.motion.openHand("RHand")
-        self.motion.setAngles("HeadYaw", 0, 0.05)
+        self.motion.setAngles("HeadYaw", 0, 0.1)
         self.motion.openHand("LHand")
 
-        time.sleep(0.5)
+        time.sleep(0.2)
 
         #bring arms in to avoid scooching sit
-        self.motion.setAngles("RShoulderRoll", -0.15, 0.2)
-        self.motion.setAngles("LShoulderRoll", 0.15, 0.2)
-        self.motion.setAngles("RElbowYaw", 0, 0.2)
-        self.motion.setAngles("LElbowYaw", 0, 0.2)
-        self.motion.setAngles("LElbowRoll", -1.5, 0.2)
-        self.motion.setAngles("RElbowRoll", 1.5, 0.2)
-        time.sleep(1)
+        self.motion.setAngles("RShoulderRoll", -0.15, 0.3)
+        self.motion.setAngles("LShoulderRoll", 0.15, 0.3)
+        self.motion.setAngles("RElbowYaw", 0, 0.3)
+        self.motion.setAngles("LElbowYaw", 0, 0.3)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.3)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.3)
+        time.sleep(0.5)
 
         self.posture.goToPosture("Sit", 0.5)
 
@@ -735,7 +735,7 @@ class Gesture:
 
     def point_question(self):
         #move left hand to point to tablet
-        time.sleep(5)
+        time.sleep(3.5)
         self.motion.setAngles("LShoulderRoll", 0.3, 0.25)
         self.motion.setAngles("LShoulderPitch", 0.4, 0.25)
         self.motion.setAngles("LElbowRoll", -0.2, 0.25)
@@ -745,7 +745,7 @@ class Gesture:
         self.motion.openHand("LHand")
 
         #look at the tablet/left hand?
-        self.motion.setAngles("HeadYaw", 0.2, 0.2)
+        #self.motion.setAngles("HeadYaw", 0.2, 0.2)
 
         time.sleep(1.5)
         self.posture.goToPosture("Sit", 0.5)
@@ -952,10 +952,10 @@ class Gesture:
     def assessHint2(self, what):
         if (what == "Scaling Up"):
             self.numerator_denominator()
-            time.sleep(2)
+            time.sleep(1)
         elif (what == "Scaling Down"):
             self.numerator_denominator()
-            time.sleep(2)
+            time.sleep(1)
 
     def assessHint3(self, what):
         if(what == "Conversion"):

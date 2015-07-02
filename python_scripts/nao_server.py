@@ -488,11 +488,12 @@ def main():
 
 		#Execute the user's choice
 		if(choice == "i"):
-		    postureProxy.goToPosture("Stand", 1.0)
-		    print 'nao is sitting'
-		    motionProxy.setBreathEnabled('Body', True)
-		    print 'nao is breathing'
-		    time.sleep(10) 
+		    #postureProxy.goToPosture("Stand", 1.0)
+		    #print 'nao is sitting'
+		    #motionProxy.setBreathEnabled('Body', True)
+		    #print 'nao is breathing'
+		    #time.sleep(10) 
+		    #goNao.intro()
 		    goNao.intro()
 
 		elif(choice=="r"):
