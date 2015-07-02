@@ -171,8 +171,8 @@
          "Spoken Hint1" : "For example, one-fourth plus five-eighths equals seven-eighths.",
          "Hint2" : "You first need to find the common denominator of the three fractions.",
          "Spoken Hint2" : "You first need to find the common denominator of the three fractions.",
-         "Hint3" : "The common denominator is 70. Now make the fractions have the same denominator. Then you can add them!",
-         "Spoken Hint3" : "The common denominator is 70. Now make the fractions have the same denominator. Then you can add them!"
+         "Hint3" : "The common denominator is 70. Now make the fractions have the same denominator. Then you can add the numerators!",
+         "Spoken Hint3" : "The common denominator is 70. Now make the fractions have the same denominator. Then you can add the numerators!"
     },
     "Spoken Answer" : "The correct answer is fifty-one-seventieths.",
     "Written Explanation" : "This is an addition problem, because we want to know the total fraction of clothes. The three fractions have a common denominator of 70. 1/10 can be written as 7/70, 3/7 can be written as 30/70, and 1/5 can be written as 14/70. Then, you add these fractions together to get the answer.",
@@ -198,8 +198,8 @@
          "Spoken Hint1" : "For example, two-thirds plus one-fourth equals eleven-twelfths.",
          "Hint2" : "In order to add fractions with different denominators, you need to find the common denominator.",
          "Spoken Hint2" : "In order to add fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the three fractions is 40. Now make the fractions have the same denominator. Then you can add them!",
-         "Spoken Hint3" : "The common denominator of the three fractions is 40. Now make the fractions have the same denominator. Then you can add them!"
+         "Hint3" : "The common denominator of the three fractions is 40. Now make the fractions have the same denominator. Then you can add the numerators!",
+         "Spoken Hint3" : "The common denominator of the three fractions is 40. Now make the fractions have the same denominator. Then you can add the numerators!"
     },
     "Spoken Answer" : "The correct answer is forty-nine-fortieths.",
     "Written Explanation" : "In this problem, the three fractions have different denominators, and their common denominator is 40. 3/8 can be written as 15/40, 1/4 can be written as 10/40, and 3/5 can be written as 24/40. Then, 15/40 + 10/40 + 24/40 gives you the answer.",
@@ -278,8 +278,8 @@
          "Spoken Hint1" : "For example, two-thirds minus one-fourth equals five-twelfths.",
          "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
          "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 30. Now make both fractions have the same denominator. Then you can subtract them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 30. Now make both fractions have the same denominator. Then you can subtract them!"
+         "Hint3" : "The common denominator of the two fractions is 30. Now make both fractions have the same denominator. Then you can subtract the fractions!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 30. Now make both fractions have the same denominator. Then you can subtract the fractions!"
     },
     "Spoken Answer" : "The correct answer is eleven-thirtieths.",
     "Written Explanation" : "This is a subtraction problem, because we want to know how much longer the baseball game is. The two fractions have different denominators, and their common denominator is 30. 13/6 can be written as 65/30, and 9/5 can be written as 54/30. Then, 65/30 - 54/30 gives you the answer.",
