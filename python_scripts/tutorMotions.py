@@ -442,12 +442,12 @@ class Gesture:
         time.sleep(0.2)
 
         #bring arms in to avoid scooching sit
-        self.motion.setAngles("RShoulderRoll", -0.15, 0.3)
-        self.motion.setAngles("LShoulderRoll", 0.15, 0.3)
-        self.motion.setAngles("RElbowYaw", 0, 0.3)
-        self.motion.setAngles("LElbowYaw", 0, 0.3)
-        self.motion.setAngles("LElbowRoll", -1.5, 0.3)
-        self.motion.setAngles("RElbowRoll", 1.5, 0.3)
+        self.motion.setAngles("RShoulderRoll", -0.15, 0.2)
+        self.motion.setAngles("LShoulderRoll", 0.15, 0.2)
+        self.motion.setAngles("RElbowYaw", 0, 0.2)
+        self.motion.setAngles("LElbowYaw", 0, 0.2)
+        self.motion.setAngles("LElbowRoll", -1.5, 0.2)
+        self.motion.setAngles("RElbowRoll", 1.5, 0.2)
         time.sleep(0.5)
 
         self.posture.goToPosture("Sit", 0.5)
