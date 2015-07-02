@@ -136,7 +136,8 @@ class Gesture:
 
     def intro(self):
         self.posture.goToPosture("Crouch", 1.0)
-        self.led.fadeListRGB("FaceLeds",[0x00FFFFFF],[0.1])
+        self.motion.setAngles("HeadPitch", -0.2, 0.5)
+	self.led.fadeListRGB("FaceLeds",[0x00FFFFFF],[0.1])
         self.genSpeech("Hello everyone! My name is Nao, your personal robot tutor.")
         self.genSpeech("I'm really excited to meet you guys and work on some problems together!")
         self.genSpeech("Have a great day, and I look forward to seeing you again soon!")
