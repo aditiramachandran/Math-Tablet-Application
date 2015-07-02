@@ -503,7 +503,7 @@ public class MathActivity extends Activity {
                 goodbyeMessage += "See you next time!";
             }
             else {
-                goodbyeMessage += "Bye! I had a great time doing math with you!";
+                goodbyeMessage += "I had a great time doing math with you! Have a great day! Bye!";
             }
             if (com.priyanka.TCPClient.singleton != null) {
                 com.priyanka.TCPClient.singleton.sendMessage("END;" + currentQuestionIndex + ";" + questionType + ";" + goodbyeMessage);
