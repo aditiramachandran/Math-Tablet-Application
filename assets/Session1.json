@@ -121,8 +121,8 @@
          "Spoken Hint1" : "For example, one-half plus one-fourth is three-fourths.",
          "Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
          "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 56. Now make both fractions have the same denominator. Then you can add them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 56. Now make both fractions have the same denominator. Then you can add them!"
+         "Hint3" : "The common denominator of the two fractions is 56. Now make both fractions have the same denominator. Then you can add the numerators!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 56. Now make both fractions have the same denominator. Then you can add the numerators!"
     },
     "Spoken Answer" : "The correct answer is forty-three-fifty-sixths.",
     "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 56. 1/7 can be written as 8/56, and 5/8 can be written as 35/56. Then, you can add the two fractions to get the correct answer.",
@@ -175,8 +175,8 @@
          "Spoken Hint1" : "For example, one-half minus one-fourth is one-fourth.",
          "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
          "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 24. Now make both fractions have the same denominator. Then you can subtract them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 24. Now make both fractions have the same denominator. Then you can subtract them!"
+         "Hint3" : "The common denominator of the two fractions is 24. Now make both fractions have the same denominator. Then you can subtract the numerators!",
+         "Spoken Hint3" : "The common denominator of the two fractions is 24. Now make both fractions have the same denominator. Then you can subtract the numerators!"
     },
     "Spoken Answer" : "The correct answer is thirteen-twenty-fourths.",
     "Written Explanation" : "The two fractions have different denominators, and their common denominator is 24. 11/12 can be written as 22/24, and 3/8 can be written as 9/24. Then, you can subtract the two fractions to get the correct answer.",
