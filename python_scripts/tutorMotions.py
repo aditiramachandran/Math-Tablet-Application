@@ -930,6 +930,16 @@ class Gesture:
             #UNSURE HERE
             self.point_question()
             #time.sleep(3)
+        elif(what == "Adding Like Denominators Word Problem"):
+            self.two_fractions()
+            #time.sleep(3)
+        elif(what == "Subtracting Like Denominators Word Problem"):
+            self.two_fractions()
+        elif(what == "Adding Like Denominators"):
+            self.two_fractions()
+            #time.sleep(3)
+        elif(what == "Subtracting Like Denominators"):
+            self.two_fractions()
         elif(what == "Adding Unlike Denominators Word Problem"):
             self.two_fractions()
             #time.sleep(3)
