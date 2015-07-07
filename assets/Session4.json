@@ -168,12 +168,12 @@
     },
     "Hints" :
     {
-         "Hint1" : "For example, 1/2 + 1/3 = 5/6.",
-         "Spoken Hint1" : "For example, one-half plus one-third equals five-sixths.",
-         "Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 42. Now make both fractions have the same denominator. Then you can add them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 42. Now make both fractions have the same denominator. Then you can add them!"
+         "Hint1" : "For example, 1/2 + 1/3 = 5/6. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half plus one-third equals five-sixths. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 42. Now, you need to scale up both fractions so they have the denominator 42.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 42. Now, you need to scale up both fractions so they have the denominator 42.",
+         "Hint3" : "Multiply the numerator and denominator of 2/7 by 6, and the numerator and denominator of 1/6 by 7, to get equivalent fractions with the denominator 42. Then you can add the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of two-sevenths by 6, and the numerator and denominator of one-sixth by 7, to get equivalent fractions with the denominator 42. Then you can add the numerators!"
     },
     "Spoken Answer" : "The correct answer is nineteen-forty-seconds.",
     "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 42. 2/7 can be written as 12/42, and 1/6 can be written as 7/42. Then, 12/42 + 7/42 gives you the answer.",
@@ -195,12 +195,12 @@
     },
     "Hints" :
     {
-         "Hint1" : "For example, 1/2 - 1/4 = 1/4.",
-         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth.",
-         "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator. First deal with the fractions, then worry about the whole numbers.",
-         "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator. First deal with the fractions, then worry about the whole numbers.",
-         "Hint3" : "The common denominator of the two fractions is 21. Now make both fractions have the same denominator. Once you subtract the fractions and whole numbers, remember that your answer should be an improper fraction.",
-         "Spoken Hint3" : "The common denominator of the two fractions is 21. Now make both fractions have the same denominator. Once you subtract the fractions and whole numbers, remember that your answer should be an improper fraction."
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "First deal with the fractions, then worry about the whole numbers. The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Spoken Hint2" : "First deal with the fractions, then worry about the whole numbers. The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Hint3" : "Multiply the numerator and denominator of 6/7 by 3, and the numerator and denominator of 2/3 by 7, to get equivalent fractions with the denominator 21. Once you subtract the fractions and whole numbers, remember that your answer should be an improper fraction.",
+         "Spoken Hint3" : "Multiply the numerator and denominator of six-sevenths by 3, and the numerator and denominator of two-thirds by 7, to get equivalent fractions with the denominator 21. Once you subtract the fractions and whole numbers, remember that your answer should be an improper fraction."
     },
     "Spoken Answer" : "The correct answer is twenty-five-twenty-firsts.",
     "Written Explanation" : "The two fractions have different denominators, and their common denominator is 21. 6/7 can be written as 18/21, and 2/3 can be written as 14/21. Then, 2 18/21 - 1 14/21 gives you 1 4/21, which is equal to the improper fraction 25/21.",

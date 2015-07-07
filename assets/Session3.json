@@ -169,12 +169,12 @@
     },
     "Hints" :
     {
-         "Hint1" : "For example, 1/2 + 1/4 = 3/4.",
-         "Spoken Hint1" : "For example, one-half plus one-fourth equals three-fourths.",
-         "Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 20. Now make both fractions have the same denominator. Then you can add them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 20. Now make both fractions have the same denominator. Then you can add them!"
+         "Hint1" : "For example, 1/2 + 1/4 = 3/4. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half plus one-fourth equals three-fourths. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 20. Now, you need to scale up both fractions so they have the denominator 20.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 20. Now, you need to scale up both fractions so they have the denominator 20.",
+         "Hint3" : "Multiply the numerator and denominator of 2/10 by 2, and the numerator and denominator of 3/4 by 5, to get equivalent fractions with the denominator 20. Then you can add the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of two-tenths by 2, and the numerator and denominator of three-fourths by 5, to get equivalent fractions with the denominator 20. Then you can add the numerators!"
     },
     "Spoken Answer" : "The correct answer is nineteen-twentieths.",
     "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 20. 2/10 can be written as 4/20, and 3/4 can be written as 15/20. Then, 4/20 + 15/20 gives you the answer.",
@@ -195,12 +195,12 @@
     },
     "Hints" :
     {
-         "Hint1" : "For example, 1/2 - 1/4 = 1/4.",
-         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth.",
-         "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
-         "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 21. Now make both fractions have the same denominator. Then you can subtract them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 21. Now make both fractions have the same denominator. Then you can subtract them!"
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Hint3" : "Multiply the numerator and denominator of 5/7 by 3, and the numerator and denominator of 2/3 by 7, to get equivalent fractions with the denominator 21. Then you can subtract the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of five-sevenths by 3, and the numerator and denominator of two-thirds by 7, to get equivalent fractions with the denominator 21. Then you can subtract the numerators!"
     },
     "Spoken Answer" : "The correct answer is one-twenty-first.",
     "Written Explanation" : "The two fractions have different denominators, and their common denominator is 21. 5/7 can be written as 15/21, and 2/3 can be written as 14/21. Then, 15/21 - 14/21 gives you the answer.",

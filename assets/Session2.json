@@ -169,12 +169,12 @@
     },
     "Hints" :
     {
-         "Hint1" : "For example, 1/2 + 1/3 = 5/6.",
-         "Spoken Hint1" : "For example, one-half plus one-third equals five-sixths.",
-         "Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Spoken Hint2" : "In order to add two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 12. Now make both fractions have the same denominator. Then you can add them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 12. Now make both fractions have the same denominator. Then you can add them!"
+         "Hint1" : "For example, 1/2 + 1/3 = 5/6. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half plus one-third equals five-sixths.To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 12. Now, you need to scale up the fraction 1/6 so that it has the denominator 12.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 12. Now, you need to scale up the fraction one-sixth so that it has the denominator 12.",
+         "Hint3" : "Multiply the numerator and denominator of 1/6 by 2 to get an equivalent fraction with the denominator 12. Then you can add the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of one-sixth by 2 to get an equivalent fraction with the denominator 12. Then you can add the numerators!"
     },
     "Spoken Answer" : "The correct answer is seven-twelfths.",
     "Written Explanation" : "For this problem, the two fractions have different denominators, and their common denominator is 12. 1/6 can also be written as 2/12. Then, 2/12 + 5/12 gives you the answer.",
@@ -196,12 +196,12 @@
     },
     "Hints" :
     {
-         "Hint1" : "For example, 1/2 - 1/3 = 1/6.",
-         "Spoken Hint1" : "For example, one-half minus one-third is one-sixth.",
-         "Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
-         "Spoken Hint2" : "In order to subtract two fractions with different denominators, you need to find the common denominator.",
-         "Hint3" : "The common denominator of the two fractions is 16. Now make both fractions have the same denominator. Then you can subtract them!",
-         "Spoken Hint3" : "The common denominator of the two fractions is 16. Now make both fractions have the same denominator. Then you can subtract them!"
+         "Hint1" : "For example, 1/2 - 1/3 = 1/6. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half minus one-third is one-sixth. TO do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 16. Now, you need to scale up the fraction 7/8 so that it has the denominator 16.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 16. Now you need to scale up the fraction seven-eighths so that it has the denominator 16.",
+         "Hint3" : "Multiply the numerator and denominator of 7/8 by 2 to get an equivalent fraction with the denominator 16. Then you can subtract the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of seven-eighths by 2 to get an equivalent fraction with the denominator 16. Then you can subtract the numerators!"
     },
     "Spoken Answer" : "The correct answer is nine-sixteenths.",
     "Written Explanation" : "The two fractions have different denominators, and their common denominator is 16. 7/8 can be written as 14/16. Then 14/16 - 5/16 gives you the answer.",
