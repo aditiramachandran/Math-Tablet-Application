@@ -436,10 +436,10 @@ class Gesture:
 
         #open both hands and move the head back center
         self.motion.openHand("RHand")
-        self.motion.setAngles("HeadYaw", 0, 0.1)
+        self.motion.setAngles("HeadYaw", 0, 0.05)
         self.motion.openHand("LHand")
 
-        time.sleep(0.3)
+        time.sleep(0.6)
 
         #bring arms in to avoid scooching sit
         self.motion.setAngles("RShoulderRoll", -0.15, 0.2)
@@ -448,7 +448,7 @@ class Gesture:
         self.motion.setAngles("LElbowYaw", 0, 0.2)
         self.motion.setAngles("LElbowRoll", -1.5, 0.2)
         self.motion.setAngles("RElbowRoll", 1.5, 0.2)
-        time.sleep(0.75)
+        time.sleep(1)
 
         self.posture.goToPosture("Sit", 0.5)
 
