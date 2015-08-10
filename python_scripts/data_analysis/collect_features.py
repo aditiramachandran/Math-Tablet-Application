@@ -1,0 +1,181 @@
+import os
+import sys
+import re
+import fnmatch
+import collections
+
+class Analysis:
+	def __init__(self, inputDir, outputFile):
+		self.inputDir = inputDir
+		self.outputFile = outputFile
+		self.TOTAL_NUM_SESSIONS = 4
+		self.PID = 0
+		self.GROUP = 1
+		self.SESSION_NUM = 2
+		self.TIMESTAMP = 3
+		self.QUESTION_NUM = 4
+		self.TYPE = 5
+		self.OTHER_INFO = 6
+		self.num_questions_per_session = 8
+		self.feature_structure = collections.defaultdict(lambda: collections.defaultdict(lambda: collections.defaultdict(dict)))
+		self.groups = {}
+	
+	def parse_directory(self):
+		#directory = open(self.inputDir)
+		for root, dirs, files in os.walk(self.inputDir):
+			#for dir in dirs:
+				#print os.path.join(root, dir)
+			for filename in files:
+				#print filename
+				if fnmatch.fnmatch(filename, 'P*_S?.txt'):
+					filename = os.path.join(root, filename)
+					#print filename
+					self.collect_basic_features(filename)
+
+
+	def collect_basic_features(self,indivFile):
+		session = open(indivFile)
+		pid = 0
+		session_num = 0
+		exp_group = -1
+
+		num_problems_hint_received = 0
+		num_hints_requested = 0
+		num_incorrects = 0
+		num_corrects = 0
+		num_corrects_first_try = 0
+		num_corrects_first_try_no_hints = 0
+		potential_auto_hints = 0 #would be triggered if in adaptive
+		num_denied_hints = 0 #actually triggered for adaptive group
+		num_auto_hints = 0 #actually triggered for adaptive group
+		incorrect_flag = False
+		hint1_flag = False
+		hint2_flag = False
+		hint3_flag = False
+		attempt_flag = False
+		consec_attempts = 0
+		for line in session:
+			tokens = line.strip().split(",")
+			if len(tokens) > 5:
+				current_type = tokens[self.TYPE]
+				if current_type == 'START':
+					pid = int(tokens[self.PID])
+					session_num = int(tokens[self.SESSION_NUM])
+					if session_num == self.TOTAL_NUM_SESSIONS: #if they made it through all 4 sessions
+						exp_group = int(tokens[self.GROUP])
+						self.groups[pid] = exp_group
+				elif current_type == 'QUESTION':
+					incorrect_flag = False
+					hint1_flag = False
+					hint2_flag = False
+					hint3_flag = False
+					attempt_flag = False
+					consec_attempts = 0
+				elif current_type == 'INCORRECT':
+					incorrect_flag = True
+					num_incorrects += 1
+					consec_attempts += 1
+					if hint1_flag:
+						attempt_flag = True
+					if not hint3_flag and consec_attempts==2: #if hint 3 hasnt been triggered, there's an auto hint to give
+						potential_auto_hints += 1
+						consec_attempts = 0
+				elif current_type == 'LAST INCORRECT':
+					num_incorrects += 1
+				elif current_type == 'CORRECT':
+					num_corrects += 1
+					if not incorrect_flag:
+						num_corrects_first_try += 1
+						if not hint1_flag and not hint2_flag and not hint3_flag:
+							num_corrects_first_try_no_hints += 1
+				elif current_type == 'HINT 1':
+					consec_attempts = 0
+					if not hint1_flag:
+						hint1_flag = True
+						num_hints_requested += 1
+						num_problems_hint_received += 1
+						attempt_flag = False
+						if tokens[self.OTHER_INFO] == 'automatic':
+							num_auto_hints += 1
+				elif current_type == 'HINT 2':
+					consec_attempts = 0
+					if not hint2_flag:
+						hint2_flag = True
+						num_hints_requested += 1
+						if tokens[self.OTHER_INFO] == 'automatic':
+							num_auto_hints += 1
+				elif current_type == 'HINT 3':
+					consec_attempts = 0
+					if not hint3_flag:
+						hint3_flag = True
+						num_hints_requested += 1
+						if not attempt_flag:
+							num_denied_hints += 1
+						if tokens[self.OTHER_INFO].strip() == 'automatic':
+							num_auto_hints += 1
+				elif current_type == 'DENIED HINT':
+					num_denied_hints += 1
+
+		#print "pid", pid, ": ", num_incorrects, ", ", num_corrects, ", ", num_corrects_first_try, ", ", num_corrects_first_try_no_hints, ", ", num_hints_requested, ", ", num_problems_hint_received
+		print "pid,session:", pid, ",", session_num, " --> ", potential_auto_hints, ", ", num_auto_hints
+		self.feature_structure[pid][session_num]["num_incorrects"] = num_incorrects
+		self.feature_structure[pid][session_num]["num_corrects"] = num_corrects
+		self.feature_structure[pid][session_num]["num_corrects_first_try"] = num_corrects_first_try
+		self.feature_structure[pid][session_num]["num_corrects_first_try_no_hints"] = num_corrects_first_try_no_hints
+		self.feature_structure[pid][session_num]["num_hints_requested"] = num_hints_requested
+		self.feature_structure[pid][session_num]["num_problems_hint_received"] = num_problems_hint_received
+		self.feature_structure[pid][session_num]["num_denied_hints"] = num_denied_hints
+		self.feature_structure[pid][session_num]["potential_auto_hints"] = potential_auto_hints
+		session.close()		
+
+
+	
+	def write_output(self):
+		#iterate through data structure and write to self.outputFile
+		out = open(self.outputFile, 'w')
+		out.write("PID,GROUP")
+		for i in range(1,self.TOTAL_NUM_SESSIONS+1):
+			out.write(",num_incorrects_S"+str(i))
+			out.write(",num_corrects_S"+str(i))
+			out.write(",num_corrects_first_try_S"+str(i))
+			out.write(",num_corrects_first_try_no_hint_S"+str(i))
+			out.write(",num_hints_requested_S"+str(i))
+			out.write(",num_problems_hint_received_S"+str(i))
+			out.write(",num_denied_hints_S"+str(i))
+			out.write(",potential_auto_hints_S"+str(i))
+		out.write("\n")	
+		#print self.feature_structure
+		for participant in self.feature_structure.keys():
+			exp_group = -1
+			if participant in self.groups.keys():
+				exp_group = self.groups[participant]
+			out.write(str(participant)+","+str(exp_group))
+			for i in range(1,self.TOTAL_NUM_SESSIONS+1):
+				out.write(","+str(self.feature_structure[participant][i]["num_incorrects"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_corrects"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_corrects_first_try"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_corrects_first_try_no_hints"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_hints_requested"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_problems_hint_received"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_denied_hints"]))
+				out.write(","+str(self.feature_structure[participant][i]["potential_auto_hints"]))
+			out.write("\n")
+		out.close()			
+
+
+def main():
+	if len(sys.argv) == 3:
+		#print 'input dir is: ', sys.argv[1]
+		#print 'output file is: ', sys.argv[2]
+		analysis = Analysis(sys.argv[1], sys.argv[2])
+		analysis.parse_directory()
+		analysis.write_output()
+	else:
+		print 'usage: python collect_features.py <input dir> <output file>'
+
+
+
+
+
+if __name__ == "__main__": 
+	main()
