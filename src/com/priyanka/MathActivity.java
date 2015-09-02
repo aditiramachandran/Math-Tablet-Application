@@ -58,6 +58,7 @@ public class MathActivity extends Activity {
     private KeyboardView mKeyboardView;
     private int sessionNum = -1;
     private int expGroup = 0;
+    private int startQuestionNum = 1;
 
     private Questions questions;
 
@@ -117,6 +118,9 @@ public class MathActivity extends Activity {
             json_file = "Session"+sessionNum+".json";
             expGroup = Integer.parseInt(extras.getString("expGroup"));
             System.out.println("expGroup is: " + expGroup);
+            startQuestionNum = Integer.parseInt(extras.getString("startQuestionNum"));
+            System.out.println("startQuestionNum is: " + startQuestionNum);
+            currentQuestionIndex = startQuestionNum - 2;
         }
         //set this MathActivity as the sessionOwner for the tcpClient
         if (com.priyanka.TCPClient.singleton != null)

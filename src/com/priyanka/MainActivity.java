@@ -34,6 +34,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private Button session4Button;
     private EditText participantID;
     private TextView connectionStatus;
+    private EditText startQuestionNum;
     private RadioButton controlRB;
     private RadioButton adaptiveRB;
     private int sessionNum;
@@ -55,6 +56,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 participantID.setText("");
             }
         });
+
+        startQuestionNum = (EditText) findViewById(R.id.StartQuestionNum);
 
         session1Button = (Button) findViewById(R.id.Session1Button);
         session2Button = (Button) findViewById(R.id.Session2Button);
@@ -92,6 +95,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         intent.putExtra("expGroup", ""+expGroup);
         String pid = participantID.getText().toString();
         intent.putExtra("participantID", pid);
+        String startQuestion = startQuestionNum.getText().toString();
+        intent.putExtra("startQuestionNum", startQuestion);
         //send message to computer to convey session starting
         if (com.priyanka.TCPClient.singleton != null) {
             String startMessage = "START;" + "-1;-1;" + pid + "," + sessionNum + "," + expGroup;
