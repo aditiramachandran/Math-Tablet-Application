@@ -101,7 +101,8 @@
         android:id="@+id/StartAppButton"
         android:layout_row="9"
         android:layout_column="1"
-        android:onClick="startMathSession"/>
+        android:onClick="startMathSession"
+        android:layout_marginBottom="20dp" />
 
     <RadioGroup
         android:layout_width="562dp"
@@ -130,6 +131,15 @@
             android:onClick="onRadioButtonClicked"/>
 
     </RadioGroup>
+
+    <EditText
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_row="10"
+        android:layout_column="1" />
 
 
 </GridLayout>
