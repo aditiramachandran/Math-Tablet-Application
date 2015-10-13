@@ -48,11 +48,16 @@ class Analysis:
 		potential_auto_hints = 0 #would be triggered if in adaptive
 		num_denied_hints = 0 #actually triggered for adaptive group
 		num_auto_hints = 0 #actually triggered for adaptive group
+		num_before_hint1 = 0
+		num_before_hint2 = 0
+		num_before_hint3 = 0
+		num_after_hint3 = 0
 		incorrect_flag = False
 		hint1_flag = False
 		hint2_flag = False
 		hint3_flag = False
 		attempt_flag = False
+		denied_flag = False
 		consec_attempts = 0
 		for line in session:
 			tokens = line.strip().split(",")
@@ -114,7 +119,23 @@ class Analysis:
 						if tokens[self.OTHER_INFO].strip() == 'automatic':
 							num_auto_hints += 1
 				elif current_type == 'DENIED HINT':
-					num_denied_hints += 1
+					if not denied_flag:
+						num_denied_hints += 1
+					denied_flag = True
+
+				# resets the flag so that we don't discount a legitimate double denial of hint
+				if current_type == 'QUESTION' or current_type == 'INCORRECT' or current_type == 'HINT 1' or current_type == 'HINT 2' or current_type == 'HINT 3':
+					denied_flag = False
+
+				if current_type == 'CORRECT' or current_type == 'INCORRECT' or current_type == 'LAST INCORRECT':
+					if hint3_flag:
+						num_after_hint3 += 1
+					elif hint2_flag:
+						num_before_hint3 += 1
+					elif hint1_flag:
+						num_before_hint2 += 1
+					else:
+						num_before_hint1 += 1
 
 		#print "pid", pid, ": ", num_incorrects, ", ", num_corrects, ", ", num_corrects_first_try, ", ", num_corrects_first_try_no_hints, ", ", num_hints_requested, ", ", num_problems_hint_received
 		print "pid,session:", pid, ",", session_num, " --> ", potential_auto_hints, ", ", num_auto_hints
@@ -126,6 +147,10 @@ class Analysis:
 		self.feature_structure[pid][session_num]["num_problems_hint_received"] = num_problems_hint_received
 		self.feature_structure[pid][session_num]["num_denied_hints"] = num_denied_hints
 		self.feature_structure[pid][session_num]["potential_auto_hints"] = potential_auto_hints
+		self.feature_structure[pid][session_num]["num_before_hint1"] = num_before_hint1
+		self.feature_structure[pid][session_num]["num_before_hint2"] = num_before_hint2
+		self.feature_structure[pid][session_num]["num_before_hint3"] = num_before_hint3
+		self.feature_structure[pid][session_num]["num_after_hint3"] = num_after_hint3
 		session.close()		
 
 
@@ -143,6 +168,10 @@ class Analysis:
 			out.write(",num_problems_hint_received_S"+str(i))
 			out.write(",num_denied_hints_S"+str(i))
 			out.write(",potential_auto_hints_S"+str(i))
+			out.write(",num_attempts_before_hint1_S"+str(i))
+			out.write(",num_attempts_before_hint2_S"+str(i))
+			out.write(",num_attempts_before_hint3_S"+str(i))
+			out.write(",num_attempts_after_hint3_S"+str(i))
 		out.write("\n")	
 		#print self.feature_structure
 		for participant in self.feature_structure.keys():
@@ -159,6 +188,10 @@ class Analysis:
 				out.write(","+str(self.feature_structure[participant][i]["num_problems_hint_received"]))
 				out.write(","+str(self.feature_structure[participant][i]["num_denied_hints"]))
 				out.write(","+str(self.feature_structure[participant][i]["potential_auto_hints"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_before_hint1"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_before_hint2"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_before_hint3"]))
+				out.write(","+str(self.feature_structure[participant][i]["num_after_hint3"]))
 			out.write("\n")
 		out.close()			
 
