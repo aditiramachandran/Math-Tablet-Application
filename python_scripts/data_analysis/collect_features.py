@@ -53,6 +53,7 @@ class Analysis:
     num_before_hint2 = 0
     num_before_hint3 = 0
     num_after_hint3 = 0
+    num_before_hint1_temp = 0 # per problem, used to subtract out non hint questions
     incorrect_flag = False
     hint1_flag = False
     hint2_flag = False
@@ -91,6 +92,9 @@ class Analysis:
             exp_group = int(tokens[self.GROUP])
             self.groups[pid] = exp_group
         elif current_type == 'QUESTION':
+          if not hint1_flag and not problem_starttime == 0:
+            num_before_hint1 -= num_before_hint1_temp
+
           incorrect_flag = False
           hint1_flag = False
           hint2_flag = False
@@ -98,6 +102,7 @@ class Analysis:
           attempt_flag = False
           restart_flag = False
           consec_attempts = 0
+          num_before_hint1_temp = 0
 
           if problem_starttime == 0:
             problem_starttime = current_timestamp
@@ -106,8 +111,6 @@ class Analysis:
               problem_length = current_timestamp - problem_starttime
               time_normalized = time_until_hint1 / problem_length.total_seconds()
               time_normalized_sum += time_normalized
-              print 'time until hint1 is ' + str(time_until_hint1)
-              print 'time for problem is ' + str(problem_length.total_seconds())
             problem_starttime = current_timestamp
             time_until_hint1 = 0
 
@@ -122,6 +125,8 @@ class Analysis:
             consec_attempts = 0
         elif current_type == 'LAST INCORRECT':
           num_incorrects += 1
+          if not hint1_flag and not hint2_flag and not hint3_flag:
+            num_without_hint += 1
         elif current_type == 'CORRECT':
           num_corrects += 1
           if not incorrect_flag:
@@ -163,6 +168,10 @@ class Analysis:
             num_denied_hints += 1
           denied_flag = True
         elif current_type == 'END':
+          if not hint1_flag:
+            num_before_hint1 -= num_before_hint1_temp
+          num_before_hint1_temp = 0
+
           if not restart_flag and time_until_hint1 != 0:
             problem_length = current_timestamp - problem_starttime
             time_normalized = time_until_hint1 / problem_length.total_seconds()
@@ -183,6 +192,7 @@ class Analysis:
             num_before_hint2 += 1
           else:
             num_before_hint1 += 1
+            num_before_hint1_temp += 1
 
     time_normalized_average = 0
     if num_without_hint < self.num_questions_per_session:
@@ -202,6 +212,7 @@ class Analysis:
     self.feature_structure[pid][session_num]["num_before_hint2"] = num_before_hint2
     self.feature_structure[pid][session_num]["num_before_hint3"] = num_before_hint3
     self.feature_structure[pid][session_num]["num_after_hint3"] = num_after_hint3
+    self.feature_structure[pid][session_num]["num_without_hint"] = num_without_hint
     self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average
     session.close()   
 
@@ -224,6 +235,7 @@ class Analysis:
       out.write(",num_attempts_before_hint2_S"+str(i))
       out.write(",num_attempts_before_hint3_S"+str(i))
       out.write(",num_attempts_after_hint3_S"+str(i))
+      out.write(",num_without_hint_S"+str(i))
       out.write(",average_time_until_hint1_normalized_S"+str(i))
     out.write("\n") 
     #print self.feature_structure
@@ -245,6 +257,7 @@ class Analysis:
         out.write(","+str(self.feature_structure[participant][i]["num_before_hint2"]))
         out.write(","+str(self.feature_structure[participant][i]["num_before_hint3"]))
         out.write(","+str(self.feature_structure[participant][i]["num_after_hint3"]))
+        out.write(","+str(self.feature_structure[participant][i]["num_without_hint"]))
         out.write(","+str(self.feature_structure[participant][i]["average_time_until_hint1_normalized"]))
       out.write("\n")
     out.close()     
