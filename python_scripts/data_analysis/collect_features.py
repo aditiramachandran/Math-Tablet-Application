@@ -145,19 +145,8 @@ class Analysis:
           if not denied_flag:
             num_denied_hints += 1
           denied_flag = True
-        elif current_type == 'END':
-          if not hint1_flag:
-            num_before_hint1 -= num_before_hint1_temp
-          elif restart_flag:
-            num_restarts_with_hint += 1
-          num_before_hint1_temp = 0
-
-          if not restart_flag and time_until_hint1 != 0:
-            problem_length = current_timestamp - problem_starttime
-            time_normalized = time_until_hint1 / problem_length.total_seconds()
-            time_normalized_sum += time_normalized
-          problem_starttime = 0
-          time_until_hint1 = 0
+        elif current_type == 'ROBOT SPEECH':
+          last_speech_timestamp = current_timestamp
 
         # resets the flag so that we don't discount a legitimate double denial of hint
         if current_type == 'QUESTION' or current_type == 'INCORRECT' or current_type == 'HINT 1' or current_type == 'HINT 2' or current_type == 'HINT 3':
@@ -191,10 +180,9 @@ class Analysis:
 
           if not restart_flag and time_until_hint1 != 0:
             # print stuff out
-            problem_length = current_timestamp - problem_starttime  # fix me
+            problem_length = last_speech_timestamp - problem_starttime  # fix me
             time_normalized = time_until_hint1 / problem_length.total_seconds()
             time_normalized_sum += time_normalized
-          problem_starttime = current_timestamp
           time_until_hint1 = 0
 
           restart_flag = False
