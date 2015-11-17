@@ -49,6 +49,8 @@ class Analysis:
     potential_auto_hints = 0 #would be triggered if in adaptive
     num_denied_hints = 0 #actually triggered for adaptive group
     num_auto_hints = 0 #actually triggered for adaptive group
+    num_late_hints = 0 # number of hints 2 and 3
+    num_late_attempts = 0 # number of attempts between hints 1&2 and hints 2&3
     num_before_hint1 = 0
     num_before_hint2 = 0
     num_before_hint3 = 0
@@ -69,6 +71,7 @@ class Analysis:
     time_normalized_sum_hint1 = 0
     last_speech_timestamp = 0
     total_problem_length = 0
+    current_attempts_between_hints = 0 # reset every time a hint is requested
 
     for line in session:
       tokens = line.strip().split(",")
@@ -76,10 +79,7 @@ class Analysis:
       # checks for a robot restart w/ time delay
       try:
         if tokens[len(tokens) - 1] == 'RESTART':
-          if len(tokens) > 5 and tokens[self.TYPE] == 'QUESTION':
-            restarted_on_question = True
-          else:
-            restart_flag = True
+          restart_flag = True
       except:
         pass
 
@@ -117,7 +117,6 @@ class Analysis:
             if not hint1_flag and not hint2_flag and not hint3_flag:
               num_corrects_first_try_no_hints += 1
         elif current_type == 'HINT 1':
-          consec_attempts = 0
           if not hint1_flag:
             hint1_flag = True
             num_hints_requested += 1
@@ -128,17 +127,17 @@ class Analysis:
             time_until_hint1 = current_timestamp - problem_starttime
             time_until_hint1 = time_until_hint1.total_seconds()
         elif current_type == 'HINT 2':
-          consec_attempts = 0
           if not hint2_flag:
             hint2_flag = True
             num_hints_requested += 1
+            num_late_hints += 1
             if tokens[self.OTHER_INFO] == 'automatic':
               num_auto_hints += 1
         elif current_type == 'HINT 3':
-          consec_attempts = 0
           if not hint3_flag:
             hint3_flag = True
             num_hints_requested += 1
+            num_late_hints += 1
             if not attempt_flag:
               num_denied_hints += 1
             if tokens[self.OTHER_INFO].strip() == 'automatic':
@@ -154,13 +153,20 @@ class Analysis:
         if current_type == 'QUESTION' or current_type == 'INCORRECT' or current_type == 'HINT 1' or current_type == 'HINT 2' or current_type == 'HINT 3':
           denied_flag = False
 
+        if current_type == 'HINT 1' or current_type == 'HINT 2' or current_type == 'HINT 3':
+          consec_attempts = 0
+          current_attempts_between_hints = 0
+
         if current_type == 'CORRECT' or current_type == 'INCORRECT' or current_type == 'LAST INCORRECT':
+          current_attempts_between_hints += 1
           if hint3_flag:
             num_after_hint3 += 1
           elif hint2_flag:
             num_before_hint3 += 1
+            num_late_attempts += 1
           elif hint1_flag:
             num_before_hint2 += 1
+            num_late_attempts += 1
           else:
             num_before_hint1 += 1
             num_before_hint1_temp += 1
@@ -171,6 +177,13 @@ class Analysis:
             num_before_hint1 -= num_before_hint1_temp
           elif restart_flag:
             num_restarts_with_hint += 1
+
+          # calculating attempts strictly sandwiched between hints
+          if hint3_flag:
+            pass
+          elif hint2_flag or hint1_flag:
+            num_late_attempts -= current_attempts_between_hints
+          current_attempts_between_hints = 0
 
           incorrect_flag = False
           hint1_flag = False
@@ -198,6 +211,10 @@ class Analysis:
     if num_problems_hint_received > 0:
       average_attempts_before_hint1 = float(num_before_hint1) / float(num_problems_hint_received)
 
+    average_attempts_between_hints = 0
+    if num_late_hints > 0:
+      average_attempts_between_hints = float(num_late_attempts) / float(num_late_hints)
+
     print "pid,session:", pid, ",", session_num, " --> ", potential_auto_hints, ", ", num_auto_hints
     self.feature_structure[pid][session_num]["num_incorrects"] = num_incorrects
     self.feature_structure[pid][session_num]["num_corrects"] = num_corrects
@@ -214,6 +231,7 @@ class Analysis:
     self.feature_structure[pid][session_num]["average_attempts_before_hint1"] = average_attempts_before_hint1
     self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average_hint1
     self.feature_structure[pid][session_num]["average_problem_length"] = total_problem_length / self.num_questions_per_session
+    self.feature_structure[pid][session_num]["average_attempts_between_hints"] = average_attempts_between_hints
     session.close()   
 
 
@@ -238,6 +256,7 @@ class Analysis:
       out.write(",average_attempts_before_hint1_S"+str(i))
       out.write(",average_time_until_hint1_normalized_S"+str(i))
       out.write(",average_problem_length_S"+str(i))
+      out.write(",average_attempts_between_hints_S"+str(i))
     out.write("\n") 
     #print self.feature_structure
     for participant in self.feature_structure.keys():
@@ -261,6 +280,7 @@ class Analysis:
         out.write(","+str(self.feature_structure[participant][i]["average_attempts_before_hint1"]))
         out.write(","+str(self.feature_structure[participant][i]["average_time_until_hint1_normalized"]))
         out.write(","+str(self.feature_structure[participant][i]["average_problem_length"]))
+        out.write(","+str(self.feature_structure[participant][i]["average_attempts_between_hints"]))
       out.write("\n")
     out.close()     
 
