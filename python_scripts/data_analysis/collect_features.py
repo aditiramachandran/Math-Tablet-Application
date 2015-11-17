@@ -56,6 +56,7 @@ class Analysis:
     num_before_hint2 = 0
     num_before_hint3 = 0
     num_after_hint3 = 0
+    num_erratic_hint_requests = 0
     num_before_hint1_temp = 0 # per problem, used to subtract out non hint questions
     incorrect_flag = False
     hint1_flag = False
@@ -130,6 +131,8 @@ class Analysis:
               num_auto_hints += 1
             time_until_hint1 = current_timestamp - problem_starttime
             time_until_hint1 = time_until_hint1.total_seconds()
+          else:
+            num_erratic_hint_requests += 1
         elif current_type == 'HINT 2':
           if not hint2_flag:
             hint2_flag = True
@@ -141,6 +144,8 @@ class Analysis:
               num_auto_hints += 1
             time_between_hints = current_timestamp - last_hint_timestamp
             intermediate_time_between_late_hints += time_between_hints.total_seconds()
+          else:
+            num_erratic_hint_requests += 1
         elif current_type == 'HINT 3':
           if not hint3_flag:
             hint3_flag = True
@@ -154,6 +159,8 @@ class Analysis:
               num_auto_hints += 1
             time_between_hints = current_timestamp - last_hint_timestamp
             intermediate_time_between_late_hints += time_between_hints.total_seconds()
+          else:
+            num_erratic_hint_requests += 1
         elif current_type == 'DENIED HINT':
           if not denied_flag:
             num_denied_hints += 1
@@ -248,6 +255,7 @@ class Analysis:
     self.feature_structure[pid][session_num]["num_before_hint2"] = num_before_hint2
     self.feature_structure[pid][session_num]["num_before_hint3"] = num_before_hint3
     self.feature_structure[pid][session_num]["num_after_hint3"] = num_after_hint3
+    self.feature_structure[pid][session_num]["num_erratic_hint_requests"] = num_erratic_hint_requests
     self.feature_structure[pid][session_num]["average_attempts_before_hint1"] = average_attempts_before_hint1
     self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average_hint1
     self.feature_structure[pid][session_num]["average_problem_length"] = total_problem_length / self.num_questions_per_session
@@ -274,6 +282,7 @@ class Analysis:
       out.write(",num_attempts_before_hint2_S"+str(i))
       out.write(",num_attempts_before_hint3_S"+str(i))
       out.write(",num_attempts_after_hint3_S"+str(i))
+      out.write(",num_erratic_hint_requests_S"+str(i))
       out.write(",average_attempts_before_hint1_S"+str(i))
       out.write(",average_time_until_hint1_normalized_S"+str(i))
       out.write(",average_problem_length_S"+str(i))
@@ -299,6 +308,7 @@ class Analysis:
         out.write(","+str(self.feature_structure[participant][i]["num_before_hint2"]))
         out.write(","+str(self.feature_structure[participant][i]["num_before_hint3"]))
         out.write(","+str(self.feature_structure[participant][i]["num_after_hint3"]))
+        out.write(","+str(self.feature_structure[participant][i]["num_erratic_hint_requests"]))
         out.write(","+str(self.feature_structure[participant][i]["average_attempts_before_hint1"]))
         out.write(","+str(self.feature_structure[participant][i]["average_time_until_hint1_normalized"]))
         out.write(","+str(self.feature_structure[participant][i]["average_problem_length"]))
