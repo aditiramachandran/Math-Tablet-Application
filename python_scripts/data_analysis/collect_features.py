@@ -96,35 +96,7 @@ class Analysis:
             exp_group = int(tokens[self.GROUP])
             self.groups[pid] = exp_group
         elif current_type == 'QUESTION':
-          if not hint1_flag and not problem_starttime == 0:
-            num_before_hint1 -= num_before_hint1_temp
-          elif restart_flag:
-            num_restarts_with_hint += 1
-
-          incorrect_flag = False
-          hint1_flag = False
-          hint2_flag = False
-          hint3_flag = False
-          attempt_flag = False
-          consec_attempts = 0
-          num_before_hint1_temp = 0
-
-          if problem_starttime == 0:
-            problem_starttime = current_timestamp
-          else:
-            if not restart_flag and time_until_hint1 != 0:
-              # print stuff out
-              problem_length = current_timestamp - problem_starttime
-              time_normalized = time_until_hint1 / problem_length.total_seconds()
-              time_normalized_sum += time_normalized
-            problem_starttime = current_timestamp
-            time_until_hint1 = 0
-
-          restart_flag = False
-          if restarted_on_question:
-            restart_flag = True
-            restarted_on_question = False
-
+          problem_starttime = current_timestamp
         elif current_type == 'INCORRECT':
           incorrect_flag = True
           num_incorrects += 1
@@ -201,6 +173,32 @@ class Analysis:
           else:
             num_before_hint1 += 1
             num_before_hint1_temp += 1
+
+        # reset everything
+        if current_type == 'CORRECT' or current_type == 'LAST INCORRECT':
+          if not hint1_flag:
+            num_before_hint1 -= num_before_hint1_temp
+          elif restart_flag:
+            num_restarts_with_hint += 1
+
+          incorrect_flag = False
+          hint1_flag = False
+          hint2_flag = False
+          hint3_flag = False
+          attempt_flag = False
+          consec_attempts = 0
+          num_before_hint1_temp = 0
+
+          if not restart_flag and time_until_hint1 != 0:
+            # print stuff out
+            problem_length = current_timestamp - problem_starttime  # fix me
+            time_normalized = time_until_hint1 / problem_length.total_seconds()
+            time_normalized_sum += time_normalized
+          problem_starttime = current_timestamp
+          time_until_hint1 = 0
+
+          restart_flag = False
+
 
     time_normalized_average = 0
     if num_problems_hint_received - num_restarts_with_hint > 0:
