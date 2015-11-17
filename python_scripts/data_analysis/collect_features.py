@@ -50,6 +50,7 @@ class Analysis:
     num_denied_hints = 0 #actually triggered for adaptive group
     num_auto_hints = 0 #actually triggered for adaptive group
     num_late_hints = 0 # number of hints 2 and 3
+    num_late_hints_no_restart = 0
     num_late_attempts = 0 # number of attempts between hints 1&2 and hints 2&3
     num_before_hint1 = 0
     num_before_hint2 = 0
@@ -70,8 +71,11 @@ class Analysis:
     time_until_hint1 = 0
     time_normalized_sum_hint1 = 0
     last_speech_timestamp = 0
+    last_hint_timestamp = 0
     total_problem_length = 0
     current_attempts_between_hints = 0 # reset every time a hint is requested
+    total_time_between_late_hints = 0
+    intermediate_time_between_late_hints = 0
 
     for line in session:
       tokens = line.strip().split(",")
@@ -131,17 +135,25 @@ class Analysis:
             hint2_flag = True
             num_hints_requested += 1
             num_late_hints += 1
+            if not restart_flag:
+              num_late_hints_no_restart += 1
             if tokens[self.OTHER_INFO] == 'automatic':
               num_auto_hints += 1
+            time_between_hints = current_timestamp - last_hint_timestamp
+            intermediate_time_between_late_hints += time_between_hints.total_seconds()
         elif current_type == 'HINT 3':
           if not hint3_flag:
             hint3_flag = True
             num_hints_requested += 1
             num_late_hints += 1
+            if not restart_flag:
+              num_late_hints_no_restart += 1
             if not attempt_flag:
               num_denied_hints += 1
             if tokens[self.OTHER_INFO].strip() == 'automatic':
               num_auto_hints += 1
+            time_between_hints = current_timestamp - last_hint_timestamp
+            intermediate_time_between_late_hints += time_between_hints.total_seconds()
         elif current_type == 'DENIED HINT':
           if not denied_flag:
             num_denied_hints += 1
@@ -156,6 +168,7 @@ class Analysis:
         if current_type == 'HINT 1' or current_type == 'HINT 2' or current_type == 'HINT 3':
           consec_attempts = 0
           current_attempts_between_hints = 0
+          last_hint_timestamp = current_timestamp
 
         if current_type == 'CORRECT' or current_type == 'INCORRECT' or current_type == 'LAST INCORRECT':
           current_attempts_between_hints += 1
@@ -198,6 +211,9 @@ class Analysis:
           if not restart_flag and time_until_hint1 != 0:
             time_normalized_hint1 = time_until_hint1 / problem_length.total_seconds()
             time_normalized_sum_hint1 += time_normalized_hint1
+            time_normalized_late = intermediate_time_between_late_hints / problem_length.total_seconds()
+            total_time_between_late_hints += time_normalized_late
+          intermediate_time_between_late_hints = 0
           time_until_hint1 = 0
 
           restart_flag = False
@@ -214,6 +230,10 @@ class Analysis:
     average_attempts_between_hints = 0
     if num_late_hints > 0:
       average_attempts_between_hints = float(num_late_attempts) / float(num_late_hints)
+
+    average_time_between_hints = 0
+    if num_late_hints_no_restart > 0:
+      average_time_between_hints = total_time_between_late_hints / float(num_late_hints_no_restart)
 
     print "pid,session:", pid, ",", session_num, " --> ", potential_auto_hints, ", ", num_auto_hints
     self.feature_structure[pid][session_num]["num_incorrects"] = num_incorrects
@@ -232,6 +252,7 @@ class Analysis:
     self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average_hint1
     self.feature_structure[pid][session_num]["average_problem_length"] = total_problem_length / self.num_questions_per_session
     self.feature_structure[pid][session_num]["average_attempts_between_hints"] = average_attempts_between_hints
+    self.feature_structure[pid][session_num]["average_time_between_hints_normalized"] = average_time_between_hints
     session.close()   
 
 
@@ -257,6 +278,7 @@ class Analysis:
       out.write(",average_time_until_hint1_normalized_S"+str(i))
       out.write(",average_problem_length_S"+str(i))
       out.write(",average_attempts_between_hints_S"+str(i))
+      out.write(",average_time_between_hints_normalized_S"+str(i))
     out.write("\n") 
     #print self.feature_structure
     for participant in self.feature_structure.keys():
@@ -281,6 +303,7 @@ class Analysis:
         out.write(","+str(self.feature_structure[participant][i]["average_time_until_hint1_normalized"]))
         out.write(","+str(self.feature_structure[participant][i]["average_problem_length"]))
         out.write(","+str(self.feature_structure[participant][i]["average_attempts_between_hints"]))
+        out.write(","+str(self.feature_structure[participant][i]["average_time_between_hints_normalized"]))
       out.write("\n")
     out.close()     
 
