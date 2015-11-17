@@ -68,6 +68,7 @@ class Analysis:
     time_until_hint1 = 0
     time_normalized_sum_hint1 = 0
     last_speech_timestamp = 0
+    total_problem_length = 0
 
     for line in session:
       tokens = line.strip().split(",")
@@ -179,9 +180,9 @@ class Analysis:
           consec_attempts = 0
           num_before_hint1_temp = 0
 
+          problem_length = last_speech_timestamp - problem_starttime
+          total_problem_length += problem_length.total_seconds()
           if not restart_flag and time_until_hint1 != 0:
-            # print stuff out
-            problem_length = last_speech_timestamp - problem_starttime
             time_normalized_hint1 = time_until_hint1 / problem_length.total_seconds()
             time_normalized_sum_hint1 += time_normalized_hint1
           time_until_hint1 = 0
@@ -212,6 +213,7 @@ class Analysis:
     self.feature_structure[pid][session_num]["num_after_hint3"] = num_after_hint3
     self.feature_structure[pid][session_num]["average_attempts_before_hint1"] = average_attempts_before_hint1
     self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average_hint1
+    self.feature_structure[pid][session_num]["average_problem_length"] = total_problem_length / self.num_questions_per_session
     session.close()   
 
 
@@ -235,6 +237,7 @@ class Analysis:
       out.write(",num_attempts_after_hint3_S"+str(i))
       out.write(",average_attempts_before_hint1_S"+str(i))
       out.write(",average_time_until_hint1_normalized_S"+str(i))
+      out.write(",average_problem_length_S"+str(i))
     out.write("\n") 
     #print self.feature_structure
     for participant in self.feature_structure.keys():
@@ -257,6 +260,7 @@ class Analysis:
         out.write(","+str(self.feature_structure[participant][i]["num_after_hint3"]))
         out.write(","+str(self.feature_structure[participant][i]["average_attempts_before_hint1"]))
         out.write(","+str(self.feature_structure[participant][i]["average_time_until_hint1_normalized"]))
+        out.write(","+str(self.feature_structure[participant][i]["average_problem_length"]))
       out.write("\n")
     out.close()     
 
