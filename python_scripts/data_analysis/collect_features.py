@@ -66,7 +66,7 @@ class Analysis:
     problem_starttime = 0
     num_restarts_with_hint = 0
     time_until_hint1 = 0
-    time_normalized_sum = 0
+    time_normalized_sum_hint1 = 0
     last_speech_timestamp = 0
 
     for line in session:
@@ -182,22 +182,21 @@ class Analysis:
           if not restart_flag and time_until_hint1 != 0:
             # print stuff out
             problem_length = last_speech_timestamp - problem_starttime
-            time_normalized = time_until_hint1 / problem_length.total_seconds()
-            time_normalized_sum += time_normalized
+            time_normalized_hint1 = time_until_hint1 / problem_length.total_seconds()
+            time_normalized_sum_hint1 += time_normalized_hint1
           time_until_hint1 = 0
 
           restart_flag = False
 
 
-    time_normalized_average = 0
+    time_normalized_average_hint1 = 0
     if num_problems_hint_received - num_restarts_with_hint > 0:
-      time_normalized_average = time_normalized_sum / (num_problems_hint_received - num_restarts_with_hint)
+      time_normalized_average_hint1 = time_normalized_sum_hint1 / (num_problems_hint_received - num_restarts_with_hint)
 
     average_attempts_before_hint1 = 0
     if num_problems_hint_received > 0:
       average_attempts_before_hint1 = float(num_before_hint1) / float(num_problems_hint_received)
 
-    #print "pid", pid, ": ", num_incorrects, ", ", num_corrects, ", ", num_corrects_first_try, ", ", num_corrects_first_try_no_hints, ", ", num_hints_requested, ", ", num_problems_hint_received
     print "pid,session:", pid, ",", session_num, " --> ", potential_auto_hints, ", ", num_auto_hints
     self.feature_structure[pid][session_num]["num_incorrects"] = num_incorrects
     self.feature_structure[pid][session_num]["num_corrects"] = num_corrects
@@ -212,7 +211,7 @@ class Analysis:
     self.feature_structure[pid][session_num]["num_before_hint3"] = num_before_hint3
     self.feature_structure[pid][session_num]["num_after_hint3"] = num_after_hint3
     self.feature_structure[pid][session_num]["average_attempts_before_hint1"] = average_attempts_before_hint1
-    self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average
+    self.feature_structure[pid][session_num]["average_time_until_hint1_normalized"] = time_normalized_average_hint1
     session.close()   
 
 
