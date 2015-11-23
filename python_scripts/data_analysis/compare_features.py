@@ -15,11 +15,12 @@ def main():
   if len(sys.argv) == 8:
     infile = open(sys.argv[1], 'r')
     outfile = open(sys.argv[2], 'w')
+    temp_file = open('tempfile99', 'w')
 
     session_flag = 0
     aggregate_flag = 0
     control_flag = 0
-    col3_flag = 0
+    num_compares = 0
     colnums = []
     try:
       session_flag = int(sys.argv[3])
@@ -41,7 +42,7 @@ def main():
       assert num_cols == num_compares * NUM_SESSIONS
 
     # contains sum totals of values across 4 sessions
-    # only used if aggregate_flag == 1 or aggregate_flag == 2
+    # only used if aggregate_flag == 0 or aggregate_flag == 1
     control_vals = num_cols * [0] 
     adapt_vals = num_cols * [0]
     aggregate_vals = num_cols * [0]
@@ -54,19 +55,28 @@ def main():
         pass
       # remove bad participants
       elif participant_number != 19 and participant_number != 20 and participant_number != 22 and (participant_number != 3 or session_flag == 1):
-        # taking the aggregate of each row
-        if aggregate_flag == 0 or aggregate_flag == 1:
-          pass
-        # outputting each individual row
-        elif aggregate_flag == 2:
-          if control_flag == 0:
-            # write only session 1 columns
-            if session_flag == 0 or session_flag == 1:
+        if control_flag == 0:
+          # taking the aggregate of each row
+          if aggregate_flag == 0 or aggregate_flag == 1:
+            pass # add up aggregate_vals
+          # outputting each individual row
+          elif aggregate_flag == 2:
+            # writes column values in order specified
+            for i in range(num_compares):
+              outfile.write(tokens[colnums[i]] + ',')
+            outfile.write('\n')
+        elif control_flag == 1: # separate out into adapt/control group
+          if aggregate_flag == 0 or aggregate_flag == 1:
+            pass # add up control_vals and adapt_vals
+          elif aggregate_flag == 2:
+            if tokens[1] == '0': # control group
               for i in range(num_compares):
                 outfile.write(tokens[colnums[i]] + ',')
               outfile.write('\n')
-            # analysis for all 4 sessions
-            #elif session_flag == 2:
+            elif tokens[1] == '1': # adapt group
+              for i in range(num_compares):
+                temp_file.write(tokens[colnums[i]] + ',')
+              temp_file.write('\n')
                
           # find total denied/auto hints and writes
           #else:
@@ -96,7 +106,14 @@ def main():
     #  for i in range(8):
     #    outfile.write(str(adapt_vals[i]) + ',')
     #  outfile.write('\n')
+    if control_flag == 1:
+      temp_file = open('tempfile99', 'r')
+      outfile.write('\n')
+      for t in temp_file:
+        outfile.write(t)
+      os.remove('tempfile99')
 
+      
   else:
     print 'usage: python compare_features.py <input csv> <output csv> <flag 1> <flag 2> <flag 3> <[colnums]>'
 
