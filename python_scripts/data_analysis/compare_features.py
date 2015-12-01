@@ -61,7 +61,7 @@ def main():
           # outputting each individual row
           if aggregate_flag == 0:
             # writes column values in order specified
-            for i in range(num_cols):
+            for i in range(num_cols_total):
               outfile.write(tokens[colnums[i]] + ',')
             outfile.write('\n')
           # taking the aggregate of each row
