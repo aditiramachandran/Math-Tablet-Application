@@ -1,7 +1,7 @@
 # compares two features using a very specific set of flags
 # designed to take in the output of collect_features.py
 # flag 1 denotes that we extract only session 1 data rather than all sessions (0 for session1, 1 for session1 including participant3, 2 for all sessions)
-# flag 2 denotes that we take the aggregate of a column rather than each individual column - 0 for individual consideration, 1 for sum, and 2 for average
+# flag 2 denotes which averages to take - 0 for individual consideration, 1 for sum down columns, 2 for average down columns, 3 for sum down rows, 4 for average down rows
 # flag 3 denotes that we separate data by session and group (0 for nothing, 1 for separation of control/adapt (for two separate graphs))
 # colnums denotes which columns to use - a comma separated array of column numbers used
 # usage: python compare_features.py <input csv> <output csv> <flag 1> <flag 2> <flag 3> <[colnums]>
@@ -68,6 +68,17 @@ def main():
           elif aggregate_flag == 1 or aggregate_flag == 2:
             for i in range(num_cols_total):
               control_vals[i] += float(tokens[colnums[i]])
+          elif aggregate_flag == 3 or aggregate_flag == 4:
+            container = num_cols * [0]
+            for i in range(num_cols_total):
+              container[i % num_cols] += float(tokens[colnums[i]])
+            for i in range(num_cols):
+              if aggregate_flag == 3:
+                outfile.write(str(container[i]) + ',')
+              elif aggregate_flag == 4:
+                outfile.write(str(container[i] / float(NUM_SESSIONS)) + ',')
+            outfile.write('\n')
+              
         elif control_flag == 1: # separate out into adapt/control group
           if aggregate_flag == 0:
             if tokens[1] == '0': # control group
