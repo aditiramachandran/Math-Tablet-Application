@@ -1,4 +1,3 @@
-# compares two features using a very specific set of flags
 # designed to take in the output of collect_features.py
 # flag 1 denotes that we extract only session 1 data rather than all sessions (0 for session1, 1 for session1 including participant3, 2 for all sessions)
 # flag 2 denotes which averages to take - 0 for individual consideration, 1 for sum down columns, 2 for average down columns, 3 for sum down rows, 4 for average down rows
