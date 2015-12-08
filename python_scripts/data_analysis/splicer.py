@@ -37,13 +37,16 @@ def main():
         if ((deletion_flag == 2) or (i != 19 and i != 20 and i != 22 and (i != 3 or deletion_flag == 1))):
           tokens = info[i].strip().split(",")
           for j in colnums:
-            data[dindex] += str(tokens[j]) + ','
+            if j == 19:
+              data[dindex] += str(float(tokens[j]) * 10) + ','
+            else:
+              data[dindex] += str(tokens[j]) + ','
           dindex += 1
 
       index += 2
 
     outfile = open(sys.argv[3], 'w')
-    outfile.writelines([x + '\n' for x in data])
+    outfile.writelines([x[:-1] + '\n' for x in data])
   else:
     print "usage: python compare_features.py <output csv> [<input csv> <column number>]*"
 
