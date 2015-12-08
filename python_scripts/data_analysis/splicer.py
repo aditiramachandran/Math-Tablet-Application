@@ -37,10 +37,7 @@ def main():
         if ((deletion_flag == 2) or (i != 19 and i != 20 and i != 22 and (i != 3 or deletion_flag == 1))):
           tokens = info[i].strip().split(",")
           for j in colnums:
-            if j == 19:
-              data[dindex] += str(float(tokens[j]) * 10) + ','
-            else:
-              data[dindex] += str(tokens[j]) + ','
+            data[dindex] += str(tokens[j]) + ','
           dindex += 1
 
       index += 2
