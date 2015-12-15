@@ -45,7 +45,7 @@ def main():
     outfile = open(sys.argv[3], 'w')
     outfile.writelines([x[:-1] + '\n' for x in data])
   else:
-    print "usage: python compare_features.py <output csv> [<input csv> <column number>]*"
+    print "usage: python splicer.py <flag 1> <flag 2> <output csv> [<input csv> <[column number(s)]>]*"
 
 if __name__ == "__main__": 
   main()
