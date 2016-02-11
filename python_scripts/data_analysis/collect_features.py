@@ -74,12 +74,15 @@ class Analysis:
     consec_attempts = 0
     problem_starttime = 0
     num_restarts_with_hint = 0
+    num_give_up = 0
+    num_give_up_last_hint = 0
     time_until_hint1 = 0
     time_until_attempt1_sum = 0
     time_sum_hint1 = 0
     time_normalized_sum_hint1 = 0
     last_speech_timestamp = 0
     last_hint_timestamp = 0
+    last_attempt_timestamp = 0
     total_problem_length = 0
     total_problem_time = 0
     current_attempts_between_hints = 0 # reset every time a hint is requested
@@ -184,6 +187,18 @@ class Analysis:
           consec_attempts = 0
           current_attempts_between_hints = 0
           last_hint_timestamp = current_timestamp
+
+        if current_type == 'INCORRECT' or current_type == 'LAST INCORRECT':
+          if not first_attempt_flag:
+            last_attempt_timestamp = current_timestamp
+          else:
+            time_between_attempts = current_timestamp - last_attempt_timestamp
+            time_between_attempts = time_between_attempts.total_seconds()
+            if time_between_attempts < 20:
+              num_give_up += 1
+              if hint3_flag:
+                num_give_up_last_hint += 1
+            last_attempt_timestamp = current_timestamp
 
         if current_type == 'CORRECT' or current_type == 'INCORRECT' or current_type == 'LAST INCORRECT':
           if not first_attempt_flag:
@@ -308,6 +323,8 @@ class Analysis:
     self.feature_structure[pid][session_num]["average_time_between_hints_normalized"] = average_time_between_hints
     self.feature_structure[pid][session_num]["average_num_hints_until_correct"] = average_num_hints_until_correct
     self.feature_structure[pid][session_num]["average_num_attempts_until_correct"] = average_num_attempts_until_correct
+    self.feature_structure[pid][session_num]["num_give_up"] = num_give_up
+    self.feature_structure[pid][session_num]["num_give_up_last_hint"] = num_give_up_last_hint
     session.close()   
 
 
@@ -339,6 +356,8 @@ class Analysis:
       out.write(",average_time_between_hints_normalized_S"+str(i))
       out.write(",average_num_hints_until_correct_S"+str(i))
       out.write(",average_num_attempts_until_correct_S"+str(i))
+      out.write(",num_give_up_S"+str(i))
+      out.write(",num_give_up_last_hint_S"+str(i))
     out.write("\n") 
     #print self.feature_structure
     for participant in self.feature_structure.keys():
@@ -369,6 +388,8 @@ class Analysis:
         out.write(","+str(self.feature_structure[participant][i]["average_time_between_hints_normalized"]))
         out.write(","+str(self.feature_structure[participant][i]["average_num_hints_until_correct"]))
         out.write(","+str(self.feature_structure[participant][i]["average_num_attempts_until_correct"]))
+        out.write(","+str(self.feature_structure[participant][i]["num_give_up"]))
+        out.write(","+str(self.feature_structure[participant][i]["num_give_up_last_hint"]))
       out.write("\n")
     out.close()     
 
