@@ -18,6 +18,8 @@ from naoqi import ALBehavior
 
 from tutorMotions import *
 
+import json
+
 class TutoringSession:
     def __init__(self, host, port, goNao):
         self.host = host
@@ -32,6 +34,9 @@ class TutoringSession:
         self.sessionNum = -1
         self.expGroup = -1
         self.logFile = None
+
+        # holds profile data for 'this' user
+        self.profile = {}
 
     def log_answer(self,history,q_type,answer,correct):
         history.write("Type: %d, Answered: %s, %s\n"%(q_type,answer,correct))
@@ -83,6 +88,36 @@ class TutoringSession:
         transaction += otherInfo #should only have something for some msgTypes
         self.logFile.write(transaction+"\n")
         self.logFile.flush()
+
+    def store_profile(self, data):
+        '''
+        Appends profile data to file for storage
+        '''
+
+        with open('sample_person_data.txt', 'a') as outfile:
+            json.dump(data, outfile)
+
+        return
+
+
+    def load_profile(self, data):
+        '''
+        Loads (most recent) profile data from file for user
+        Returns data
+        '''
+
+        with open('data.json') as data_file:
+            data = json.load(data_file)
+
+        return data
+
+
+    def update_profile(self, data):
+        '''
+        Updates 
+        '''
+
+
 
     #def tutor(history, data, categ):
     def tutor(self,categ):
@@ -405,7 +440,7 @@ def main():
         TCP_PORT = int(sys.argv[2])
         if len(sys.argv) == 4:
             if sys.argv[3]=='-robot':
-                useRobot = True 
+                useRobot = True
     
     if useRobot:
         #Get the Nao's IP from file
