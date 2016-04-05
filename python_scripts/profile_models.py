@@ -66,8 +66,7 @@ class Question:
         Handles case when question answered correctly
         '''
 
-        self.__elapsed_time = time.time()
-        time_diff = self.__elapsed_time - self.__start_time
+        time_diff = self.time_step()
 
         self.attempt_times[self.attempts] = time_diff
         self.attempts += 1
@@ -85,8 +84,7 @@ class Question:
             last: Boolean representing whether or not this is the "last" incorrect allowed
         '''
 
-        self.__elapsed_time = time.time()
-        time_diff = self.__elapsed_time - self.__start_time
+        time_diff = self.time_step()
 
         self.attempt_times[self.attempts] = time_diff
         self.attempts += 1
@@ -96,6 +94,24 @@ class Question:
             self.correct = False  # just to make sure
 
             self.complete()
+
+    def hint(self):
+        '''
+        Handles case when hint is requested
+        '''
+
+        time_diff = self.time_step()
+
+        self.hint_times[self.hints] = time_diff
+        self.hints += 1
+
+    def time_step(self):
+        '''
+        Updates __elapsed_time
+        Returns Float representing (ms) difference between __elapsed_time and __start_time
+        '''
+        self.__elapsed_time = time.time()
+        return self.__elapsed_time - self.__start_time
 
     def complete(self):
         '''

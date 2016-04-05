@@ -124,23 +124,17 @@ class TutoringSession:
         question_data = {}
         english_msg_type = self.map_msg_type(msgType)
         if msgType == 'Q':
-            self.__current_question = Question()
+            self.__current_question = Question(question_num=questionNum)
         elif msgType == 'CA':
             self.__current_question.correct()
-
-            # append question to session (will be thrown out in __current_question on next iteration)
-            self.current_session.append(copy.deepcopy(self.__current_question))  
-            __correct() # = 'CORRECT'
+            self.current_session.append(copy.deepcopy(self.__current_question))
         elif msgType == 'IA':
-            __incorrect()# = 'INCORRECT'
+            self.__current_question.incorrect(last=False)
         elif msgType == 'LIA':
-            __last_incorrect()# = 'LAST INCORRECT'
-        elif msgType == 'H1':
-            __hint(1)# = 'HINT 1'
-        elif msgType == 'H2':
-            __hint(2)# = 'HINT 2'
-        elif msgType == 'H3':
-            __hint(3)# = 'HINT 3'
+            self.__current_question.incorrect(last=True)
+            self.current_session.append(copy.deepcopy(self.__current_question))
+        elif msgType == 'H1' or msgType == 'H2' or msgType == 'H3':
+            self.__current_question.hint()
         elif msgType == 'AH':
             __special(msgType) # = 'AUTOMATIC HINT'
         elif msgType == 'DH':
