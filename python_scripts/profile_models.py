@@ -29,24 +29,25 @@ class Question:
         attempts: Integer representing number of attempts made at question (max 5)
         hints: Integer representing number of hints given (max 3)
         correct: Boolean representing whether or not question was eventually answered correctly
-        total_time: Float representing total time, in seconds, that was spent on question
+        total_time: Float representing total time, in ms, that was spent on question
         hint_times: Array of Floats representing time (from start) when hint was given
             Note: -1 means that hint was not given
             [24.3, 59.6, -1]:
-                hint1 given 24.3 seconds after start
-                hint2 given 59.6 seconds after start
+                hint1 given 24.3 ms after start
+                hint2 given 59.6 ms after start
                 hint3 not given
         attempt_times: Array of Floats representing time (from start) when attempt was made
             Note: -1 means that attempt was never made
             [35.4, 75.1, -1, -1, -1]:
-                attempt1 made 35.4 seconds after start
-                attempt2 made 75.1 seconds after start
+                attempt1 made 35.4 ms after start
+                attempt2 made 75.1 ms after start
                 attempt3/4/5 never made
-
-
     '''
+    MAX_HINTS = 3
+    MAX_ATTEMPTS = 5
+
     def __init__(self, question_num=-1, attempts=0, hints=0, correct=False,
-                 total_time=0.0, hint_times=[], attempt_times=[]):
+                 total_time=0.0, hint_times=[], attempt_times=[], complete=False):
         self.question_num = question_num
         self.attempts = attempts
         self.hints = hints
@@ -54,42 +55,57 @@ class Question:
         self.total_time = total_time
         self.hint_times = hint_times
         self.attempt_times = attempt_times
+        self.complete = complete
 
         # private vars for internal use
         self.__start_time = time.time()
         self.__elapsed_time = time.time()
 
-
-    def question(self):
-
-    def event_handler(self, msg_type, ):
+    def correct(self):
         '''
-        Handles question events and calls appropriate method
+        Handles case when question answered correctly
         '''
 
-        if msgType == 'Q':
-             self.__question() # = 'QUESTION'
-        elif msgType == 'CA':
-             self.__correct() # = 'CORRECT'
-        elif msgType == 'IA':
-             self.__incorrect()# = 'INCORRECT'
-        elif msgType == 'LIA':
-             self.__last_incorrect()# = 'LAST INCORRECT'
-        elif msgType == 'H1':
-             self.__hint(1)# = 'HINT 1'
-        elif msgType == 'H2':
-             self.__hint(2)# = 'HINT 2'
-        elif msgType == 'H3':
-             self.__hint(3)# = 'HINT 3'
-        elif msgType == 'AH':
-             self.__special(msgType) # = 'AUTOMATIC HINT'
-        elif msgType == 'DH':
-             self.__special(msgType) # = 'DENIED HINT'
-        elif msgType == 'RS':
-             # = 'ROBOT SPEECH'
-        elif msgType == 'RA':
-             # = 'ROBOT ACTION'
-        else:
+        self.__elapsed_time = time.time()
+        time_diff = self.__elapsed_time - self.__start_time
 
-        return
+        self.attempt_times[self.attempts] = time_diff
+        self.attempts += 1
 
+        self.total_time = time_diff
+        self.correct = True
+
+        self.complete()
+
+    def incorrect(self, last=False):
+        '''
+        Handles case when question answered incorrectly
+
+        Parameters:
+            last: Boolean representing whether or not this is the "last" incorrect allowed
+        '''
+
+        self.__elapsed_time = time.time()
+        time_diff = self.__elapsed_time - self.__start_time
+
+        self.attempt_times[self.attempts] = time_diff
+        self.attempts += 1
+
+        if (last):
+            self.total_time = time_diff
+            self.correct = False  # just to make sure
+
+            self.complete()
+
+    def complete(self):
+        '''
+        Called when question is complete to perform cleanup operations
+        '''
+
+        while len(self.hint_times) < self.MAX_HINTS:
+            self.hint_times.append(-1)
+
+        while len(self.attempt_times) < self.MAX_ATTEMPTS:
+            self.hint_times.append(-1)
+
+        self.complete = True
