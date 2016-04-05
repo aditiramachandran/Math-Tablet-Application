@@ -19,6 +19,8 @@ from naoqi import ALBehavior
 from tutorMotions import *
 
 import json
+from profile_models import Question, Session
+import copy
 
 class TutoringSession:
     def __init__(self, host, port, goNao):
@@ -35,8 +37,9 @@ class TutoringSession:
         self.expGroup = -1
         self.logFile = None
 
-        # holds profile data for 'this' user
-        self.profile = {}
+        # holds session data for 'this' user
+        self.__current_question = None
+        self.current_session = None  # will be initialized when START message parsed
 
     def log_answer(self,history,q_type,answer,correct):
         history.write("Type: %d, Answered: %s, %s\n"%(q_type,answer,correct))
@@ -89,9 +92,11 @@ class TutoringSession:
         self.logFile.write(transaction+"\n")
         self.logFile.flush()
 
-    def store_profile(self, data):
+        self.update_session(msgType, questionNum, otherInfo)
+
+    def store_session(self, data):
         '''
-        Appends profile data to file for storage
+        Appends session data to file for storage
         '''
 
         with open('sample_person_data.txt', 'a') as outfile:
@@ -100,9 +105,9 @@ class TutoringSession:
         return
 
 
-    def load_profile(self, data):
+    def load_session(self, data):
         '''
-        Loads (most recent) profile data from file for user
+        Loads (most recent) session data from file for user
         Returns data
         '''
 
@@ -112,11 +117,43 @@ class TutoringSession:
         return data
 
 
-    def update_profile(self, data):
+    def update_session(self, msgType, questionNum, otherInfo):
         '''
-        Updates 
+        Updates session data given interaction
         '''
+        question_data = {}
+        english_msg_type = self.map_msg_type(msgType)
+        if msgType == 'Q':
+            self.__current_question = Question()
+        elif msgType == 'CA':
+            self.__current_question.correct()
 
+            # append question to session (will be thrown out in __current_question on next iteration)
+            self.current_session.append(copy.deepcopy(self.__current_question))  
+            __correct() # = 'CORRECT'
+        elif msgType == 'IA':
+            __incorrect()# = 'INCORRECT'
+        elif msgType == 'LIA':
+            __last_incorrect()# = 'LAST INCORRECT'
+        elif msgType == 'H1':
+            __hint(1)# = 'HINT 1'
+        elif msgType == 'H2':
+            __hint(2)# = 'HINT 2'
+        elif msgType == 'H3':
+            __hint(3)# = 'HINT 3'
+        elif msgType == 'AH':
+            __special(msgType) # = 'AUTOMATIC HINT'
+        elif msgType == 'DH':
+            __special(msgType) # = 'DENIED HINT'
+        elif msgType == 'RS':
+            # = 'ROBOT SPEECH'
+        elif msgType == 'RA':
+            # = 'ROBOT ACTION'
+        else:
+        self.session[questionNum] = {}
+
+
+        return
 
 
     #def tutor(history, data, categ):
@@ -190,7 +227,10 @@ class TutoringSession:
                         #do intro depending on the sessionNum
                         if self.goNao is not None:
                             introFlag = True
-                            id = self.goNao.session_intro(int(self.sessionNum))     
+                            id = self.goNao.session_intro(int(self.sessionNum))
+
+                        #create appropriate session object
+                        self.current_session = Session(pid=self.pid, sessionNum=self.sessionNum)    
 
                     elif msgType == 'Q': #question
                         self.numQuestions += 1
