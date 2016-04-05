@@ -1,4 +1,5 @@
 import time
+import pformat
 
 
 class Session:
@@ -125,3 +126,8 @@ class Question:
             self.hint_times.append(-1)
 
         self.complete = True
+
+    def __repr__(self):
+        return "Question(q_num=%r, attempts=%r, hints=%r, correct=%r, total_time=%r, complete=%r, \\\nhint_times=%s, attempt_times=%s)" % \
+            (self.question_num, self.attempts, self.hints, self.correct, self.total_time, self.complete,
+             pformat(list(self.hint_times)), pformat(list(self.attempt_times)))
