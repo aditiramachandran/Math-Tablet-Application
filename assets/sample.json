@@ -1,0 +1,106 @@
+[
+  {
+  	"Question" : "Scale up to find a fraction equivalent to 4/5 with the denominator 15.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to four-fifths with the denominator 15.",
+  	"Type" : "Scaling Up",
+  	"Difficulty Level" : 1,
+  	"Format" : "fraction",
+  	"Number of Text Boxes" : 2,
+  	"Answer" :
+  	{
+         "Numerator" : 12,
+  		 "Denominator" : 15
+  	},
+  	"Number of Hints" : 3,
+  	"Hints" :
+  	{
+  	     "Hint1" : "For example, 2/3 can scale up to the fraction 6/9.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 4/5 by 3."
+  	}
+  },
+
+  {
+    "Question" : "Scale up to find a fraction equivalent to 1/7 with the denominator 21.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to one-seventh with the denominator 21.",
+    "Type" : "Scaling Up",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Number of Text Boxes" : 2,
+    "Answer" :
+    {
+         "Numerator" : 3,
+         "Denominator" : 21
+    },
+    "Number of Hints" : 3,
+    "Hints" :
+    {
+         "Hint1" : "For example, 2/3 can scale up to the fraction 6/9.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 1/7 by 3."
+    }
+  },
+
+  {
+    "Question" : "Scale up to find a fraction equivalent to 3/8 with the denominator 32.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to three-eighths with the denominator 32.",
+    "Type" : "Scaling Up",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Number of Text Boxes" : 2,
+    "Answer" :
+    {
+         "Numerator" : 12,
+         "Denominator" : 32
+    },
+    "Number of Hints" : 3",
+    "Hints" :
+    {
+         "Hint1" : "For example, 2/3 can scale up to the fraction 6/9.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 3/8 by 4."
+    }
+  },
+
+  {
+    "Question" : "Scale up to find a fraction equivalent to 2/5 with the denominator 20.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to two-fifths with the denominator 20.",
+    "Type" : "Scaling Up",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Number of Text Boxes" : 2,
+    "Answer" :
+    {
+         "Numerator" : 8,
+         "Denominator" : 20
+    },
+    "Number of Hints" : 3,
+    "Hints" :
+    {
+         "Hint1" : "For example, 2/3 can scale up to the fraction 6/9.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 2/5 by 4."
+    }
+  },
+
+  {
+    "Question" : "Scale up to find a fraction equivalent to 4/9 with the denominator 63.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to four-ninths with the denominator 63.",
+    "Type" : "Scaling Up",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Number of Text Boxes" : 2,
+    "Answer" :
+    {
+         "Numerator" : 28,
+         "Denominator" : 63
+    },
+    "Number of Hints" : 3,
+    "Hints" :
+    {
+         "Hint1" : "For example, 2/3 can scale up to the fraction 6/9.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 4/9 by 7."
+    }
+  }
+]

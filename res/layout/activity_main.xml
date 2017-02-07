@@ -2,15 +2,175 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:paddingBottom="@dimen/keyboard_padding"
+    android:paddingLeft="@dimen/keyboard_padding"
+    android:paddingRight="@dimen/keyboard_padding"
+    android:paddingTop="0dp"
+    tools:context=".MainActivity"
+    android:background="@color/math_background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:weightSum="1"
+        android:id="@+id/linearlayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Math Problem"
+            android:id="@+id/TitleLabel"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:textSize="40dp" />
+
+        <com.priyanka.AutoResizeTextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="50sp"
+            android:text="X + Y ="
+            android:id="@+id/QuestionLabel"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal" />
+
+        <com.priyanka.NoImeEditText
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:digits="1234567890"
+            android:ems="10"
+            android:id="@+id/editText1"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="3dp"
+            android:hint="Answer"
+            android:textSize="30dp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:id="@+id/fractionLine"
+            android:layout_width="144dp"
+            android:layout_height="3dip"
+            android:background="#ff3b3b3b"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="10dp"
+            android:autoText="true" />
+
+        <com.priyanka.NoImeEditText
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:digits="1234567890"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:hint="Answer"
+            android:textSize="30dp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/RightWrongLabel"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:text="Correct / Incorrect "
+            android:layout_gravity="center_horizontal"
+            android:gravity="center" />
+
+        <android.inputmethodservice.KeyboardView
+            android:shadowRadius="0.0"
+            android:id="@+id/keyboardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/math_background"
+            android:keyBackground="@drawable/key_drawable"
+            android:keyTextColor="@color/key_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp" />
+
+        <Button
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/AnswerButton"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            android:onClick="AnswerButtonPress"
+            android:ellipsize="middle"
+            android:layout_weight="0.05"
+            android:background="@drawable/key_drawable"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ask the Robot for Help"
+            android:id="@+id/textView3"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:textSize="30dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12"
+            android:id="@+id/hintlayout"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:text="Request Hint 1"
+                android:id="@+id/hint1"
+                android:textSize="30dp"
+                android:background="@drawable/hint_drawable"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:onClick="HintPressed" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:text="Request Hint 2"
+                android:id="@+id/hint2"
+                android:textSize="30dp"
+                android:background="@drawable/hint_drawable"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:onClick="HintPressed" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:text="Request Hint 3"
+                android:id="@+id/hint3"
+                android:textSize="30dp"
+                android:background="@drawable/repeat_drawable"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:onClick="HintPressed" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,0 +1,209 @@
+[
+  {
+    "Question" : "Scale up to find a fraction equivalent to 3/11 with the denominator 99.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to three-elevenths with the denominator 99.",
+    "Type" : "Scaling Up",
+    "Spoken Type" : "scaling up",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 27,
+         "Denominator" : 99
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/4 can scale up to the fraction 3/12.",
+         "Spoken Hint1" : "For example, one-fourth can scale up to the fraction three-twelfths.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 3/11 by 9.",
+         "Spoken Hint3" : "Try multiplying the numerator and denominator of three-elevenths by 9."
+    },
+    "Spoken Answer" : "The correct answer is twenty-seven-ninety-ninths.",
+    "Written Explanation" : "For this problem, you multiply the numerator 3 and the denominator 11 of the fraction by 9 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "For this problem, you multiply the numerator 3 and the denominator 11 of the fraction by 9 to get the equivalent fraction, which gives you the answer."
+  },
+
+  {
+    "Question" : "Scale down to find the simplest fraction equivalent to 36/81.",
+    "Spoken Question" : "Scale down to find the simplest fraction equivalent to thirty-six-eighty-firsts.",
+    "Type" : "Scaling Down",
+    "Spoken Type" : "scaling down",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 4,
+         "Denominator" : 9
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 5/10 can scale down to the simplest fraction 1/2.",
+         "Spoken Hint1" : "For example, five-tenths can scale down to the simplest fraction one-half.",
+         "Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
+         "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
+         "Hint3" : "Try dividing the numerator and denominator of 36/81 by 9.",
+         "Spoken Hint3" : "Try dividing the numerator and denominator of thirty-six-eighty-firsts by 9."
+    },
+    "Spoken Answer" : "The correct answer is four-ninths.",
+    "Written Explanation" : "To do this problem, you divide the numerator 36 and the denominator 81 each by 9. This gives you the simplest fraction.",
+    "Spoken Explanation" : "To do this problem, you divide the numerator 36 and the denominator 81 each by 9. This gives you the simplest fraction."
+  },
+
+  {
+    "Question" : "Find the least common denominator of 5/7 and 3/4.",
+    "Spoken Question" : "Find the least common denominator of five-sevenths and three-fourths.",
+    "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
+    "Difficulty Level" : 1,
+    "Format" : "value",
+    "Answer" :
+    {
+         "Value" : 28
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, the common denominator of 1/2 and 1/4 is 4.",
+         "Spoken Hint1" : "For example, the common denominator of one-half and one-fourth is 4.",
+         "Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, ... and the multiples of 4 are 4, 8, 12, ... Where do the two lists match up?",
+         "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 7 are 7, 14, 21, and so on, and the multiples of 4 are 4, 8, 12, and so on. Where do the two lists match up?"
+    },
+    "Spoken Answer" : "The correct answer is 28.",
+    "Written Explanation" : "When you list the multiples of the denominators, 7 and 4, the two lists first match up at the number 28, meaning that this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 7 and 4, the two lists first match up at the number 28, meaning that this is the least common denominator of the two fractions."
+  },
+
+  {
+    "Question" : "Convert the mixed number 5 1/2 to an improper fraction.",
+    "Spoken Question" : "Convert the mixed number five and one-half to an improper fraction.",
+    "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 11,
+         "Denominator" : 2
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1 1/3 can be converted to the improper fraction 4/3.",
+         "Spoken Hint1" : "For example, one and one-third can be converted to the improper fraction four-thirds.",
+         "Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
+         "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
+         "Hint3" : "After multiplying the denominator and whole number, add that to the numerator. That number becomes the numerator of your answer.",
+         "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator. That number becomes the numerator of your answer."
+    },
+    "Spoken Answer" : "The correct answer is eleven-halves.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 2 by the whole number 5 and add this to the numerator 1. 2 times 5 plus 1 is 11. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 2 by the whole number 5 and add this to the numerator 1. 2 times 5 plus 1 is 11. The denominator stays the same."
+  },
+
+  {
+    "Question" : "In Charlie's closet, 1/5 of the clothes are black and 3/5 of the clothes are white. What fraction of the clothes are either black of white?",
+    "Spoken Question" : "In Charlie's closet, one-fifth of the clothes are black and three-fifths of the clothes are white. What fraction of the clothes are either black or white?",
+    "Type" : "Adding Like Denominators Word Problem",
+    "Spoken Type" : "adding fractions with the same denominator",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 4,
+         "Denominator" : 5
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 2/8 + 5/8 = 7/8.",
+         "Spoken Hint1" : "For example, two-eighths plus five-eighths equals seven-eighths.",
+         "Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
+         "Spoken Hint2" : "In order to add two fractions, should you add the numerators or the denominators?",
+         "Hint3" : "Add the numerators of the two fractions. Remember, the denominator should not change.",
+         "Spoken Hint3" : "Add the numerators of the two fractions. Remember, the denominator should not change."
+    },
+    "Spoken Answer" : "The correct answer is four-fifths.",
+    "Written Explanation" : "This is an addition problem, because we want to know the total fraction of clothes. Since the two fractions have the same denominator, you need to add the numerators 1 and 3, and keep the denominator 5 the same, to get the answer.",
+    "Spoken Explanation" : "This is an addition problem, because we want to know the total fraction of clothes. Since the two fractions have the same denominator, you need to add the numerators 1 and 3, and keep the denominator 5 the same, to get the answer."
+  },
+
+  {
+    "Question" : "16/24 - 11/24 = ",
+    "Spoken Question" : "What is sixteen-twenty-fourths minus eleven-twenty-fourths?",
+    "Type" : "Subtracting Like Denominators",
+    "Spoken Type" : "subtracting fractions with the same denominator",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 5,
+         "Denominator" : 24
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 3/4 - 2/4 = 1/4.",
+         "Spoken Hint1" : "For example, three-fourths minus two-fourths equals one-fourth.",
+         "Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator should not change.",
+         "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator should not change."
+    },
+    "Spoken Answer" : "The correct answer is five-twenty-fourths.",
+    "Written Explanation" : "The two fractions have the same denominator, so you need to subtract the numerators, 16 and 11, and keep the denominator 24 the same.",
+    "Spoken Explanation" : "The two fractions have the same denominator, so you need to subtract the numerators, 16 and 11, and keep the denominator 24 the same."
+  },
+
+  {
+    "Question" : "2/7 + 1/6 = ",
+    "Spoken Question" : "What is two-sevenths plus one-sixth?",
+    "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 19,
+         "Denominator" : 42
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 + 1/3 = 5/6. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half plus one-third equals five-sixths. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 42. Now, you need to scale up both fractions so they have the denominator 42.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 42. Now, you need to scale up both fractions so they have the denominator 42.",
+         "Hint3" : "Multiply the numerator and denominator of 2/7 by 6, and the numerator and denominator of 1/6 by 7, to get equivalent fractions with the denominator 42. Then you can add the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of two-sevenths by 6, and the numerator and denominator of one-sixth by 7, to get equivalent fractions with the denominator 42. Then you can add the numerators!"
+    },
+    "Spoken Answer" : "The correct answer is nineteen-forty-seconds.",
+    "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 42. 2/7 can be written as 12/42, and 1/6 can be written as 7/42. Then, 12/42 + 7/42 gives you the answer.",
+    "Spoken Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 42. Two-sevenths can be written as twelve-forty-seconds, and one-sixth can be written as seven-forty-seconds. Then, twelve-forty-seconds plus seven-forty-seconds gives you the answer."
+  },
+
+  {
+    "Question" : "2 6/7 - 1 2/3 = 
+    Write your answer as an improper fraction in lowest terms.",
+    "Spoken Question" : "What is two and six-sevenths minus one and two-thirds? Write your answer as an improper fraction in lowest terms.",
+    "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fractions with different denominators",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 25,
+         "Denominator" : 21
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "First deal with the fractions, then worry about the whole numbers. The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Spoken Hint2" : "First deal with the fractions, then worry about the whole numbers. The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Hint3" : "Multiply the numerator and denominator of 6/7 by 3, and the numerator and denominator of 2/3 by 7, to get equivalent fractions with the denominator 21. Once you subtract the fractions and whole numbers, remember that your answer should be an improper fraction.",
+         "Spoken Hint3" : "Multiply the numerator and denominator of six-sevenths by 3, and the numerator and denominator of two-thirds by 7, to get equivalent fractions with the denominator 21. Once you subtract the fractions and whole numbers, remember that your answer should be an improper fraction."
+    },
+    "Spoken Answer" : "The correct answer is twenty-five-twenty-firsts.",
+    "Written Explanation" : "The two fractions have different denominators, and their common denominator is 21. 6/7 can be written as 18/21, and 2/3 can be written as 14/21. Then, 2 18/21 - 1 14/21 gives you 1 4/21, which is equal to the improper fraction 25/21.",
+    "Spoken Explanation" : "The two fractions have different denominators, and their common denominator is 21. Six-sevenths can be written as eighteen-twenty-firsts, and two-thirds can be written as fourteen-twenty-firsts. Then, two and eighteen-twenty-firsts minus one and fourteen-twenty-firsts gives you one and four-twenty-firsts, which is equal to the improper fraction twenty-five-twenty-firsts."
+  },
+]

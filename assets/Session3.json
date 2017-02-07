@@ -1,0 +1,209 @@
+[
+  {
+    "Question" : "Scale up to find a fraction equivalent to 2/7 with the denominator 56.",
+    "Spoken Question" : "Scale up to find a fraction equivalent to two-sevenths with the denominator 56.",
+    "Type" : "Scaling Up",
+    "Spoken Type" : "scaling up",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 16,
+         "Denominator" : 56
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/3 can scale up to the fraction 2/6.",
+         "Spoken Hint1" : "For example, one-third can scale up to the fraction two-sixths.",
+         "Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Spoken Hint2" : "In order to find an equivalent fraction, you need to multiply the numerator and denominator by the same number.",
+         "Hint3" : "Try multiplying the numerator and denominator of 2/7 by 8.",
+         "Spoken Hint3" : "Try multiplying the numerator and denominator of two-sevenths by 8."
+    },
+    "Spoken Answer" : "The correct answer is sixteen-fifty-sixths.",
+    "Written Explanation" : "For this problem, you multiply the numerator 2 and the denominator 7 of the fraction by 8 to get the equivalent fraction, which gives you the answer.",
+    "Spoken Explanation" : "For this problem, you multiply the numerator 2 and the denominator 7 of the fraction by 8 to get the equivalent fraction, which gives you the answer."
+  },
+
+  {
+    "Question" : "Scale down to find the simplest fraction equivalent to 16/48.",
+    "Spoken Question" : "Scale down to find the simplest fraction equivalent to sixteen-forty-eighths.",
+    "Type" : "Scaling Down",
+    "Spoken Type" : "scaling down",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 1,
+         "Denominator" : 3
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 4/6 can scale down to the simplest fraction 2/3.",
+         "Spoken Hint1" : "For example, four-sixths can scale down to the simplest fraction two-thirds.",
+         "Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
+         "Spoken Hint2" : "In order to find the simplest fraction, you need to divide the numerator and denominator by the same number.",
+         "Hint3" : "Try dividing the numerator and denominator of 16/48 by 16.",
+         "Spoken Hint3" : "Try dividing the numerator and denominator of sixteen-forty-eighths by 16."
+    },
+    "Spoken Answer" : "The correct answer is one-third.",
+    "Written Explanation" : "To do this problem, you divide the numerator 16 and the denominator 48 each by 16. This gives you the simplest fraction.",
+    "Spoken Explanation" : "To do this problem, you divide the numerator 16 and the denominator 48 each by 16. This gives you the simplest fraction."
+  },
+
+  {
+    "Question" : "Find the least common denominator of 3/4 and 3/16.",
+    "Spoken Question" : "Find the least common denominator of three-fourths and three-sixteenths.",
+    "Type" : "Common Denominator",
+    "Spoken Type" : "finding a common denominator",
+    "Difficulty Level" : 1,
+    "Format" : "value",
+    "Answer" :
+    {
+         "Value" : 16
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, the common denominator of 1/2 and 1/3 is 6.",
+         "Spoken Hint1" : "For example, the common denominator of one-half and one-third is 6.",
+         "Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Spoken Hint2" : "You need to find the smallest number that is a multiple of both denominators.",
+         "Hint3" : "Try listing out the multiples of the denominators. The multiples of 4 are 4, 8, 12, ... and the multiples of 16 are 16, 32, 48, ... Where do the two lists match up?",
+         "Spoken Hint3" : "Try listing out the multiples of the denominators. The multiples of 4 are 4, 8, 12, and so on, and the multiples of 16 are 16, 32, 48, and so on. Where do the two lists match up?"
+    },
+    "Spoken Answer" : "The correct answer is 16.",
+    "Written Explanation" : "When you list the multiples of the denominators, 4 and 16, the two lists first match up at the number 16, meaning that this is the least common denominator of the two fractions.",
+    "Spoken Explanation" : "When you list the multiples of the denominators, 4 and 16, the two lists first match up at the number 16, meaning that this is the least common denominator of the two fractions."
+  },
+
+  {
+    "Question" : "Convert the mixed number 3 1/4 to an improper fraction.",
+    "Spoken Question" : "Convert the mixed number three and one-fourth to an improper fraction.",
+    "Type" : "Conversion",
+    "Spoken Type" : "converting a mixed number into an improper fraction",
+    "Difficulty Level" : 1,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 13,
+         "Denominator" : 4
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1 1/2 can be converted to the improper fraction 3/2.",
+         "Spoken Hint1" : "For example, one and one-half can be converted to the improper fraction three-halves.",
+         "Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
+         "Spoken Hint2" : "The first step is to multiply the denominator by the whole number. What should you do next?",
+         "Hint3" : "After multiplying the denominator and whole number, add that to the numerator. That number becomes the numerator of your answer.",
+         "Spoken Hint3" : "After multiplying the denominator and whole number, add that to the numerator. That number becomes the numerator of your answer."
+    },
+    "Spoken Answer" : "The correct answer is thirteen-fourths.",
+    "Written Explanation" : "For this problem, you first multiply the denominator 4 by the whole number 3 and add this to the numerator 1. 4 times 3 plus 1 is 13. The denominator stays the same.",
+    "Spoken Explanation" : "For this problem, you first multiply the denominator 4 by the whole number 3 and add this to the numerator 1. 4 times 3 plus 1 is 13. The denominator stays the same."
+  },
+
+  {
+    "Question" : "Adam ate 15/10 of a pizza, Bill ate 3/10 of a pizza, and Casper ate 5/10 of a pizza. How much pizza did they eat in total? Leave your answer as an improper fraction.",
+    "Spoken Question" : "Adam ate fifteen-tenths of a pizza, Bill ate three-tenths of a pizza, and Casper ate five-tenths of a pizza. How much pizza did they eat in total? Leave your answer as an improper fraction.",
+    "Type" : "Adding Like Denominators Word Problem",
+    "Spoken Type" : "adding fractions with the same denominator",
+    "Difficulty Level" : 3,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 23,
+         "Denominator" : 10
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 3/8 + 4/8 = 7/8.",
+         "Spoken Hint1" : "For example, three-eighths plus four-eighths equals seven-eighths.",
+         "Hint2" : "In order to add fractions, should you add the numerators or the denominators?",
+         "Spoken Hint2" : "In order to add fractions, should you add the numerators or the denominators?",
+         "Hint3" : "Add the numerators of all of the fractions. Remember, the denominator should not change.",
+         "Spoken Hint3" : "Add the numerators of all of the fractions. Remember, the denominator should not change."
+    },
+    "Spoken Answer" : "The correct answer is twenty-three-tenths.",
+    "Written Explanation" : "This is an addition problem, because we want to know how much pizza was eaten in total. Since the three fractions have the same denominator, you need to add the numerators 15, 3, and 5, and keep the denominator 10 the same, to get the answer.",
+    "Spoken Explanation" : "This is an addition problem, because we want to know how much pizza was eaten in total. Since the three fractions have the same denominator, you need to add the numerators 15, 3, and 5, and keep the denominator 10 the same, to get the answer."
+  },
+
+  {
+    "Question" : "Derek drank 5/14 cups of milk, and Pam drank 2/14 cups of milk. How many more cups of milk did Derek drink than Pam?",
+    "Spoken Question" : "Derek drank five-fourteenths cups of milk, and Pam drank two-fourteenths cups of milk. How many more cups of milk did Derek drink than Pam?",
+    "Type" : "Subtracting Like Denominators Word Problem",
+    "Spoken Type" : "subtracting fractions with the same denominator",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 3,
+         "Denominator" : 14
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 3/5 - 2/5 = 1/5.",
+         "Spoken Hint1" : "For example, three-fifths minus two-fifths equals one-fifth.",
+         "Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Spoken Hint2" : "In order to subtract two fractions, should you subtract the numerators or the denominators?",
+         "Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator should not change.",
+         "Spoken Hint3" : "Subtract the numerators of the two fractions. Remember, the denominator should not change."
+    },
+    "Spoken Answer" : "The correct answer is three-fourteenths.",
+    "Written Explanation" : "This is a subtraction problem, since you want to know how much more Derek drank. The two fractions have the same denominator, so you need to subtract the numerators, 5 and 2, and keep the denominator 14 the same.",
+    "Spoken Explanation" : "This is a subtraction problem, since you want to know how much more Derek drank. The two fractions have the same denominator, so you need to subtract the numerators, 5 and 2, and keep the denominator 14 the same."
+  },
+
+  {
+    "Question" : "2/10 + 3/4 = 
+    Write your answer in lowest terms.",
+    "Spoken Question" : "What is two-tenths plus three-fourths? Write your answer in lowest terms.",
+    "Type" : "Adding Unlike Denominators",
+    "Spoken Type" : "adding fractions with different denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 19,
+         "Denominator" : 20
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 + 1/4 = 3/4. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half plus one-fourth equals three-fourths. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 20. Now, you need to scale up both fractions so they have the denominator 20.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 20. Now, you need to scale up both fractions so they have the denominator 20.",
+         "Hint3" : "Multiply the numerator and denominator of 2/10 by 2, and the numerator and denominator of 3/4 by 5, to get equivalent fractions with the denominator 20. Then you can add the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of two-tenths by 2, and the numerator and denominator of three-fourths by 5, to get equivalent fractions with the denominator 20. Then you can add the numerators!"
+    },
+    "Spoken Answer" : "The correct answer is nineteen-twentieths.",
+    "Written Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 20. 2/10 can be written as 4/20, and 3/4 can be written as 15/20. Then, 4/20 + 15/20 gives you the answer.",
+    "Spoken Explanation" : "In this problem, the two fractions have different denominators, and their common denominator is 20. Two-tenths can be written as four-twentieths, and three-fourths can be written as fifteen-twentieths. Then, four-twentieths plus fifteen-twentieths gives you the answer."
+  },
+
+  {
+    "Question" : "5/7 - 2/3 = ",
+    "Spoken Question" : "What is five-sevenths minus two-thirds?",
+    "Type" : "Subtracting Unlike Denominators",
+    "Spoken Type" : "subtracting fraction with different denominators",
+    "Difficulty Level" : 2,
+    "Format" : "fraction",
+    "Answer" :
+    {
+         "Numerator" : 1,
+         "Denominator" : 21
+    },
+    "Hints" :
+    {
+         "Hint1" : "For example, 1/2 - 1/4 = 1/4. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Spoken Hint1" : "For example, one-half minus one-fourth equals one-fourth. To do this problem, you first need to find the common denominator of the two fractions.",
+         "Hint2" : "The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Spoken Hint2" : "The common denominator of the two fractions is 21. Now, you need to scale up both fractions so they have the denominator 21.",
+         "Hint3" : "Multiply the numerator and denominator of 5/7 by 3, and the numerator and denominator of 2/3 by 7, to get equivalent fractions with the denominator 21. Then you can subtract the numerators!",
+         "Spoken Hint3" : "Multiply the numerator and denominator of five-sevenths by 3, and the numerator and denominator of two-thirds by 7, to get equivalent fractions with the denominator 21. Then you can subtract the numerators!"
+    },
+    "Spoken Answer" : "The correct answer is one-twenty-first.",
+    "Written Explanation" : "The two fractions have different denominators, and their common denominator is 21. 5/7 can be written as 15/21, and 2/3 can be written as 14/21. Then, 15/21 - 14/21 gives you the answer.",
+    "Spoken Explanation" : "The two fractions have different denominators, and their common denominator is 21. Five-sevenths can be written as fifteen-twenty-firsts, and two-thirds can be written as fourteen-twenty-firsts. Then, fifteen-twenty-firsts minus fourteen-twenty-firsts gives you the answer."
+  }
+]
