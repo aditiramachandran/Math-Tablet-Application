@@ -791,7 +791,7 @@ class Gesture:
 
         self.posture.goToPosture("Sit", 0.5)
 
-   def congratulations(self):
+    def congratulations(self):
         #this bit of code makes the robot thrust its right hand into the air
         #start in sitting position
         #self.posture.goToPosture("Sit", 0.5)
