@@ -663,6 +663,12 @@ class Gesture:
         self.motion.openHand("RHand")
 
         time.sleep(2)
+        # move arm back so that sit motion isn't so drastic
+        self.motion.closeHand("RHand")
+        self.motion.setAngles("RElbowRoll", 1, 0.2)
+        self.motion.setAngles("RShoulderRoll", 0, 0.2)
+        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
+        time.sleep(2)
 
         self.posture.goToPosture("Sit", 0.5)
 
