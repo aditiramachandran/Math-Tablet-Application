@@ -1,0 +1,99 @@
+goodbye:
+  Change from "SitRelax" to "Sit"
+  
+wave:
+  Falls backwards
+  
+juddNelson:
+  NO ERRORS FOUND
+
+juddNelson_left:
+  NO ERRORS FOUND
+  
+nod:
+  NO ERRORS FOUND
+  
+shake:
+  NO ERRORS FOUND
+  
+last_shake:
+  NO ERRORS FOUND
+  
+scale_up:
+  NO ERRORS FOUND
+
+scale_down:
+  Could be improved
+  
+scale_down_left:
+  Can be improved
+  Motion before returning to Sit is strange but does not require immediate attention.
+ 
+two_fractions:
+  NO ERRORS FOUND
+
+two_hands:
+  NO ERRORS FOUND
+
+multiples:
+  NO ERRORS FOUND
+
+look:
+  NO ERRORS FOUND
+  
+look_left:
+  NO ERRORS FOUND
+  
+sit:
+  NO ERRORS FOUND
+  Doesn't do what it says.
+  
+sit_left:
+  NO ERRORS FOUND
+  
+left_relaxed_sit:
+  NO ERRORS FOUND
+  
+right_relaxed_sit:
+  NO ERRORS FOUND
+  
+numerator:
+  Falls backwards
+  
+denominator:
+  NO ERRORS FOUND
+  
+numerator_denominator:
+  NO ERRORS FOUND
+  
+etc:
+  NO ERRORS FOUND
+
+point_question:
+  NO ERRORS FOUND
+
+conversion:
+  NO ERRORS FOUND
+  Mildly unpleasant to watch
+
+congratulations:
+  Falls backwards
+  Same issue with sit.
+  
+tilt:
+  NO ERRORS FOUND
+  
+hands:
+  NO ERRORS FOUND
+  
+breathe:
+  NO ERRORS FOUND
+  
+assess:
+  NO ERRORS FOUND
+  
+introQuestion AND introQuestionGeneric:
+  NO ERRORS FOUND
+ 
+releaseNao:
+  NO ERRORS FOUND
