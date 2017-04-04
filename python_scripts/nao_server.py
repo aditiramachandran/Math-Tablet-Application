@@ -6,7 +6,7 @@ import time
 import datetime
 import collections
 import socket
-sys.path.append("nao_libs")
+sys.path.append("nao_libs2")
 #sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
 #sys.path.append("nao_libs_1.14")
 
