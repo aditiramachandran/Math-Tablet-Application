@@ -262,12 +262,18 @@ public class MathActivity extends Activity {
 
     public void messageReceived(String message){
         System.out.println("IN MATHACTIVITY, message received from server is: " + message);
-        if (message.equals("DONE")){
-            enableButtons();
+        if (message == null){
+            //TODO: figure out if this bug happens and it causes the app to crash
+            //possibly catch a null pointer exception?
+            System.out.println("null message received from server");
         }
-        else if (message.equals(Questions.FORMAT_FRACTION) || message.equals(Questions.FORMAT_TEXT)){
-            enableQuestion(message);
-            enableButtons();
+        else {
+            if (message.equals("DONE")) {
+                enableButtons();
+            } else if (message.equals(Questions.FORMAT_FRACTION) || message.equals(Questions.FORMAT_TEXT)) {
+                enableQuestion(message);
+                enableButtons();
+            }
         }
     }
 
