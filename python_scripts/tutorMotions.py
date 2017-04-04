@@ -96,7 +96,7 @@ class Gesture:
     def goodbye(self):
         self.genSpeech(anim.finish)
         time.sleep(5)
-        self.posture.goToPosture("SitRelax", 1.0)
+        self.posture.goToPosture("Sit", 1.0)
 
     def session_intro(self,sessionNum):
         #print sessionNum
@@ -214,6 +214,10 @@ class Gesture:
         time.sleep(1)
 
         self.motion.closeHand("RHand")
+	self.motion.setAngles("RShoulderPitch", 0.2, 0.1)
+        self.motion.setAngles("RElbowRoll", 1.4, 0.1)
+        self.motion.setAngles("RShoulderRoll", 1.2, 0.1)
+        time.sleep(3)
         self.posture.goToPosture("Sit", 0.5)
         #self.motion.setAngles("HeadPitch", 0.3, 0.15)
         
@@ -659,6 +663,12 @@ class Gesture:
         self.motion.openHand("RHand")
 
         time.sleep(2)
+        # move arm back so that sit motion isn't so drastic
+        self.motion.closeHand("RHand")
+        self.motion.setAngles("RElbowRoll", 1, 0.2)
+        self.motion.setAngles("RShoulderRoll", 0, 0.2)
+        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
+        time.sleep(2)
 
         self.posture.goToPosture("Sit", 0.5)
 
@@ -807,36 +817,35 @@ class Gesture:
         self.motion.setAngles("LElbowRoll", -1.0, 0.5)
         """
         time.sleep(0.4)
-
         self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
         self.motion.setAngles("RElbowRoll", 1.5, 0.3)
         self.motion.setAngles("LShoulderRoll", 1.3, 0.3)
         self.motion.setAngles("LElbowRoll", -1.5, 0.3)
-
         time.sleep(0.2)
         self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
         self.motion.setAngles("RElbowRoll", 1.0, 0.5)
         self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
         self.motion.setAngles("LElbowRoll", -1.0, 0.5)
-
         time.sleep(0.4)
-
         self.motion.setAngles("RShoulderRoll", -1.3, 0.3)
         self.motion.setAngles("RElbowRoll", 1.5, 0.3)
         self.motion.setAngles("LShoulderRoll", 1.3, 0.3)
         self.motion.setAngles("LElbowRoll", -1.5, 0.3)
-
         time.sleep(0.2)
         self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
         self.motion.setAngles("RElbowRoll", 1.0, 0.5)
         self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
         self.motion.setAngles("LElbowRoll", -1.0, 0.5)
-
         #self.genSpeech("yay you did it!")
         #time.sleep(2)
         #self.genSpeech("now i will put my hand back down")
         """
-        time.sleep(2)
+        # bring arms down to avoid drastic sit
+        self.motion.setAngles("RShoulderPitch", 0.5, 0.2)
+        self.motion.setAngles("LShoulderPitch", 0.5, 0.2)
+        self.motion.setAngles("RShoulderRoll", 0, 0.2)
+        self.motion.setAngles("LShoulderRoll", 0, 0.2)
+        time.sleep(3)
         self.posture.goToPosture("Sit", 1.0)
 
     #def two_hands(self):
