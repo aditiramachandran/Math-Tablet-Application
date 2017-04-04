@@ -23,11 +23,10 @@ scale_up:
   NO ERRORS FOUND
 
 scale_down:
-  Could be improved
+  RESOLVED
   
 scale_down_left:
-  Can be improved
-  Motion before returning to Sit is strange but does not require immediate attention.
+  RESOLVED
  
 two_fractions:
   NO ERRORS FOUND
@@ -58,7 +57,7 @@ right_relaxed_sit:
   NO ERRORS FOUND
   
 numerator:
-  Falls backwards
+  RESOLVED
   
 denominator:
   NO ERRORS FOUND
@@ -77,8 +76,7 @@ conversion:
   Mildly unpleasant to watch
 
 congratulations:
-  Falls backwards
-  Same issue with sit.
+  RESOLVED
   
 tilt:
   NO ERRORS FOUND
