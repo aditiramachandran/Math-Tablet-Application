@@ -300,9 +300,11 @@ class TutoringSession:
 							if introFlag is not True:
 								self.goNao.sit()
 								conn.send(returnMessage+"\n")
+								print 'return message is: ', returnMessage
 								print 'send tablet message that robot is done'
 					else: #case just for testing without robot
 						time.sleep(2)
+						print 'IS THIS HAPPENING??'
 						conn.send(returnMessage+"\n")
 					self.log_transaction(msgType,questionNum,otherInfo)
 				if sessionEnded:
