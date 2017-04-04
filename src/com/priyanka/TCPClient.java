@@ -121,12 +121,24 @@ public class TCPClient {
 
                     if (serverMessage != null && mMessageListener != null) {
                         //call the method messageReceived from MyActivity class
+                        Log.e("TCP Client", "serverMessage TIME 1  is:" + serverMessage);
+                        String tempMsg = serverMessage;
                         mMessageListener.messageReceived(serverMessage);
+                        Log.e("TCP Client", "serverMessage TIME 2  is:" + serverMessage);
                         Handler buttonHandler = new Handler(sessionOwner.getMainLooper());
+                        Log.e("TCP Client", "serverMessage TIME 3  is:" + serverMessage);
                         Runnable myRunnable2 = new Runnable(){
+                            private String serverMsg = serverMessage;
                             @Override
                             public void run() {
-                                sessionOwner.messageReceived(serverMessage);
+                                Log.e("TCP Client", "serverMessage TIME 4 is:" + serverMessage);
+                                Log.e("TCP Client", "within class serverMsg is:" + serverMsg);
+                                if (serverMessage == null){
+                                    sessionOwner.messageReceived(serverMsg);
+                                }
+                                else {
+                                    sessionOwner.messageReceived(serverMessage);
+                                }
                             }
                         };
                         buttonHandler.post(myRunnable2);

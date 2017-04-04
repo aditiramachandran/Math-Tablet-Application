@@ -143,18 +143,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 @Override
                 //here the messageReceived method is implemented
                 public void messageReceived(String message) {
-                    //this method calls the onProgressUpdate
-                    publishProgress(message);
-                    onProgressUpdate(message);
+                    System.out.println("IN MAINACTIVITY, message received from server is: " + message);
+                    if (message == null){
+                        //TODO: figure out if this bug happens and it causes the app to crash
+                        //possibly catch a null pointer exception?
+                        System.out.println("null message received from server");
+                    }
 
-                    Log.e("MainActivity", "Message received from server: hiding options");
+                    else {
+                        //this method calls the onProgressUpdate
+                        publishProgress(message);
+                        onProgressUpdate(message);
 
-                    // showMoodMeter = false;
-                    //if (message.equalsIgnoreCase("done"))
-                    //    showOptions = true;
-                    // aditi currentlyPlaying = new String("");
+                        Log.e("MainActivity", "Message received from server: hiding options");
+
+                        // showMoodMeter = false;
+                        //if (message.equalsIgnoreCase("done"))
+                        //    showOptions = true;
+                        // aditi currentlyPlaying = new String("");
 	                    /*thread.setRunning(false);
 	    				((Activity)getContext()).finish();*/
+                    }
 
                 }
             }, owner);
@@ -226,6 +235,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         @Override
         protected void onProgressUpdate(String... values) {
+            System.out.println("IN MAINACTIVITY, size of values is: " + values.length);
+            System.out.println("IN MAINACTIVITY, in onProgressUpdate, values[0] is: " + values[0]);
             super.onProgressUpdate(values);
             //in the arrayList we add the messaged received from server
             // arrayList.add(values[0]);
