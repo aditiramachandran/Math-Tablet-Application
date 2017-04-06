@@ -3,6 +3,7 @@ import sys
 import random
 import time
 
+import pdb
 import naoqi
 from naoqi import ALBroker
 from naoqi import ALModule
@@ -240,7 +241,9 @@ class Gesture:
         #self.genSpeech("yay you did it!")
         #time.sleep(2)
         #self.genSpeech("now i will put my hand back down")
-        time.sleep(1)
+        self.motion.setAngles("RShoulderRoll", -0.3, 0.3)
+        self.motion.setAngles("RShoulderPitch", 1, 0.3)
+        time.sleep(2)
         self.posture.goToPosture("Sit", 1.0)
         #self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
@@ -258,7 +261,10 @@ class Gesture:
         #pump fist upward
         self.motion.setAngles("LShoulderRoll", 1.0, 0.25)
         self.motion.setAngles("LElbowRoll", -1.0, 0.5)
-        time.sleep(1)
+
+        self.motion.setAngles("LShoulderRoll", 0.3, 0.4)
+        self.motion.setAngles("LShoulderPitch", 1, 0.4)
+        time.sleep(2)
         #return to sitting position
         self.posture.goToPosture("Sit", 1.0)
 
