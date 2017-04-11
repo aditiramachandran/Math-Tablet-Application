@@ -380,13 +380,10 @@ class Gesture:
         self.motion.setAngles("RShoulderPitch", 1.5, 0.1)
 
         time.sleep(2.5)
+        pdb.set_trace()
+        self.prepare_sit_right()
 
-        #raise hand before sitting so no collision with leg
-        self.motion.setAngles("RElbowRoll", 1.54, 0.2)
-        self.motion.setAngles("RElbowYaw", 2.0, 0.2)
-        self.motion.setAngles("RShoulderPitch", 1.0, 0.2)
-
-        time.sleep(0.15)
+        time.sleep(2)
 
         self.posture.goToPosture("Sit", 0.5)
 
@@ -1005,13 +1002,19 @@ class Gesture:
         time.sleep(2)
 		
 	# call before bringing to sit to avoid scooching sit for arm motions
-	def prepare_sit(self):
-		self.motion.setAngles("LShoulderRoll", 0.2, 0.25)
+    def prepare_sit_right(self):
+    	self.motion.setAngles("RShoulderRoll",-0.5, 0.25)
+        self.motion.setAngles("RShoulderPitch", 0.9, 0.25)
+        self.motion.setAngles("RElbowRoll", 0.7, 0.25)
+        self.motion.setAngles("RElbowYaw", 0, 0.25)
+        self.motion.setAngles("RWristYaw", 0, 0.25)
+    def prepare_sit_left(self):
+     	self.motion.setAngles("LShoulderRoll", 0.2, 0.25)
         self.motion.setAngles("LShoulderPitch", 0.9, 0.25)
         self.motion.setAngles("LElbowRoll", -0.7, 0.25)
         self.motion.setAngles("LElbowYaw", 0, 0.25)
         self.motion.setAngles("LWristYaw", 0, 0.25)
-   
+    
     def releaseNao(self):
         try:
             self.posture.goToPosture("SitRelax", 1.0)
