@@ -1003,7 +1003,14 @@ class Gesture:
     def ask(self, question):
         self.genSpeech(question)
         time.sleep(2)
-
+		
+	# call before bringing to sit to avoid scooching sit for arm motions
+	def prepare_sit(self):
+		self.motion.setAngles("LShoulderRoll", 0.2, 0.25)
+        self.motion.setAngles("LShoulderPitch", 0.9, 0.25)
+        self.motion.setAngles("LElbowRoll", -0.7, 0.25)
+        self.motion.setAngles("LElbowYaw", 0, 0.25)
+        self.motion.setAngles("LWristYaw", 0, 0.25)
    
     def releaseNao(self):
         try:
