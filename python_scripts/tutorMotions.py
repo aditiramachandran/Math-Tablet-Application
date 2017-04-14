@@ -1003,17 +1003,17 @@ class Gesture:
 		
 	# call before bringing to sit to avoid scooching sit for arm motions
     def prepare_sit_right(self):
-    	self.motion.setAngles("RShoulderRoll",-0.5, 0.25)
-        self.motion.setAngles("RShoulderPitch", 0.9, 0.25)
-        self.motion.setAngles("RElbowRoll", 0.7, 0.25)
-        self.motion.setAngles("RElbowYaw", 0, 0.25)
-        self.motion.setAngles("RWristYaw", 0, 0.25)
+    	self.motion.setAngles("RShoulderRoll", -0.27, 0.25)
+        self.motion.setAngles("RShoulderPitch", 0.919, 0.25)
+        self.motion.setAngles("RElbowRoll", 1.25, 0.25)
+        self.motion.setAngles("RElbowYaw", 0.5, 0.25)
+        self.motion.setAngles("RWristYaw", 0.01, 0.25)
     def prepare_sit_left(self):
-     	self.motion.setAngles("LShoulderRoll", 0.2, 0.25)
-        self.motion.setAngles("LShoulderPitch", 0.9, 0.25)
-        self.motion.setAngles("LElbowRoll", -0.7, 0.25)
-        self.motion.setAngles("LElbowYaw", 0, 0.25)
-        self.motion.setAngles("LWristYaw", 0, 0.25)
+     	self.motion.setAngles("LShoulderRoll", 0.26, 0.25)
+        self.motion.setAngles("LShoulderPitch", 0.885, 0.25)
+        self.motion.setAngles("LElbowRoll", -1.2, 0.25)
+        self.motion.setAngles("LElbowYaw", -.466, 0.25)
+        self.motion.setAngles("LWristYaw", -0.006, 0.25)
     
     def releaseNao(self):
         try:
