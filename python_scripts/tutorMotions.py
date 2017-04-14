@@ -669,13 +669,9 @@ class Gesture:
         self.motion.openHand("RHand")
 
         time.sleep(2)
-        # move arm back so that sit motion isn't so drastic
-        self.motion.closeHand("RHand")
-        self.motion.setAngles("RElbowRoll", 1, 0.2)
-        self.motion.setAngles("RShoulderRoll", 0, 0.2)
-        self.motion.setAngles("RShoulderPitch", 0.4, 0.2)
+        self.prepare_sit_right()
         time.sleep(2)
-
+ 
         self.posture.goToPosture("Sit", 0.5)
 
     def denominator(self):
@@ -720,11 +716,10 @@ class Gesture:
         self.motion.setAngles("RWristYaw", 1.6, 0.2)
         self.motion.openHand("RHand")
 
-        time.sleep(0.5)
 
-        #raise up elbow to avoid collision
-        self.motion.setAngles("RElbowRoll", 0.8, 0.2)
-        self.motion.setAngles("RWristYaw", 1.3, 0.2)
+        time.sleep(0.5)
+        self.prepare_sit_right() 
+        time.sleep(2)
 
         self.posture.goToPosture("Sit", 0.5)
 
