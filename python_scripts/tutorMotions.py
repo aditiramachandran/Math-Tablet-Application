@@ -265,8 +265,8 @@ class Gesture:
         self.motion.setAngles("LElbowRoll", -1.0, 0.5)
 
         time.sleep(1.5)
-        self.motion.setAngles("LShoulderRoll", 0.3, 0.4)
-        self.motion.setAngles("LShoulderPitch", 1, 0.4)
+        self.motion.setAngles("LShoulderRoll", 0.3, 0.15)
+        self.motion.setAngles("LShoulderPitch", 1, 0.15)
         time.sleep(2)
         self.prepare_sit_left()
         time.sleep(2)
