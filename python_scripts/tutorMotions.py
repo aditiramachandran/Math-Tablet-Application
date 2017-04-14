@@ -362,6 +362,8 @@ class Gesture:
 
         time.sleep(2)
 
+        self.prepare_sit_right()
+        time.sleep(2)
         self.posture.goToPosture("Sit", 0.5)
 
     def scale_down(self):
@@ -380,7 +382,6 @@ class Gesture:
         self.motion.setAngles("RShoulderPitch", 1.5, 0.1)
 
         time.sleep(2.5)
-        pdb.set_trace()
         self.prepare_sit_right()
 
         time.sleep(2)
@@ -402,14 +403,11 @@ class Gesture:
         #end position of the arm
         self.motion.setAngles("LShoulderPitch", 1.5, 0.1)
 
-        time.sleep(4)
+        time.sleep(2.5)
+        self.prepare_sit_left()
 
-        #raise hand before sitting so no collision with leg
-        self.motion.setAngles("LElbowRoll", -1.54, 0.2)
-        self.motion.setAngles("LElbowYaw", -2.0, 0.2)
-        self.motion.setAngles("LShoulderPitch", 1.0, 0.2)
+        time.sleep(2)
 
-        time.sleep(0.15)
 
         self.posture.goToPosture("Sit", 0.5)
 
@@ -1003,17 +1001,17 @@ class Gesture:
 		
 	# call before bringing to sit to avoid scooching sit for arm motions
     def prepare_sit_right(self):
-    	self.motion.setAngles("RShoulderRoll", -0.27, 0.25)
-        self.motion.setAngles("RShoulderPitch", 0.919, 0.25)
-        self.motion.setAngles("RElbowRoll", 1.25, 0.25)
-        self.motion.setAngles("RElbowYaw", 0.5, 0.25)
-        self.motion.setAngles("RWristYaw", 0.01, 0.25)
+    	self.motion.setAngles("RShoulderRoll", -0.27, 0.15)
+        self.motion.setAngles("RShoulderPitch", 0.919, 0.15)
+        self.motion.setAngles("RElbowRoll", 1.25, 0.15)
+        self.motion.setAngles("RElbowYaw", 0.5, 0.15)
+        self.motion.setAngles("RWristYaw", 0.01, 0.15)
     def prepare_sit_left(self):
-     	self.motion.setAngles("LShoulderRoll", 0.26, 0.25)
-        self.motion.setAngles("LShoulderPitch", 0.885, 0.25)
-        self.motion.setAngles("LElbowRoll", -1.2, 0.25)
-        self.motion.setAngles("LElbowYaw", -.466, 0.25)
-        self.motion.setAngles("LWristYaw", -0.006, 0.25)
+     	self.motion.setAngles("LShoulderRoll", 0.26, 0.15)
+        self.motion.setAngles("LShoulderPitch", 0.885, 0.15)
+        self.motion.setAngles("LElbowRoll", -1.2, 0.15)
+        self.motion.setAngles("LElbowYaw", -.466, 0.15)
+        self.motion.setAngles("LWristYaw", -0.006, 0.15)
     
     def releaseNao(self):
         try:
