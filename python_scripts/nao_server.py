@@ -10,6 +10,7 @@ sys.path.append("nao_libs2")
 #sys.path.append("/Users/aditi/aldebaran-sdk-1.6.13-macosx-i386/lib")
 #sys.path.append("nao_libs_1.14")
 
+import pdb
 import naoqi
 from naoqi import ALBroker
 from naoqi import ALModule
@@ -199,10 +200,10 @@ class TutoringSession:
 							os.system("say " + robot_speech)
 						else:
 							if otherInfo.find("/")!=-1:
-								num = otherInfo.split("/")[0]
-								denom = otherInfo.split("/")[1]
-								if int(num)==0 or int(denom)==0:
-									robot_speech = robot_speech.replace("/", " over ").strip()
+							 #	num = otherInfo.split("/")[0]
+							 #	denom = otherInfo.split("/")[1]
+							 #	if int(num)==0 or int(denom)==0:
+							  robot_speech = robot_speech.replace("/", " over ").strip()
 							self.goNao.look()
 							self.goNao.genSpeech(robot_speech)
 							[id,speech] = self.goNao.assess("wrong")
@@ -462,6 +463,7 @@ def main():
 		("u", "Scale up"),
 		("d", "Scale down"),
 		("p", "Adding and subtracting problems"),
+    ("po", "point_question"),
 		("k", "While talking"),
 		("l", "Idle behavior"),
 		("x", "Relaxed idle behavior left"),
@@ -524,7 +526,8 @@ def main():
 
 		elif(choice == "a"):
 			goNao.shake()
-
+		elif(choice == "break"):
+			pdb.set_trace()
 		elif(choice == "u"):
 			goNao.scale_up()
 
@@ -533,6 +536,9 @@ def main():
 
 		elif(choice == "p"):
 			goNao.two_fractions()
+		elif(choice == "po"):
+			goNao.point_question()
+
 
 		elif(choice == "k"):
 			goNao.look()
