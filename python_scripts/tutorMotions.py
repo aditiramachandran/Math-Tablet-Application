@@ -213,13 +213,10 @@ class Gesture:
         #self.genSpeech("hello there!")
 
         time.sleep(1)
-
         self.motion.closeHand("RHand")
-	self.motion.setAngles("RShoulderPitch", 0.2, 0.1)
-        self.motion.setAngles("RElbowRoll", 1.4, 0.1)
-        self.motion.setAngles("RShoulderRoll", 1.2, 0.1)
-        time.sleep(3)
-        self.posture.goToPosture("Sit", 0.5)
+        self.prepare_sit_right()
+        time.sleep(4)
+        self.posture.goToPosture("Sit", 0.5)        self.posture.goToPosture("Sit", 0.5)
         #self.motion.setAngles("HeadPitch", 0.3, 0.15)
         
     def juddNelson(self):
