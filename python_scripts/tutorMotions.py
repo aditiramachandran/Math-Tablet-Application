@@ -1,5 +1,3 @@
-import os
-import sys
 import random
 import time
 
@@ -75,6 +73,8 @@ class Gesture:
         except Exception, e:
             print "Error when creating speech device proxy:"+str(e)
             exit(1)
+        # bring to sitting position
+        self.posture.goToPosture("Sit", 0.15)
 
     def genSpeech(self, sentence):
         try:
@@ -93,7 +93,7 @@ class Gesture:
     def goodbye(self):
         self.genSpeech(anim.finish)
         time.sleep(5)
-        self.posture.goToPosture("Sit", 1.0)
+        self.bring_to_sit(1.0)
 
     def session_intro(self, sessionNum):
         # print sessionNum
@@ -132,8 +132,7 @@ class Gesture:
         return id
 
     def intro(self):
-        # self.posture.goToPosture("Crouch", 1.0)
-        self.posture.goToPosture("Sit", 1.0)
+        self.bring_to_sit(1.0)
         self.motion.setAngles("HeadPitch", -0.1, 0.5)
         self.led.fadeListRGB("FaceLeds", [0x00FFFFFF], [0.1])
         self.genSpeech("Hello! My name is Nao, your personal robot tutor.")
@@ -173,12 +172,6 @@ class Gesture:
         # self.motion.setStiffnesses("Head", 0.0)
 
     def wave(self):
-        # this bit of code makes the robot wave
-        # self.posture.goToPosture("Sit", 0.5)
-        # self.motion.closeHand("RHand")
-        # self.motion.closeHand("LHand")
-        # time.sleep(0.5)
-
         self.motion.setAngles("RShoulderPitch", -1.0, 0.15)
         self.motion.setAngles("RShoulderRoll", -1.2, 0.15)
         self.motion.setAngles("RElbowRoll", 1.0, 0.1)
@@ -187,38 +180,23 @@ class Gesture:
         self.motion.openHand("RHand")
 
         time.sleep(0.7)
-        # self.motion.setAngles("RShoulderRoll", -1.2, 0.5)
-        # self.motion.setAngles("RHand", Open, 1.0)
-        # self.motion.setAngles("RElbowRoll", angleBotElbow, 0.3)
 
         # wave the hand 3 times, by moving the elbow
-        self.motion.setAngles("RElbowRoll", 1.5, 0.5)
-        time.sleep(0.5)
-        self.motion.setAngles("RElbowRoll", 0.5, 0.5)
-        time.sleep(0.5)
-        self.motion.setAngles("RElbowRoll", 1.5, 0.5)
-        time.sleep(0.5)
-        self.motion.setAngles("RElbowRoll", 0.5, 0.5)
-        time.sleep(0.5)
-        self.motion.setAngles("RElbowRoll", 1.5, 0.5)
-        time.sleep(0.5)
-        self.motion.setAngles("RElbowRoll", 0.5, 0.5)
-        time.sleep(0.5)
+        for i in range(3):
+            self.motion.setAngles("RElbowRoll", 1.5, 0.5)
+            time.sleep(0.5)
+            self.motion.setAngles("RElbowRoll", 0.5, 0.5)
+            time.sleep(0.5)
         self.motion.setAngles("RElbowRoll", 1.0, 0.5)
-        # time.sleep(0.5)
-        # self.genSpeech("hello there!")
-
         time.sleep(1)
         self.motion.closeHand("RHand")
-        self.prepare_sit_right()
+        self.prepare_sit_right(0.15)
         time.sleep(4)
-        self.posture.goToPosture("Sit", 0.5)
-        # self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        self.bring_to_sit(1)
 
     def juddNelson(self):
         # this bit of code makes the robot thrust its right hand into the air
-        # start in sitting position
-        # self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
         time.sleep(0.1)
         # move to position
         self.motion.setAngles("RShoulderPitch", -1.0, 0.3)
@@ -231,20 +209,16 @@ class Gesture:
         # self.genSpeech("good job! that's correct!")
         self.motion.setAngles("RShoulderRoll", -1.0, 0.25)
         self.motion.setAngles("RElbowRoll", 1.0, 0.5)
-        # self.genSpeech("yay you did it!")
         time.sleep(1.5)
-        # self.genSpeech("now i will put my hand back down")
         self.motion.setAngles("RShoulderRoll", -0.3, 0.15)
         self.motion.setAngles("RShoulderPitch", 1, 0.15)
         time.sleep(2)
-        self.prepare_sit_right()
-        time.sleep(2)
-        self.posture.goToPosture("Sit", 1.0)
-        # self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        self.prepare_sit_right(0.15)
 
     def juddNelson_left(self):
         # this bit of code makes the robot thrust its left hand into the air
         # start in sitting position
+        self.bring_to_sit(0.5)
         time.sleep(0.1)
         # move to position
         self.motion.setAngles("LShoulderPitch", -1.0, 0.3)
@@ -261,10 +235,10 @@ class Gesture:
         self.motion.setAngles("LShoulderRoll", 0.3, 0.15)
         self.motion.setAngles("LShoulderPitch", 1, 0.15)
         time.sleep(2)
-        self.prepare_sit_left()
+        self.prepare_sit_left(0.15)
         time.sleep(2)
         # return to sitting position
-        self.posture.goToPosture("Sit", 1.0)
+        self.bring_to_sit(1.0)
 
     def nod(self):
         # this bit of code makes the robot nod its head
@@ -285,7 +259,7 @@ class Gesture:
 
         # move back to original position
         time.sleep(3)
-        self.posture.goToPosture("Sit", 1.0)
+        self.bring_to_sit(1.0)
 
     def shake(self):
         # this bit of code makes the robot shake its head
@@ -310,12 +284,7 @@ class Gesture:
         time.sleep(1)
         self.look()
         time.sleep(0.5)
-        # self.genSpeech("i'm sorry, that's incorrect. try again!")
-
-        # move back to the original position
-        # time.sleep(2.5)
-        # self.posture.goToPosture("Sit", 0.3)
-        # self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        self.bring_to_sit(1.0)
 
     def last_shake(self):
         # this bit of code makes the robot shake its head
@@ -325,22 +294,17 @@ class Gesture:
 
         # shake head
         self.motion.setAngles("HeadPitch", 0, 0.3)
-        time.sleep(0.5)
-        self.motion.setAngles("HeadYaw", -0.5, 0.3)
-        time.sleep(0.5)
-        self.motion.setAngles("HeadYaw", 0.5, 0.3)
-        time.sleep(0.5)
-        self.motion.setAngles("HeadYaw", -0.5, 0.3)
-        time.sleep(0.5)
-        self.motion.setAngles("HeadYaw", 0.5, 0.3)
+        for i in range(2):
+            time.sleep(0.5)
+            self.motion.setAngles("HeadYaw", -0.5, 0.3)
+            time.sleep(0.5)
+            self.motion.setAngles("HeadYaw", 0.5, 0.3)
         time.sleep(0.5)
         self.motion.setAngles("HeadYaw", 0, 0.3)
-        # self.genSpeech("i'm sorry, that's incorrect.")
 
         # move back to the original position
         time.sleep(2.5)
-        self.posture.goToPosture("Sit", 1.0)
-        # self.motion.setAngles("HeadPitch", 0.3, 0.15)
+        self.bring_to_sit(1.0)
 
     def scale_up(self):
         # start position of the arm
@@ -359,10 +323,8 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 1.3, 0.3)
 
         time.sleep(2)
-
-        self.prepare_sit_right()
+        self.bring_to_sit(0.15)
         time.sleep(2)
-        self.posture.goToPosture("Sit", 0.5)
 
     def scale_down(self):
         # start position of the arm
@@ -380,11 +342,8 @@ class Gesture:
         self.motion.setAngles("RShoulderPitch", 1.5, 0.1)
 
         time.sleep(2.5)
-        self.prepare_sit_right()
-
+        self.bring_to_sit(0.15)
         time.sleep(2)
-
-        self.posture.goToPosture("Sit", 0.5)
 
     def scale_down_left(self):
         # start position of the arm
@@ -402,11 +361,8 @@ class Gesture:
         self.motion.setAngles("LShoulderPitch", 1.5, 0.1)
 
         time.sleep(2.5)
-        self.prepare_sit_left()
-
+        self.prepare_sit_left(0.15)
         time.sleep(2)
-
-        self.posture.goToPosture("Sit", 0.5)
 
     def two_fractions(self):
         # moving the right hand to the beginning position
@@ -454,7 +410,7 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 1.5, 0.2)
         time.sleep(1)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     # used for word problems
     def two_hands(self):
@@ -503,7 +459,7 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 1.5, 0.2)
         time.sleep(1)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     def multiples(self):
         # moving the right hand to the beginning position
@@ -554,7 +510,7 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 1.5, 0.2)
         time.sleep(1)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     def look(self):
         # head looking at student and talking, for right handers
@@ -611,7 +567,7 @@ class Gesture:
 
         time.sleep(0.5)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
         self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
     def right_relaxed_sit(self):
@@ -645,7 +601,7 @@ class Gesture:
 
         time.sleep(0.5)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
         self.motion.setAngles("HeadPitch", 0.3, 0.15)
 
     def numerator(self):
@@ -663,8 +619,6 @@ class Gesture:
         time.sleep(2)
         self.prepare_sit_right()
         time.sleep(2)
-
-        self.posture.goToPosture("Sit", 0.5)
 
     def denominator(self):
         # self.posture.goToPosture("Sit", 0.5)
@@ -684,7 +638,7 @@ class Gesture:
         self.motion.setAngles("RElbowRoll", 0.8, 0.2)
         self.motion.setAngles("RWristYaw", 1.3, 0.2)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.prepare_sit_right(0.15)
 
     def numerator_denominator(self):
         # start position of the arm
@@ -712,8 +666,6 @@ class Gesture:
         self.prepare_sit_right()
         time.sleep(2)
 
-        self.posture.goToPosture("Sit", 0.5)
-
     def etc(self):
         # head faces straight
         self.motion.setAngles("HeadPitch", 0, 0.15)
@@ -736,7 +688,7 @@ class Gesture:
 
         time.sleep(2)
 
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     def point_question(self):
         # move left hand to point to tablet
@@ -752,14 +704,12 @@ class Gesture:
         # look at the tablet/left hand?
         # self.motion.setAngles("HeadYaw", 0.2, 0.2)
         # Bring back to sit
-        self.motion.setAngles("LShoulderRoll", 0.2, 0.25)
-        self.motion.setAngles("LShoulderPitch", 0.9, 0.25)
-        self.motion.setAngles("LElbowRoll", -0.7, 0.25)
-        self.motion.setAngles("LElbowYaw", 0, 0.25)
-        self.motion.setAngles("LWristYaw", 0, 0.25)
+        time.sleep(2)
+        self.prepare_sit_left(0.15)
+        time.sleep(2)
 
         time.sleep(1.5)
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     def conversion(self):
         # head faces straight
@@ -785,8 +735,7 @@ class Gesture:
         self.motion.setAngles("LShoulderPitch", -0.05, 0.2)
 
         time.sleep(3)
-
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     def congratulations(self):
         # this bit of code makes the robot thrust its right hand into the air
@@ -843,13 +792,11 @@ class Gesture:
         self.motion.setAngles("RShoulderRoll", 0, 0.2)
         self.motion.setAngles("LShoulderRoll", 0, 0.2)
         time.sleep(3)
-        self.posture.goToPosture("Sit", 1.0)
-
-    # def two_hands(self):
+        self.bring_to_sit(1.0)
 
     def tilt(self):
         # this bit of code makes the robot tilt its head
-        self.posture.goToPosture("Sit", 1.0)
+        self.bring_to_sit(1.0)
         self.motion.setStiffnesses("Head", 1.0)
         self.genSpeech("i am now sitting")
         time.sleep(0.5)
@@ -863,11 +810,11 @@ class Gesture:
 
         # move back to the original position
         time.sleep(8)
-        self.posture.goToPosture("Sit", 1.0)
+        self.bring_to_sit(0.5)
 
     def hands(self):
         # this bit of code makes the robot put its hands together and head down
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(1.0)
         self.motion.setStiffnesses("Head", 1.0)
         self.genSpeech("i am now sitting")
         time.sleep(0.5)
@@ -886,7 +833,7 @@ class Gesture:
 
         # move back to the original position
         time.sleep(8)
-        self.posture.goToPosture("Sit", 0.5)
+        self.bring_to_sit(0.5)
 
     def breathe(self):
         self.posture.goToPosture("Stand", 1.0)
@@ -988,20 +935,26 @@ class Gesture:
         self.genSpeech(question)
         time.sleep(2)
 
-        # call before bringing to sit to avoid scooching sit for arm motions
-    def prepare_sit_right(self):
-        self.motion.setAngles("RShoulderRoll", -0.27, 0.15)
-        self.motion.setAngles("RShoulderPitch", 0.919, 0.15)
-        self.motion.setAngles("RElbowRoll", 1.25, 0.15)
-        self.motion.setAngles("RElbowYaw", 0.5, 0.15)
-        self.motion.setAngles("RWristYaw", 0.01, 0.15)
+    # call before bringing to sit to avoid scooching sit, if the only motions away from sit were using arm joints
+    # essentially the same as self.posture.goToPosture("Sit", 0.15), except this won't move the legs
+    # uses the angle settings from ALMotionProxy::getSummary() when the robot is in a sitting position, rounded to 2nd decimal
+    def prepare_sit_right(self, speed):
+        self.motion.setAngles("RShoulderRoll", -0.27, speed)
+        self.motion.setAngles("RShoulderPitch", 0.919, speed)
+        self.motion.setAngles("RElbowRoll", 1.25, speed)
+        self.motion.setAngles("RElbowYaw", 0.5, speed)
+        self.motion.setAngles("RWristYaw", 0.01, speed)
 
-    def prepare_sit_left(self):
-        self.motion.setAngles("LShoulderRoll", 0.26, 0.15)
-        self.motion.setAngles("LShoulderPitch", 0.885, 0.15)
-        self.motion.setAngles("LElbowRoll", -1.2, 0.15)
-        self.motion.setAngles("LElbowYaw", -.466, 0.15)
-        self.motion.setAngles("LWristYaw", -0.006, 0.15)
+    def prepare_sit_left(self, speed):
+        self.motion.setAngles("LShoulderRoll", 0.26, speed)
+        self.motion.setAngles("LShoulderPitch", 0.885, speed)
+        self.motion.setAngles("LElbowRoll", -1.2, speed)
+        self.motion.setAngles("LElbowYaw", -.466, speed)
+        self.motion.setAngles("LWristYaw", -0.006, speed)
+
+    def bring_to_sit(self, speed=0.15):
+        self.prepare_sit_right(speed)
+        self.prepare_sit_left(speed)
 
     def releaseNao(self):
         try:
